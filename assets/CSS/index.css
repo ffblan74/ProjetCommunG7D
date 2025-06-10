@@ -1,0 +1,423 @@
+/* Reset de base */
+body {
+    margin: 0;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Section héroïque */
+.hero-section {
+    position: relative;
+    background: linear-gradient(135deg, #6bcf63, #42975D);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.hero-section h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    animation: fadeInDown 1s ease;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-section .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.hero-section .search-bar {
+    padding: 15px;
+    border: 2px solid #f8f9fa; /* Bordure subtile */
+    border-radius: 25px; /* Bords arrondis */
+    width: 350px; /* Plus large */
+    font-size: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-section .search-button {
+    background: linear-gradient(135deg, #42975D, #356949); /* Dégradé moderne */
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 25px; /* Bords arrondis */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+.hero-section .search-button:hover {
+    background: linear-gradient(135deg, #356949, #2b4d3e); /* Accentuation au survol */
+    transform: translateY(-2px); /* Effet de "saut" */
+}
+
+
+/* Conteneur général du carrousel */
+.events-carousel {
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.events-carousel h2 {
+    color: #42975D;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Conteneur du carrousel */
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden; /* Masque les cartes en dehors de la vue */
+}
+
+.carousel {
+    display: flex;
+    gap: 10px; /* Espacement entre les cartes */
+    transition: transform 0.5s ease-in-out; /* Animation fluide */
+    width: 100%; /* S'assure que tout est bien aligné */
+}
+
+/* Carte individuelle */
+.carousel-item {
+    flex: 0 0 calc(100% / 3 - 20px); /* 3 cartes visibles */
+    max-width: calc(100% / 3 - 20px);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 10px;
+}
+
+.carousel-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.carousel-item p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.carousel-item button {
+    background-color: #42975D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-item button:hover {
+    background-color: #356949;
+}
+
+.carousel .btn-details {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #42975D;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.carousel .btn-details:hover {
+    background-color: #356949;
+}
+
+
+
+/* Catégories */
+.categories {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.categories h2 {
+    font-size: 2rem;
+    color: #42975D;
+    margin-bottom: 20px;
+}
+
+.categories p {
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.category-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.category-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 200px;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+.category-card h3 {
+    color: #42975D;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.category-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Section fonctionnalités */
+.features {
+    padding: 4rem 2rem;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.features h2 {
+    font-size: 2.5rem;
+    color: #42975D;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.features h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(135deg, #6bcf63, #42975D);
+    border-radius: 2px;
+}
+
+.features p {
+    color: #666;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: #42975D;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
+    }
+}
+
+/* Section statistiques */
+.stats-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+    text-align: center;
+}
+
+.stats-section h2 {
+    font-size: 2.5rem;
+    color: #42975D;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.stats-section h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(135deg, #6bcf63, #42975D);
+    border-radius: 2px;
+}
+
+.stats-section p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stat {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 200px;
+}
+
+.stat:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.stat h3 {
+    font-size: 2.5rem;
+    color: #42975D;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.stat p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .stats-container {
+        gap: 20px;
+    }
+    
+    .stat {
+        width: 100%;
+        max-width: 300px;
+        padding: 20px;
+    }
+    
+    .stat h3 {
+        font-size: 2rem;
+    }
+}
+
+/* Témoignages */
+.testimonials {
+    padding: 50px 20px;
+    background-color: #e9f5ec;
+    text-align: center;
+}
+
+.testimonials blockquote {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.testimonials cite {
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

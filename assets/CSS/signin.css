@@ -1,0 +1,221 @@
+/* --- Styles globaux modernisés --- */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Conteneur principal */
+.signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Box principale */
+.signin-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Titre */
+h1 {
+    font-size: 24px;
+    color: #42875D;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Texte informatif */
+.info-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Champs du formulaire */
+form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative;
+}
+
+form label {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 8px;
+    display: block;
+}
+
+form input,
+form select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #fefefe;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
+}
+
+form input:focus,
+form select:focus {
+    border-color: #42875D;
+    box-shadow: 0 0 10px rgba(66, 135, 93, 0.3);
+    outline: none;
+}
+
+/* Bulle d'information pour le mot de passe */
+.password-requirements {
+    display: none;
+    position: absolute;
+    top: 120%;
+    left: 0;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 13px;
+    color: #333;
+    z-index: 100;
+    width: 250px;
+}
+
+.form-group input:focus + .password-requirements,
+.form-group input:hover + .password-requirements {
+    display: block;
+}
+
+/* Bouton principal */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #42875D;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #3c8658;
+    transform: translateY(-2px);
+}
+
+/* Liens */
+.links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.links a {
+    font-size: 14px;
+    color: #42875D;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.links a:hover {
+    color: #356949;
+    text-decoration: underline;
+}
+
+/* Sélecteur moderne pour le type de profil */
+form select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns%3d%22http://www.w3.org/2000/svg%22 viewBox%3d%220 0 140 140%22%3e%3cpath fill%3d%22%2342875D%22 d%3d%22M70 100L20 40h100z%22/%3e%3c/svg%3e') no-repeat right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+}
+
+form select:focus {
+    border-color: #42875D;
+    box-shadow: 0 0 10px rgba(66, 135, 93, 0.3);
+}
+
+/* Feedback pour les mots de passe */
+.password-feedback {
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+.password-feedback.valid {
+    color: #28a745;
+}
+
+.password-feedback.invalid {
+    color: #dc3545;
+}
+
+/* --- Design responsive --- */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        padding: 20px;
+        display: block;
+    }
+
+    .signin-container {
+        height: auto;
+        padding: 20px;
+    }
+
+    .signin-box {
+        margin: 20px auto;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    form input,
+    form select {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .links a {
+        font-size: 12px;
+    }
+}
