@@ -12,8 +12,8 @@ body {
     display: flex; 
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
-    background-color: #388E3C; /* Vert harmonieux */
+    padding: 0.15rem 0.30rem;
+    background-color: #D9E3E8; /* Vert harmonieux */
     width: 100%; /* Pleine largeur */
     box-sizing: border-box; /* Inclut les bordures et padding dans la largeur totale */
     position: fixed;
@@ -29,9 +29,10 @@ body {
 
 /* --- Logo dans la barre de navigation --- */
 .logo {
-    height: 50px; /* Hauteur réduite pour un logo plus petit */
+    height: 70px; /* Hauteur réduite pour un logo plus petit */
     width: auto; /* Maintient le ratio de l'image */
     margin-right: 1rem; /* Espace entre le logo et les autres éléments */
+    margin-left: 1rem;
 }
   
 .navbar-menu {
@@ -51,7 +52,7 @@ body {
 }
 
 .navbar-menu a {
-    color: white;
+    color: #2B3A4B;
     text-decoration: none;
     font-weight: bold;
     padding: 0.5rem 1rem;
@@ -62,7 +63,8 @@ body {
 }
 
 .navbar-menu a:hover {
-    background-color: #109500; /* Vert clair au survol */
+    background-color: #3C75A6; /* Vert clair au survol */
+    color: white;
 }
 
 /* --- Bouton de connexion --- */
@@ -80,6 +82,7 @@ body {
 
 .connect-button:hover {
     background-color: #109500; /* Vert encore plus foncé */
+   
 }
 
 /* --- Menu déroulant (plus d'informations) --- */
@@ -119,6 +122,7 @@ body {
 
 .dropdown-content a:hover {
     background-color: #2d7230;
+ 
 }
 
 /* Supprimer les styles en double */
@@ -148,9 +152,10 @@ ul {
 /* Boutons "Se connecter", "Se déconnecter" et "Mon profil" */
 .connect-button,
 .profile-button {
-    background-color: transparent;
+    background-color: #5A9BD5;
     color: white;
-    border: 2px solid white;
+    border: 2px solid #3C75A6
+    ;
     padding: 0.4rem 0.8rem; /* Réduit le padding */
     border-radius: 15px; /* Réduit légèrement le border-radius */
     font-weight: bold;
@@ -158,14 +163,15 @@ ul {
     text-decoration: none;
     transition: all 0.3s ease;
     font-size: 0.9rem; /* Réduit la taille de la police */
+    margin-right: 1rem;
 }
 
 /* Effet au survol */
 .connect-button:hover,
 .profile-button:hover {
-    background-color: white;
-    color: #109500;
-    border-color: #109500;
+    background-color: #A8B0B8;
+    color: white;
+    border-color: #2B3A4B;
     transform: scale(1.03); /* Réduit légèrement l'effet de scale */
 }
 
