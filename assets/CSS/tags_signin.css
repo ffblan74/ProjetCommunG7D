@@ -1,0 +1,275 @@
+/* --- Styles globaux modernisés --- */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Conteneur principal */
+.signin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Box principale */
+.signin-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Titre */
+h1 {
+    font-size: 24px;
+    color: #42875D;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Texte informatif */
+.info-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Checkbox groupe */
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.checkbox-group input[type="checkbox"] {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #42875D;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"]:checked {
+    background-color: #42875D;
+    border-color: #42875D;
+    position: relative;
+}
+
+.checkbox-group input[type="checkbox"]:checked::after {
+    content: '\2713'; /* Icône de coche classique */
+    font-size: 14px;
+    color: white;
+    display: block;
+    text-align: center;
+    line-height: 18px;
+}
+
+/* Transition de hover */
+.checkbox-group label:hover {
+    color: #42875D;
+}
+
+/* Bouton principal */
+.btn {
+    width: 100%;
+    background-color: #42875D;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #356949;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajouter un effet focus */
+.btn:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(66, 135, 93, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+      padding: 10px;
+      flex-direction: column;
+    }
+  
+    .signin-container {
+      padding: 20px;
+      width: 100%;
+    }
+  
+    .signin-box {
+      margin: 20px auto;
+      width: 100%;
+      max-width: 90%; /* Réduit la largeur pour s'adapter */
+    }
+  
+    .popup-content {
+      max-width: 90%; /* Réduit la largeur pour mobile */
+      margin: 10px auto;
+      padding: 15px;
+    }
+  
+    .filter-options {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+    }
+  
+    .evenements-list {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .evenement {
+      width: 100%; /* Utilise toute la largeur disponible */
+    }
+  
+    .date {
+      font-size: 14px; /* Réduit la taille de la date */
+      min-width: 60px;
+    }
+  
+    .details h2 {
+      font-size: 16px;
+    }
+  
+    .details p {
+      font-size: 12px;
+    }
+  
+    .btn {
+      padding: 8px 12px;
+      font-size: 14px;
+    }
+  
+    .dropdown-menu {
+      width: 100%; /* Utilise toute la largeur disponible */
+    }
+  
+    .dropdown-content li a {
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+  
+    .hero-section {
+      padding: 20px;
+      font-size: 16px;
+    }
+  
+    .search-bar {
+      width: 100%;
+      padding: 8px;
+      font-size: 14px;
+    }
+  
+    .filter-button {
+      width: 100%; /* Bouton prend toute la largeur disponible */
+      padding: 10px;
+    }
+  
+    .footer-container {
+      flex-wrap: wrap;
+      text-align: center;
+    }
+  
+    .footer-column {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    .popup-buttons .btn {
+      width: 48%; /* Ajuste les boutons pour qu'ils se répartissent */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    body {
+        padding: 10px;
+        flex-direction: column;
+    }
+
+    .signin-box {
+        padding: 20px; /* Réduction de padding pour économiser de l'espace */
+        box-shadow: none; /* Réduction des ombres pour éviter l'encombrement */
+        max-width: 100%; /* Utilise toute la largeur de l'écran */
+    }
+
+    h1 {
+        font-size: 20px; /* Réduction de la taille du titre */
+        margin-bottom: 5px;
+    }
+
+    .info-text {
+        font-size: 12px; /* Réduction de la taille du texte informatif */
+    }
+
+    .btn {
+        padding: 10px; /* Réduction du padding */
+        font-size: 14px; /* Réduction de la taille du texte du bouton */
+    }
+
+    .checkbox-group label {
+        font-size: 14px; /* Ajustement de la taille de la police */
+    }
+
+    .checkbox-group input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+    }
+
+    .popup-content {
+        width: 95%; /* Réduction de la largeur pour les petits écrans */
+        padding: 10px; /* Réduction du padding */
+    }
+
+    .footer-column {
+        text-align: center;
+        width: 100%; /* Chaque colonne s'étend sur toute la largeur */
+        margin-bottom: 15px;
+    }
+}

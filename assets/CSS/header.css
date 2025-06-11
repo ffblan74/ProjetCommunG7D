@@ -1,0 +1,266 @@
+/* --- Styles généraux --- */
+body {
+    font-family: Arial, sans-serif; /* Police globale */
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Couleur de fond globale */
+    color: #333; /* Couleur par défaut pour le texte */
+}
+
+/* --- Barre de navigation --- */
+.navbar {
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: #388E3C; /* Vert harmonieux */
+    width: 100%; /* Pleine largeur */
+    box-sizing: border-box; /* Inclut les bordures et padding dans la largeur totale */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* --- Logo dans la barre de navigation --- */
+.logo {
+    height: 50px; /* Hauteur réduite pour un logo plus petit */
+    width: auto; /* Maintient le ratio de l'image */
+    margin-right: 1rem; /* Espace entre le logo et les autres éléments */
+}
+  
+.navbar-menu {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Centre le texte */
+}
+
+.navbar-menu li {
+    display: relative;
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Centre le texte des liens */
+    display: inline-block; /* Permet le centrage */
+}
+
+.navbar-menu a:hover {
+    background-color: #109500; /* Vert clair au survol */
+}
+
+/* --- Bouton de connexion --- */
+
+.connect-button {
+    background-color: grey; /* Vert bouton */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px; /* Coins arrondis */
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.connect-button:hover {
+    background-color: #109500; /* Vert encore plus foncé */
+}
+
+/* --- Menu déroulant (plus d'informations) --- */
+
+/*Style du bouton */
+
+.dropdown {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: auto;
+}
+
+/*Style du menu déroulant */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #388E3C;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1000;
+    text-align: center;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.dropdown-content a:hover {
+    background-color: #2d7230;
+}
+
+/* Supprimer les styles en double */
+.user-menu .dropdown-content {
+    background-color: #388E3C;
+}
+
+.user-menu .dropdown-content a {
+    color: white;
+}
+
+.user-menu .dropdown-content a:hover {
+    background-color: #2d7230;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Afficher le menu au survol */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Boutons "Se connecter", "Se déconnecter" et "Mon profil" */
+.connect-button,
+.profile-button {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 0.4rem 0.8rem; /* Réduit le padding */
+    border-radius: 15px; /* Réduit légèrement le border-radius */
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem; /* Réduit la taille de la police */
+}
+
+/* Effet au survol */
+.connect-button:hover,
+.profile-button:hover {
+    background-color: white;
+    color: #109500;
+    border-color: #109500;
+    transform: scale(1.03); /* Réduit légèrement l'effet de scale */
+}
+
+/* Pour espacer les boutons si besoin */
+.navbar-right a {
+    margin-left: 8px; /* Réduit légèrement l'espacement */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none; /* Cache le menu par défaut */
+        flex-direction: column; /* Empile les liens verticalement */
+        background-color: #388E3C; /* Fond vert */
+        position: absolute;
+        top: 100%; /* Sous la barre de navigation */
+        left: 0;
+        width: 100%;
+        padding: 1rem 0;
+    }
+
+    .navbar-menu.active {
+        display: flex; /* Affiche le menu lorsque le bouton hamburger est activé */
+    }
+
+    .navbar-menu li {
+        text-align: center; /* Centre le texte */
+    }
+
+    .navbar-menu a {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .navbar-menu a {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .connect-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+.user-menu {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.username {
+    display: inline-block;
+    padding: 10px;
+    color: #333;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.login-btn, .signup-btn {
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.login-btn {
+    color: #333;
+    background-color: transparent;
+    border: 1px solid #333;
+}
+
+.signup-btn {
+    color: white;
+    background-color: #4CAF50;
+    border: 1px solid #4CAF50;
+}
+
+.login-btn:hover {
+    background-color: #f5f5f5;
+}
+
+.signup-btn:hover {
+    background-color: #45a049;
+}

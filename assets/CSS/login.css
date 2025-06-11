@@ -1,0 +1,174 @@
+/* Styles globaux */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Conteneur principal */
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Signup Box */
+.signin-box {
+  animation: fadeIn 1s ease-out;
+  background: white;
+  padding: 40px 30px; /* Ajustement des marges internes gauche-droite */
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Ombre par défaut */
+  transition: box-shadow 0.3s ease-in-out; /* Transition fluide */
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.signin-box:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); /* Ombre subtile */
+}
+
+/* Titre */
+.signin-box h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Formulaire */
+form .form-group {
+  margin-bottom: 20px; /* Espacement entre les champs */
+  text-align: left;
+}
+
+form label {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 8px;
+  display: block; /* Cohérence dans les alignements */
+}
+
+form input {
+  width: calc(100% - 20px); /* Ajustement pour compenser le padding */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+  background-color: #fefefe;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  margin: 0 auto; /* Éviter le déséquilibre */
+}
+
+form input:focus {
+  border-color: #42875D;
+  box-shadow: 0 0 10px rgba(66, 135, 93, 0.3);
+  outline: none;
+}
+
+/* Bouton */
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #42875D;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #3c8658;
+  transform: translateY(-2px);
+}
+
+/* Liens */
+.links {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.links a {
+  font-size: 14px;
+  color: #42875D;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-block;
+  margin-top: 5px;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: #356949;
+  text-decoration: underline;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .signin-box {
+    padding: 30px 20px; /* Réduction des marges internes */
+    width: 90%; /* S'adapte à presque toute la largeur de l'écran */
+  }
+
+  .signin-box h1 {
+    font-size: 24px; /* Réduction de la taille du titre */
+  }
+
+  form input {
+    font-size: 14px; /* Taille du texte légèrement réduite */
+    padding: 8px; /* Réduction du padding interne */
+  }
+
+  .btn {
+    font-size: 15px; /* Légèrement plus petit */
+    padding: 10px; /* Réduction du padding vertical */
+  }
+}
+
+@media (max-width: 480px) {
+  .signin-box {
+    padding: 20px 15px; /* Réduction supplémentaire des marges internes */
+    width: 95%; /* Presque toute la largeur de l'écran */
+  }
+
+  .signin-box h1 {
+    font-size: 20px; /* Réduction pour les très petits écrans */
+  }
+
+  form input {
+    font-size: 13px; /* Ajustement pour les écrans très petits */
+  }
+
+  .btn {
+    font-size: 14px; /* Encore plus petit */
+    padding: 8px; /* Réduction du padding */
+  }
+
+  .links a {
+    font-size: 13px; /* Liens plus petits */
+  }
+}
