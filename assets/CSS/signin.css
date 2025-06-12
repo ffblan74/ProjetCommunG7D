@@ -43,7 +43,7 @@ body {
 /* Titre */
 h1 {
     font-size: 24px;
-    color: #42875D;
+    color: #3C75A6;
     text-align: center;
     margin-bottom: 20px;
     font-weight: bold;
@@ -85,7 +85,7 @@ form select {
 
 form input:focus,
 form select:focus {
-    border-color: #42875D;
+    border-color: #5A9BD5;
     box-shadow: 0 0 10px rgba(66, 135, 93, 0.3);
     outline: none;
 }
@@ -117,7 +117,7 @@ form select:focus {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #42875D;
+    background-color: #3C75A6;
     color: white;
     border: none;
     border-radius: 6px;
@@ -128,7 +128,7 @@ form select:focus {
 }
 
 .btn:hover {
-    background-color: #3c8658;
+    background-color: #5A9BD5;
     transform: translateY(-2px);
 }
 
@@ -140,14 +140,14 @@ form select:focus {
 
 .links a {
     font-size: 14px;
-    color: #42875D;
+    color: #3C75A6;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .links a:hover {
-    color: #356949;
+    color: #5A9BD5;
     text-decoration: underline;
 }
 
@@ -162,7 +162,7 @@ form select {
 }
 
 form select:focus {
-    border-color: #42875D;
+    border-color: #3C75A6;
     box-shadow: 0 0 10px rgba(66, 135, 93, 0.3);
 }
 
