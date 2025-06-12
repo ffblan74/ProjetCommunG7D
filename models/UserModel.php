@@ -1,10 +1,10 @@
 <?php
 class UserModel {
-    private $pdo;
+    private $bdd; // Utilisation de la variable en français 'bdd' pour la connexion à la base de données
 
     public function __construct() {
         try {
-            $this->pdo = Database::getInstance()->getConnection();
+            $this->bdd = Database::getInstance()->getConnection();
         } catch (Exception $e) {
             throw new Exception("Erreur de connexion à la base de données: " . $e->getMessage());
         }
@@ -12,22 +12,18 @@ class UserModel {
 
     public function findUserByEmail($email) {
         try {
-            // D'abord, chercher dans la table Administrateur
-            $query = "SELECT id_admin as user_id, nom, mot_de_passe, 'administrateur' as role FROM Administrateur WHERE email = :email
-                     UNION
-                     SELECT id_organisateur as user_id, nom_organisateur as nom, mot_de_passe, 'organisateur' as role FROM Organisateur WHERE email = :email
-                     UNION
-                     SELECT id_participant as user_id, nom_participant as nom, mot_de_passe, 'participant' as role FROM Participants WHERE email = :email";
+            // D'abord, chercher dans la table utilisateur
+            $requete = "SELECT id, nom, mdp AS mot_de_passe, mail AS email, admin AS est_admin, token FROM utilisateur WHERE mail = :email";
             
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->bdd->prepare($requete);
             $stmt->execute(['email' => $email]);
             
             error_log("Recherche de l'utilisateur pour l'email: " . $email);
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if ($result) {
-                error_log("Utilisateur trouvé avec le rôle: " . $result['role']);
-                return $result;
+            if ($resultat) {
+                error_log("Utilisateur trouvé avec l'email: " . $resultat['email']);
+                return $resultat;
             }
             
             error_log("Aucun utilisateur trouvé pour l'email: " . $email);
@@ -40,11 +36,9 @@ class UserModel {
 
     public function emailExists($email) {
         try {
-            $query = "SELECT 
-                        (SELECT COUNT(*) FROM Participants WHERE email = :email) +
-                        (SELECT COUNT(*) FROM Organisateur WHERE email = :email) as total";
+            $requete = "SELECT COUNT(*) FROM utilisateur WHERE mail = :email";
 
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->bdd->prepare($requete);
             $stmt->execute(['email' => $email]);
             
             return (int)$stmt->fetchColumn() > 0;
@@ -56,48 +50,41 @@ class UserModel {
 
     public function createUser($data) {
         try {
-            $table = $data['role'] === 'organisateur' ? 'Organisateur' : 'Participants';
-            $nomField = $data['role'] === 'organisateur' ? 'nom_organisateur' : 'nom_participant';
+            $requete = "INSERT INTO utilisateur 
+                        (nom, mdp, mail, admin, token) 
+                        VALUES (:nom, :mdp, :mail, :admin, :token)";
             
-            $query = "INSERT INTO $table 
-                     ($nomField, nom, prenom, email, mot_de_passe) 
-                     VALUES (:nom_complet, :nom, :prenom, :email, :mot_de_passe)";
-            
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->bdd->prepare($requete);
             $stmt->execute([
-                'nom_complet' => $data['nom'] . ' ' . $data['prenom'],
                 'nom' => $data['nom'],
-                'prenom' => $data['prenom'],
-                'email' => $data['email'],
-                'mot_de_passe' => $data['password']
+                'mdp' => password_hash($data['password'], PASSWORD_DEFAULT), // Utilisation de 'password' comme dans votre original
+                'mail' => $data['email'],
+                'admin' => $data['admin'] ?? 0, // Par défaut, non admin si non spécifié
+                'token' => $data['token'] ?? null // Token optionnel
             ]);
 
-            return $this->pdo->lastInsertId();
+            return $this->bdd->lastInsertId();
         } catch (PDOException $e) {
-            error_log("Erreur lors de la création de l'utilisateur: " . $e->getMessage() . "\nRequête: " . $query);
+            error_log("Erreur lors de la création de l'utilisateur: " . $e->getMessage() . "\nRequête: " . $requete);
             throw new Exception("Erreur lors de la création du compte: " . $e->getMessage());
         }
     }
 
     public function getUserData($email) {
         try {
-            $query = "
-                SELECT prenom, nom, email 
-                FROM Participants 
-                WHERE email = :email
-                UNION
-                SELECT prenom, nom, email 
-                FROM Organisateur 
-                WHERE email = :email
+            $requete = "
+                SELECT id, nom, mail AS email, admin AS est_admin, token 
+                FROM utilisateur 
+                WHERE mail = :email
             ";
 
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->bdd->prepare($requete);
             $stmt->bindParam(':email', $email);
             $stmt->execute();
             
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            return $user ?: null;
+            return $utilisateur ?: null;
         } catch (PDOException $e) {
             error_log("Erreur lors de la récupération des données utilisateur: " . $e->getMessage());
             return null;
@@ -105,23 +92,22 @@ class UserModel {
     }
 
     public function updateUserData($currentEmail, $prenom, $nom, $newEmail, $ville) {
+        // La table 'utilisateur' n'a pas les champs 'prenom', 'ville'.
+        // Seuls 'nom' et 'mail' sont disponibles pour la mise à jour des données principales.
+        // Si ces champs sont nécessaires, ils doivent être ajoutés à la table 'utilisateur'.
         try {
-            $query = "
-                UPDATE Participants 
-                SET prenom = :prenom, nom = :nom, email = :newEmail, ville = :ville 
-                WHERE email = :currentEmail;
-
-                UPDATE Organisateur 
-                SET prenom = :prenom, nom = :nom, email = :newEmail, ville = :ville 
-                WHERE email = :currentEmail;
+            $requete = "
+                UPDATE utilisateur 
+                SET nom = :nom, mail = :newEmail 
+                WHERE mail = :currentEmail;
             ";
 
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->bdd->prepare($requete);
             return $stmt->execute([
-                'prenom' => $prenom,
+                // 'prenom' => $prenom, // Ce champ n'existe pas dans la table utilisateur
                 'nom' => $nom,
                 'newEmail' => $newEmail,
-                'ville' => $ville,
+                // 'ville' => $ville, // Ce champ n'existe pas dans la table utilisateur
                 'currentEmail' => $currentEmail
             ]);
         } catch (PDOException $e) {
@@ -131,22 +117,22 @@ class UserModel {
     }
 
     public function updateProfile($email, $pseudo, $bio, $profilePhoto) {
+        // La table 'utilisateur' n'a pas les champs 'pseudo', 'bio', 'photo_profil'.
+        // Si ces champs sont nécessaires, ils doivent être ajoutés à la table 'utilisateur'.
+        // Pour l'instant, cette fonction ne peut mettre à jour que le 'token' si désiré.
         try {
-            $query = "
-                UPDATE Participants 
-                SET pseudo = :pseudo, bio = :bio, photo_profil = :profilePhoto 
-                WHERE email = :email;
-                
-                UPDATE Organisateur 
-                SET pseudo = :pseudo, bio = :bio, photo_profil = :profilePhoto 
-                WHERE email = :email;
+            $requete = "
+                UPDATE utilisateur 
+                SET token = :token 
+                WHERE mail = :email;
             ";
 
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->bdd->prepare($requete);
             return $stmt->execute([
-                'pseudo' => $pseudo,
-                'bio' => $bio,
-                'profilePhoto' => $profilePhoto,
+                // 'pseudo' => $pseudo, // Ce champ n'existe pas dans la table utilisateur
+                // 'bio' => $bio,       // Ce champ n'existe pas dans la table utilisateur
+                // 'profilePhoto' => $profilePhoto, // Ce champ n'existe pas dans la table utilisateur
+                'token' => null, // Vous pouvez passer un token spécifique si vous en avez un pour le profil
                 'email' => $email
             ]);
         } catch (PDOException $e) {
@@ -157,17 +143,13 @@ class UserModel {
 
     public function getUserDataByToken($sessionToken) {
         try {
-            $query = "
-                SELECT prenom, nom, email 
-                FROM Participants 
-                WHERE session_token = :sessionToken
-                UNION
-                SELECT prenom, nom, email 
-                FROM Organisateur 
-                WHERE session_token = :sessionToken
+            $requete = "
+                SELECT id, nom, mail AS email, admin AS est_admin, token 
+                FROM utilisateur 
+                WHERE token = :sessionToken
             ";
 
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->bdd->prepare($requete);
             $stmt->bindParam(':sessionToken', $sessionToken);
             $stmt->execute();
 
@@ -183,105 +165,48 @@ class UserModel {
             error_log("Début de updateUser avec ID: " . $userData['id']);
             error_log("Données reçues: " . print_r($userData, true));
             
-            // Déterminer le rôle de l'utilisateur
-            $query = "SELECT 'administrateur' as role FROM Administrateur WHERE id_admin = :id
-                     UNION
-                     SELECT 'organisateur' as role FROM Organisateur WHERE id_organisateur = :id
-                     UNION
-                     SELECT 'participant' as role FROM Participants WHERE id_participant = :id";
-            
-            $stmt = $this->pdo->prepare($query);
-            $stmt->execute(['id' => $userData['id']]);
-            $roleResult = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            error_log("Résultat de la recherche de rôle: " . print_r($roleResult, true));
-            
-            if (!$roleResult) {
-                error_log("Utilisateur non trouvé avec l'ID: " . $userData['id']);
-                throw new Exception("Utilisateur non trouvé");
-            }
-
-            $role = $roleResult['role'];
-            error_log("Rôle trouvé: " . $role);
-            
-            // Préparer la requête en fonction du rôle
-            switch ($role) {
-                case 'organisateur':
-                    $table = 'Organisateur';
-                    $idField = 'id_organisateur';
-                    $nomField = 'nom_organisateur';
-                    break;
-                case 'participant':
-                    $table = 'Participants';
-                    $idField = 'id_participant';
-                    $nomField = 'nom_participant';
-                    break;
-                case 'administrateur':
-                    $table = 'Administrateur';
-                    $idField = 'id_admin';
-                    $nomField = 'nom';
-                    break;
-                default:
-                    error_log("Rôle non valide: " . $role);
-                    throw new Exception("Rôle non valide");
-            }
-
-            // Construire la requête de mise à jour
-            $query = "UPDATE $table SET 
-                        $nomField = :nom,
+            // La table 'utilisateur' est unique, pas besoin de déterminer le rôle entre plusieurs tables.
+            $requete = "UPDATE utilisateur SET 
                         nom = :nom,
-                        prenom = :prenom,
-                        email = :email";
+                        mail = :email,
+                        admin = :admin"; // 'admin' est le nom de la colonne
             
-            // Ajouter le téléphone seulement s'il existe dans la table
-            $checkColumnQuery = "SHOW COLUMNS FROM $table LIKE 'telephone'";
-            $stmt = $this->pdo->prepare($checkColumnQuery);
-            $stmt->execute();
-            if ($stmt->rowCount() > 0) {
-                $query .= ", telephone = :telephone";
+            // Ajouter le token seulement s'il est présent dans les données
+            if (isset($userData['token'])) {
+                $requete .= ", token = :token";
             }
             
-            // Ajouter la photo de profil à la requête si elle existe
-            if (isset($userData['photo_profil'])) {
-                $query .= ", photo_profil = :photo_profil";
-            }
+            $requete .= " WHERE id = :id";
             
-            $query .= " WHERE $idField = :id";
-            
-            error_log("Requête SQL générée: " . $query);
+            error_log("Requête SQL générée: " . $requete);
 
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->bdd->prepare($requete);
             
             // Préparer les paramètres
-            $params = [
+            $parametres = [
                 'nom' => $userData['nom'],
-                'prenom' => $userData['prenom'],
                 'email' => $userData['email'],
+                'admin' => $userData['admin'] ?? 0, // Utilisation de 'admin' pour la colonne
                 'id' => $userData['id']
             ];
 
-            // Ajouter le téléphone aux paramètres si la colonne existe
-            if (isset($userData['telephone']) && !empty($userData['telephone'])) {
-                $params['telephone'] = $userData['telephone'];
+            // Ajouter le token aux paramètres si il existe
+            if (isset($userData['token'])) {
+                $parametres['token'] = $userData['token'];
             }
+
+            error_log("Paramètres de la requête: " . print_r($parametres, true));
+
+            $resultat = $stmt->execute($parametres);
+            error_log("Résultat de l'exécution: " . ($resultat ? "succès" : "échec"));
             
-            // Ajouter la photo de profil aux paramètres si elle existe
-            if (isset($userData['photo_profil'])) {
-                $params['photo_profil'] = $userData['photo_profil'];
+            if (!$resultat) {
+                $infoErreur = $stmt->errorInfo();
+                error_log("Erreur PDO: " . print_r($infoErreur, true));
+                throw new Exception("Erreur SQL: " . $infoErreur[2]);
             }
 
-            error_log("Paramètres de la requête: " . print_r($params, true));
-
-            $result = $stmt->execute($params);
-            error_log("Résultat de l'exécution: " . ($result ? "succès" : "échec"));
-            
-            if (!$result) {
-                $errorInfo = $stmt->errorInfo();
-                error_log("Erreur PDO: " . print_r($errorInfo, true));
-                throw new Exception("Erreur SQL: " . $errorInfo[2]);
-            }
-
-            return $result;
+            return $resultat;
         } catch (PDOException $e) {
             error_log("Erreur PDO lors de la mise à jour de l'utilisateur: " . $e->getMessage());
             error_log("Stack trace: " . $e->getTraceAsString());
@@ -295,53 +220,31 @@ class UserModel {
 
     public function updatePassword($userId, $currentPassword, $newPassword) {
         try {
-            // Déterminer le rôle et la table de l'utilisateur
-            $query = "SELECT 'administrateur' as role, id_admin as id, mot_de_passe FROM Administrateur WHERE id_admin = :id
-                     UNION
-                     SELECT 'organisateur' as role, id_organisateur as id, mot_de_passe FROM Organisateur WHERE id_organisateur = :id
-                     UNION
-                     SELECT 'participant' as role, id_participant as id, mot_de_passe FROM Participants WHERE id_participant = :id";
+            // Déterminer le rôle et la table de l'utilisateur (simplifié pour une seule table 'utilisateur')
+            $requete = "SELECT id, mdp FROM utilisateur WHERE id = :id";
             
-            $stmt = $this->pdo->prepare($query);
+            $stmt = $this->bdd->prepare($requete);
             $stmt->execute(['id' => $userId]);
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if (!$user) {
+            if (!$utilisateur) {
                 throw new Exception("Utilisateur non trouvé");
             }
 
             // Vérifier l'ancien mot de passe
-            if (!password_verify($currentPassword, $user['mot_de_passe'])) {
+            if (!password_verify($currentPassword, $utilisateur['mdp'])) {
                 throw new Exception("Mot de passe actuel incorrect");
             }
 
-            // Déterminer la table à mettre à jour
-            switch ($user['role']) {
-                case 'organisateur':
-                    $table = 'Organisateur';
-                    $idField = 'id_organisateur';
-                    break;
-                case 'participant':
-                    $table = 'Participants';
-                    $idField = 'id_participant';
-                    break;
-                case 'administrateur':
-                    $table = 'Administrateur';
-                    $idField = 'id_admin';
-                    break;
-                default:
-                    throw new Exception("Rôle non valide");
-            }
-
             // Mettre à jour le mot de passe
-            $updateQuery = "UPDATE $table SET mot_de_passe = :password WHERE $idField = :id";
-            $stmt = $this->pdo->prepare($updateQuery);
-            $result = $stmt->execute([
-                'password' => password_hash($newPassword, PASSWORD_DEFAULT),
+            $requeteMiseAJour = "UPDATE utilisateur SET mdp = :mot_de_passe WHERE id = :id";
+            $stmt = $this->bdd->prepare($requeteMiseAJour);
+            $resultat = $stmt->execute([
+                'mot_de_passe' => password_hash($newPassword, PASSWORD_DEFAULT),
                 'id' => $userId
             ]);
 
-            if (!$result) {
+            if (!$resultat) {
                 throw new Exception("Erreur lors de la mise à jour du mot de passe");
             }
 
@@ -357,8 +260,8 @@ class UserModel {
 
     public function findUserByUsername($username) {
         try {
-            $query = "SELECT * FROM Utilisateur WHERE nom_utilisateur = :username";
-            $stmt = $this->pdo->prepare($query);
+            $requete = "SELECT id, nom, mdp AS mot_de_passe, mail AS email, admin AS est_admin, token FROM utilisateur WHERE nom = :username";
+            $stmt = $this->bdd->prepare($requete);
             $stmt->execute(['username' => $username]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
@@ -369,9 +272,9 @@ class UserModel {
 
     public function saveResetToken($userId, $token, $expiry) {
         try {
-            $query = "INSERT INTO reset_tokens (user_id, token, expiry) VALUES (:user_id, :token, :expiry)
-                      ON DUPLICATE KEY UPDATE token = :token, expiry = :expiry";
-            $stmt = $this->pdo->prepare($query);
+            $requete = "INSERT INTO reset_tokens (user_id, token, expiry) VALUES (:user_id, :token, :expiry)
+                            ON DUPLICATE KEY UPDATE token = :token, expiry = :expiry";
+            $stmt = $this->bdd->prepare($requete);
             return $stmt->execute([
                 'user_id' => $userId,
                 'token' => $token,
