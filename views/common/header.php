@@ -14,7 +14,7 @@ $isOrganizer = isset($_SESSION['role']) && $_SESSION['role'] === 'organisateur';
   <nav class="navbar">
     <div class="navbar-left">
       <a href="<?= $basePath ?>?page=home">
-        <img src="<?= $basePath ?>assets/images/logo.png" alt="Logo Plan It" class="logo">
+        <img src="<?= $basePath ?>assets/images/logo.png" alt="Logo Light Control" class="logo">
       </a>
     </div>
 
@@ -26,15 +26,8 @@ $isOrganizer = isset($_SESSION['role']) && $_SESSION['role'] === 'organisateur';
 
     <ul class="navbar-menu">
       <li><a href="<?= $basePath ?>?page=home" class="<?= $page === 'home' ? 'active' : '' ?>">Accueil</a></li>
-      <li><a href="<?= $basePath ?>?page=explorer" class="<?= $page === 'explorer' ? 'active' : '' ?>">Explorer</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-button">Plus d'informations</a>
-        <ul class="dropdown-content">
-          <li><a href="<?= $basePath ?>?page=contact">Contactez-nous</a></li>
-          <li><a href="<?= $basePath ?>?page=faq">Foire aux questions</a></li>
-          <li><a href="<?= $basePath ?>?page=about">À propos</a></li>
-        </ul>
-      </li>
+      <li><a href="<?= $basePath ?>?page=statistiques" class="<?= $page === 'statistiques' ? 'active' : '' ?>">Statistiques</a></li>
+      <li><a href="<?= $basePath ?>?page=dashboard" class="<?= $page === 'dashboard' ? 'active' : '' ?>">Dashboard</a></li>
     </ul>
     <div class="navbar-right">
       <?php if ($isLoggedIn): ?>
