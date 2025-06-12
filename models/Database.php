@@ -5,10 +5,10 @@ if (!class_exists('Database')) {
         private $pdo;
 
         private function __construct() {
-            $host = 'herogu.garageisep.com';
-            $dbname = 'MWbQLlb4xO_plan_it';
-            $user = '4RyHVlPLcU_plan_it';
-            $password_db = 'NgBH69FRGlIomlni';
+            $host = 'romantcham.fr';
+            $dbname = 'Domotic_db';
+            $user = 'admin';
+            $password_db = 'AdMiN';
 
             try {
                 $this->pdo = new PDO(
