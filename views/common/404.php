@@ -34,17 +34,17 @@
             color: #666;
             margin-bottom: 20px;
         }
-        .btn-home {
+        .btn-home {             
             display: inline-block;
             padding: 10px 20px;
-            background-color: #5A9BD5;
+            background-color: #3C75A6;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
         .btn-home:hover {
-            background-color: #3C75A6;
+            background-color: #5A9BD5;
         }
     </style>
 </head>
