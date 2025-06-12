@@ -7,8 +7,8 @@ if (!class_exists('Database')) {
         private function __construct() {
             $host = 'romantcham.fr';
             $dbname = 'Domotic_db';
-            $user = 'admin';
-            $password_db = 'AdMiN';
+            $user = 'G7D';
+            $password_db = 'rgnefb';
 
             try {
                 $this->pdo = new PDO(
