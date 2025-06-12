@@ -37,14 +37,14 @@
         .btn-home {
             display: inline-block;
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #5A9BD5;
             color: white;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
         .btn-home:hover {
-            background-color: #45a049;
+            background-color: #3C75A6;
         }
     </style>
 </head>
