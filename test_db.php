@@ -2,11 +2,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+
 try {
     $pdo = new PDO(
-        "mysql:host=herogu.garageisep.com;dbname=MWbQLlb4xO_plan_it;charset=utf8",
-        "4RyHVlPLcU_plan_it",
-        "NgBH69FRGlIomlni"
+        "mysql:host=romantcham.fr;dbname=Domotic_db;charset=utf8",
+        "G7D",
+        "rgnefb"
     );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connexion réussie à la base de données!";
