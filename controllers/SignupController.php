@@ -12,20 +12,21 @@ $error = '';
 $success = '';
 $showPopup = false;
 
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $userModel = new UserModel();
 
         // Récupérer et valider les données du formulaire
         $nom = trim($_POST['nom'] ?? '');
-        $prenom = trim($_POST['prenom'] ?? '');
         $email = trim($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
         $confirmPassword = $_POST['confirm_password'] ?? '';
         $role = $_POST['role'] ?? 'participant'; // Par défaut, le rôle est participant
 
         // Validation des champs
-        if (empty($nom) || empty($prenom) || empty($email) || empty($password)) {
+        if (empty($nom) || empty($email) || empty($password)) {
             throw new Exception("Tous les champs sont obligatoires.");
         }
 
@@ -46,10 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             throw new Exception("Cette adresse email est déjà utilisée.");
         }
 
+
+
         // Créer l'utilisateur
         $userId = $userModel->createUser([
             'nom' => $nom,
-            'prenom' => $prenom,
             'email' => $email,
             'password' => password_hash($password, PASSWORD_DEFAULT),
             'role' => $role
