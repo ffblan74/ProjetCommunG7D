@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (password_verify($password, $user['mot_de_passe'])) {
                     // Debug avant de définir les variables de session
                     error_log("ID de l'utilisateur avant stockage: " . $user['user_id']);
-                    
+
                     $_SESSION['logged_in'] = true;
                     $_SESSION['user_id'] = $user['user_id'];
                     $_SESSION['username'] = $user['nom'];
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     error_log("role: " . $_SESSION['role']);
                     
                     // Redirection vers la page d'accueil après connexion
-                    header('Location: /src/?page=home');
+                    header('Location: ?page=home');
                     exit;
                 } else {
                     $error_message = "Le mot de passe est incorrect.";

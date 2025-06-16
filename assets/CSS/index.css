@@ -10,7 +10,7 @@ body {
 /* Section héroïque */
 .hero-section {
     position: relative;
-    background: linear-gradient(135deg, #6bcf63, #42975D);
+    background: linear-gradient(120deg, #F4A261, #F6B88C);
     color: white;
     text-align: center;
     padding: 100px 20px;
@@ -48,7 +48,7 @@ body {
 }
 
 .hero-section .search-button {
-    background: linear-gradient(135deg, #42975D, #356949); /* Dégradé moderne */
+    background: linear-gradient(120deg, #F4A261, #F6B88C); /* Dégradé moderne */
     color: white;
     border: none;
     padding: 12px 25px;
@@ -60,7 +60,7 @@ body {
 }
 
 .hero-section .search-button:hover {
-    background: linear-gradient(135deg, #356949, #2b4d3e); /* Accentuation au survol */
+    background: linear-gradient(120deg, #F4A261, #F6B88C); /* Accentuation au survol */
     transform: translateY(-2px); /* Effet de "saut" */
 }
 .search-container a {

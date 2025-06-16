@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bright and Blind</title>
+  <title>Light Control - Événements</title>
+
   <link rel="stylesheet" href="assets/CSS/index.css">
   
   <?php
@@ -19,9 +20,11 @@
 <body>
   <!-- Header -->
   <?php include 'views/common/header.php'; ?>
+<main>
 
   <!-- Section héroïque -->
   <div class="hero-section">
+
     <h1>Découvrez les plaisirs d'une maison autogérée</h1>
     <p>Ajustez les paramètres comme bon vous semble !</p>
     <div class="search-container">
@@ -120,6 +123,7 @@
     </div>
   </section>
 
+      </main>
   <!-- Footer -->
   <?php include 'views/common/footer.php'; ?>
   <script src="assets/JS/index.js"></script>
