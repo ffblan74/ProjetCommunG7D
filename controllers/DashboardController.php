@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once 'models/UserModel.php';
-require_once 'models/EventModel.php';
+require_once 'models/StatModel.php';
 require_once 'models/Database.php';
 
 class DashboardController {
