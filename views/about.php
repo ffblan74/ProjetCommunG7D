@@ -29,8 +29,8 @@ if (session_status() === PHP_SESSION_NONE) {
 <!-- Section À propos -->
 <section class="about-section">
     <h2>Notre Mission</h2>
-    <p>Chez Plan It, nous croyons que chaque moment partagé a le potentiel de devenir un souvenir inoubliable. Notre mission est simple mais ambitieuse : connecter les gens grâce à des événements uniques, adaptés à tous les goûts et à toutes les passions.</p>
-    <p>Plan It simplifie la recherche, l'organisation et la participation à des événements, avec un objectif : créer une plateforme conviviale et inclusive pour tous.</p>
+    <p>Chez Light Control, nous croyons que chaque moment partagé a le potentiel de devenir un souvenir inoubliable. Notre mission est simple mais ambitieuse : connecter les gens grâce à des événements uniques, adaptés à tous les goûts et à toutes les passions.</p>
+    <p>Light Control simplifie la recherche, l'organisation et la participation à des événements, avec un objectif : créer une plateforme conviviale et inclusive pour tous.</p>
 </section>
 
 <!-- Section Comment ça fonctionne -->
@@ -101,11 +101,11 @@ if (session_status() === PHP_SESSION_NONE) {
     <div class="testimonial-slider">
         <button class="slider-button prev-button">&#8249;</button>
         <div class="testimonial">
-            <p>"J'ai organisé mon anniversaire surprise grâce à Plan It. L'interface est super intuitive et j'ai pu gérer facilement la liste des invités. Mes amis ont adoré l'expérience !"</p>
+            <p>"J'ai organisé mon anniversaire surprise grâce à Light Control. L'interface est super intuitive et j'ai pu gérer facilement la liste des invités. Mes amis ont adoré l'expérience !"</p>
             <p class="client-name">— Thomas Martin, Paris</p>
         </div>
         <div class="testimonial">
-            <p>"En tant qu'organisateur régulier d'événements sportifs, Plan It me fait gagner un temps précieux. La gestion des inscriptions et des paiements est vraiment simplifiée."</p>
+            <p>"En tant qu'organisateur régulier d'événements sportifs, Light Control me fait gagner un temps précieux. La gestion des inscriptions et des paiements est vraiment simplifiée."</p>
             <p class="client-name">— Sarah Dubois, Lyon</p>
         </div>
         <div class="testimonial">
@@ -113,11 +113,11 @@ if (session_status() === PHP_SESSION_NONE) {
             <p class="client-name">— Lucas Bernard, Marseille</p>
         </div>
         <div class="testimonial">
-            <p>"Grâce à Plan It, j'ai pu organiser un workshop photo qui a réuni des passionnés de tous niveaux. La plateforme a rendu l'organisation très fluide."</p>
+            <p>"Grâce à Light Control, j'ai pu organiser un workshop photo qui a réuni des passionnés de tous niveaux. La plateforme a rendu l'organisation très fluide."</p>
             <p class="client-name">— Emma Laurent, Bordeaux</p>
         </div>
         <div class="testimonial">
-            <p>"Je suis nouveau dans ma ville et Plan It m'a permis de rencontrer des gens qui partagent mes centres d'intérêt. J'ai déjà participé à plusieurs soirées jeux de société !"</p>
+            <p>"Je suis nouveau dans ma ville et Light Control m'a permis de rencontrer des gens qui partagent mes centres d'intérêt. J'ai déjà participé à plusieurs soirées jeux de société !"</p>
             <p class="client-name">— Antoine Moreau, Nantes</p>
         </div>
         <button class="slider-button next-button">&#8250;</button>

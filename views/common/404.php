@@ -52,7 +52,7 @@
     <div class="error-container">
         <h1>404</h1>
         <p>Désolé, la page que vous recherchez n'existe pas.</p>
-        <a href="/src/" class="btn-home">Retour à l'accueil</a>
+        <a href="<?= $basePath ?>?page=home" class="btn-home">Retour à l'accueil</a>
     </div>
 </body>
 </html> 

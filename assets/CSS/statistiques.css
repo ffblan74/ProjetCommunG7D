@@ -1,3 +1,4 @@
+
 /* Reset de base */
 body {
     margin-top: 30;
@@ -93,4 +94,30 @@ h1::after {
         font-size: 2rem;
         margin: 30px 10px 20px;
     }
+=======
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 0;
+  padding-top: 80px; /* pour éviter d'être masqué par le header */
+  background-color: #f4f4f4;
+}
+
+h2 {
+  text-align: center;
+  color: #2B3A4B;
+  margin-top: 40px;
+  font-size: 1.8rem;
+}
+
+.chart-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+main.content {
+    margin-top: 80px;
 }

@@ -17,15 +17,15 @@
     <div class="container">
         <div class="page-header">
             <h1>Mentions légales</h1>
-            <p>Informations légales et réglementaires concernant Plan It</p>
+            <p>Informations légales et réglementaires concernant </p>
         </div>
 
         <div class="section">
             <h2>Éditeur du site</h2>
             <div class="highlight">
-                <p>Le site <strong>Plan It</strong> est édité par :</p>
+                <p>Le site <strong></strong> est édité par :</p>
                 <ul>
-                    <li><strong>Nom de l'éditeur :</strong> Plan It</li>
+                    <li><strong>Nom de l'éditeur :</strong> </li>
                     <li><strong>Adresse :</strong> 10, rue de Vanves, 92130 Issy-les-Moulineaux, France</li>
                     <li><strong>E-mail de contact :</strong> <a href="mailto:contact.planit1@gmail.com">contact.planit1@gmail.com</a></li>
                     <li><strong>Responsable de la publication :</strong> Sofiane ADDARAZI</li>
@@ -48,7 +48,7 @@
         <div class="section">
             <h2>Activité du site</h2>
             <div class="highlight">
-                <p>Le site <strong>Plan It</strong> a pour objectif de proposer l'organisation d'événements entre particuliers. Les utilisateurs peuvent organiser ou participer à des événements via la plateforme.</p>
+                <p>Le site <strong>Light Control</strong> a pour objectif de proposer l'organisation d'événements entre particuliers. Les utilisateurs peuvent organiser ou participer à des événements via la plateforme.</p>
             </div>
         </div>
 
@@ -71,14 +71,14 @@
         <div class="section">
             <h2>Propriété intellectuelle</h2>
             <div class="highlight">
-                <p>Le contenu du site, y compris logo et éléments graphiques, est protégé par le droit d'auteur. Toute reproduction ou modification sans l'autorisation de Plan It est interdite.</p>
+                <p>Le contenu du site, y compris logo et éléments graphiques, est protégé par le droit d'auteur. Toute reproduction ou modification sans l'autorisation de Light Control est interdite.</p>
             </div>
         </div>
 
         <div class="section">
             <h2>Responsabilité</h2>
             <div class="highlight">
-                <p>Plan It n'assume aucune responsabilité concernant les litiges entre utilisateurs, et s'efforce de garantir l'exactitude des informations sur le site.</p>
+                <p>Light Control n'assume aucune responsabilité concernant les litiges entre utilisateurs, et s'efforce de garantir l'exactitude des informations sur le site.</p>
             </div>
         </div>
 
