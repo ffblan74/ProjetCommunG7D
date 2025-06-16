@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plan It - Événements</title>
+  <title>Bright and Blind</title>
   <link rel="stylesheet" href="assets/CSS/index.css">
   
   <?php
@@ -21,14 +22,12 @@
 
   <!-- Section héroïque -->
   <div class="hero-section">
-    <h1>Découvrez les événements qui vous passionnent</h1>
-    <p>Explorez des expériences uniques autour de vous</p>
+    <h1>Découvrez les plaisirs d'une maison autogérée</h1>
+    <p>Ajustez les paramètres comme bon vous semble !</p>
     <div class="search-container">
-      <form action="/src/?page=explorer" method="GET">
-        <input type="hidden" name="page" value="explorer">
-        <input type="text" name="query" class="search-bar" placeholder="Rechercher un événement">
-        <button type="submit" class="search-button">Rechercher</button>
-      </form>
+      <a href="<?= $basePath ?>?page=statistiques" class="<?= $page === 'statistiques' ? 'active' : '' ?> search-button">Voir les statistiques</a>
+      <a href="<?= $basePath ?>?page=dashboard" class="<?= $page === 'dashboard' ? 'active' : '' ?> search-button">Gérer la maison</a>
+      
     </div>
   </div>
 
@@ -59,44 +58,60 @@
 
   <!-- Section fonctionnalités -->
   <div class="features">
-    <h2>Nos fonctionnalités clés</h2>
-    <p>Découvrez tout ce que Plan It peut vous apporter pour vos événements.</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <i class="fas fa-calendar-plus"></i>
-        <h3>Créez vos événements</h3>
-        <p>Organisez facilement vos événements et gérez les inscriptions en quelques clics.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-map-marker-alt"></i>
-        <h3>Événements locaux</h3>
-        <p>Trouvez des événements près de chez vous grâce à notre système de géolocalisation.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-users"></i>
-        <h3>Gestion des participants</h3>
-        <p>Suivez facilement les inscriptions et communiquez avec vos participants.</p>
-      </div>
-      <div class="feature-card">
-        <i class="fas fa-bell"></i>
-        <h3>Notifications</h3>
-        <p>Restez informé des nouveaux événements qui correspondent à vos centres d'intérêt.</p>
+    <h2>Les chiffres clé</h2>
+    <p>Un aperçu des données importantes de vos capteurs ou des mesures de votre région.</p>
+    <div class="features-grid-wrapper">
+      <div class="features-grid <?php if (!$isLoggedIn) echo 'blur-active'; ?>">
+        <div class="feature-card">
+          <i class="fa-solid fa-cloud-sun-rain" style="color:#3C75A6"></i>
+          <h3>Météo du jour</h3>
+          <p>Organisez facilement vos événements et gérez les inscriptions en quelques clics.</p>
+        </div>
+        <?php if (!(isset($_SESSION['user_id']))): ?>
+          <div class="feature-card">
+            <i class="fas fa-sign-in-alt"></i>
+            <h3>Inscription</h3>
+            <p>Inscrivez-vous pour accéder à toutes les fonctionnalités et statistiques.</p>
+          </div>
+          <div>
+            <p>Vous souhaitez voir toutes les statistiques ? Inscrivez-vous et synchronisez vos appareils Light Control.</p>
+            <a href="<?= $basePath ?>?page=login" class="connect-button">Se connecter</a>
+          </div>
+          <div class="overlay-text">👉 Voici du texte lisible au-dessus du flou</div>
+        <?php endif; ?>
+        <div class="feature-card">
+          <i class="fas fa-map-marker-alt"></i>
+          <h3>Luminosité</h3>
+          <p>Trouvez des événements près de chez vous grâce à notre système de géolocalisation.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fas fa-users"></i>
+          <h3>État de la lumière</h3>
+          <p>Suivez facilement les inscriptions et communiquez avec vos participants.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-table-columns"></i>
+          <h3>État des volets</h3>
+          <p>Restez informé des nouveaux événements qui correspondent à vos centres d'intérêt.</p>
+        </div>
+        
       </div>
     </div>
+    
   </div>
 
   <!-- Affichage des statistiques -->
   <section class="stats-section">
-    <h2>Pourquoi choisir Plan It ?</h2>
-    <p>Avec Plan It, découvrez des événements qui enrichissent votre quotidien. Que vous soyez amateur de concerts, d'art ou de moments en communauté, nous avons tout ce qu'il vous faut.</p>
+    <h2>Pourquoi choisir Light Control ?</h2>
+    <p>Avec Light Control, devenez maître de votre logement. Light Control vous permet de contrôler vos appareils domotiques à distance, de manière simple et sécurisée, pour augmenter votre confort à domicile.</p>
     <div class="stats-container">
       <div class="stat" data-target="<?= $stats['events'] ?>">
         <h3>+<span class="count"><?= $stats['events'] ?></span></h3>
-        <p>Événements répertoriés</p>
+        <p>Appareils recensés</p>
       </div>
       <div class="stat" data-target="<?= $stats['participants'] ?>">
         <h3>+<span class="count"><?= $stats['participants'] ?></span></h3>
-        <p>Participants actifs</p>
+        <p>Utilisateurs actifs</p>
       </div>
       <div class="stat" data-target="<?= $stats['support'] ?>">
         <h3><span class="count"><?= $stats['support'] ?></span>/7</h3>

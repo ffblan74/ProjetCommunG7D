@@ -1,0 +1,96 @@
+/* Reset de base */
+body {
+    margin-top: 30;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Titre principal */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 50px 20px 30px;
+    color: #2F685B;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, #7EDC87, #2F685B);
+    border-radius: 2px;
+}
+
+/* Conteneur principal */
+.stat-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px 20px;
+    width: 65%;
+    margin: 0 auto;
+}
+
+/* Cartes de statistique */
+.stat-item {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    padding: 30px 25px;
+    width: 100%;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Titres des blocs */
+.stat-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2F685B;
+    margin-bottom: 15px;
+}
+
+/* Textes */
+.stat-item p {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 8px 0;
+}
+
+/* Liste météo */
+.stat-item ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.stat-item li {
+    font-size: 1rem;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stat-item {
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 2rem;
+        margin: 30px 10px 20px;
+    }
+}
