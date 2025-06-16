@@ -218,51 +218,35 @@ class UserModel {
         }
     }
 
-    public function updatePassword($userId, $currentPassword, $newPassword) {
+    public function updatePasswordById($userId, $newPassword) {
         try {
-            // Déterminer le rôle et la table de l'utilisateur (simplifié pour une seule table 'utilisateur')
-            $requete = "SELECT id, mdp FROM utilisateur WHERE id = :id";
-            
+            // 1. Hasher le nouveau mot de passe pour le stocker de manière sécurisée.
+            $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+
+            // 2. Préparer la requête de mise à jour.
+            $requete = "UPDATE utilisateur SET mdp = :mdp WHERE id = :id";
             $stmt = $this->bdd->prepare($requete);
-            $stmt->execute(['id' => $userId]);
-            $utilisateur = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if (!$utilisateur) {
-                throw new Exception("Utilisateur non trouvé");
-            }
-
-            // Vérifier l'ancien mot de passe
-            if (!password_verify($currentPassword, $utilisateur['mdp'])) {
-                throw new Exception("Mot de passe actuel incorrect");
-            }
-
-            // Mettre à jour le mot de passe
-            $requeteMiseAJour = "UPDATE utilisateur SET mdp = :mot_de_passe WHERE id = :id";
-            $stmt = $this->bdd->prepare($requeteMiseAJour);
-            $resultat = $stmt->execute([
-                'mot_de_passe' => password_hash($newPassword, PASSWORD_DEFAULT),
+            // 3. Exécuter la requête avec les nouvelles données.
+            // La fonction execute() renvoie directement true en cas de succès ou false en cas d'échec.
+            return $stmt->execute([
+                'mdp' => $hashedPassword,
                 'id' => $userId
             ]);
 
-            if (!$resultat) {
-                throw new Exception("Erreur lors de la mise à jour du mot de passe");
-            }
-
-            return true;
         } catch (PDOException $e) {
-            error_log("Erreur PDO lors de la mise à jour du mot de passe: " . $e->getMessage());
-            throw new Exception("Erreur de base de données lors de la mise à jour du mot de passe");
-        } catch (Exception $e) {
-            error_log("Erreur lors de la mise à jour du mot de passe: " . $e->getMessage());
-            throw $e;
+            // En cas d'erreur de base de données, on l'enregistre dans les logs
+            // et on renvoie false pour que le contrôleur sache que ça a échoué.
+            error_log("Erreur PDO dans updatePasswordById: " . $e->getMessage());
+            return false;
         }
     }
 
-    public function findUserByUsername($username) {
+    public function findUserByMail($mail) {
         try {
-            $requete = "SELECT id, nom, mdp AS mot_de_passe, mail AS email, admin AS est_admin, token FROM utilisateur WHERE nom = :username";
+            $requete = "SELECT id, nom, mdp AS mot_de_passe, mail AS email, admin AS est_admin, token FROM utilisateur WHERE email = :mail";
             $stmt = $this->bdd->prepare($requete);
-            $stmt->execute(['username' => $username]);
+            $stmt->execute(['email' => $mail]);
             return $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (PDOException $e) {
             error_log("Erreur lors de la recherche de l'utilisateur : " . $e->getMessage());

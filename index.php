@@ -94,7 +94,9 @@ switch ($page) {
         require 'controllers/ClientProfileController.php';
         break;
 
-
+    case 'verify_code':
+        require 'controllers/VerifyCodeController.php';
+        break;
 
     case 'edit_profile':
         require 'controllers/EditProfileController.php';
