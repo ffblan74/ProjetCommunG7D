@@ -5,6 +5,9 @@ session_start();
 require_once 'config.php';
 require_once 'models/Database.php';
 
+// Créer une instance de la connexion à la base de données et récupérer l'objet PDO
+$pdo = Database::getInstance()->getConnection();
+
 // Récupérer la page demandée
 $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
@@ -32,6 +35,16 @@ switch ($page) {
         require 'controllers/PasswordForgottenController.php';
         break;
 
+    case 'statistiques':
+        require 'controllers/StatisticsController.php';
+        $statisticsController = new StatisticsController($pdo);
+        $statisticsController->handleRequest();
+        break;
+    case 'controlRoom':
+        require 'controllers/ControlRoomController.php';
+        $controlRoomController = new ControlRoomController();
+        $controlRoomController->handleRequest();
+        break;
     case 'explorer':
         require 'controllers/ExploreController.php';
         $exploreController = new ExploreController();

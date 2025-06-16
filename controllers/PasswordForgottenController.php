@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             saveResetToken($user['id_utilisateur'], $token, $expiry);
             
             // Envoyer l'email avec le lien de réinitialisation
-            $resetLink = "http://localhost/src/?page=reset_password&token=" . $token;
+            $resetLink = "http://localhost/?page=reset_password&token=" . $token;
             $to = $user['email'];
             $subject = "Réinitialisation de votre mot de passe";
             $message = "Bonjour,\n\nPour réinitialiser votre mot de passe, cliquez sur le lien suivant :\n" . $resetLink;

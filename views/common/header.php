@@ -34,8 +34,6 @@ $isOrganizer = isset($_SESSION['role']) && $_SESSION['role'] === 'organisateur';
         <?php if ($_SESSION['role'] === 'administrateur'): ?>
           <a href="<?= $basePath ?>?page=admin" class="profile-button">Tableau de bord</a>
           <a href="<?= $basePath ?>?page=create_event" class="profile-button">Créer un événement</a>
-        <?php elseif ($_SESSION['role'] === 'organisateur'): ?>
-          <a href="<?= $basePath ?>?page=dashboard" class="profile-button">Tableau de bord</a>
         <?php elseif ($_SESSION['role'] === 'participant'): ?>
           <a href="<?= $basePath ?>?page=client_profil" class="profile-button">Mon profil</a>
         <?php endif; ?>
