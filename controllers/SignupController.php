@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $email = trim($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
         $confirmPassword = $_POST['confirm_password'] ?? '';
-        $role = $_POST['role'] ?? 'participant'; // Par défaut, le rôle est participant
+        $role = 'participant'; // Par défaut, le rôle est participant
 
         // Validation des champs
         if (empty($nom) || empty($email) || empty($password)) {

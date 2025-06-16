@@ -18,8 +18,8 @@ class DashboardController {
 
     public function handleRequest() {
         // Vérifier si l'utilisateur est connecté et est un organisateur
-        if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'organisateur') {
-            header('Location: /src/?page=login');
+        if (!isset($_SESSION['logged_in']) || $_SESSION['role'] !== 'participant') {
+            header('Location: /?page=login');
             exit;
         }
 
