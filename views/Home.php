@@ -18,18 +18,13 @@
 <body>
   <!-- Header -->
   <?php include 'views/common/header.php'; ?>
+<main>
 
   <!-- Section héroïque -->
   <div class="hero-section">
-    <h1>Découvrez les événements qui vous passionnent</h1>
-    <p>Explorez des expériences uniques autour de vous</p>
-    <div class="search-container">
-      <form action="/src/?page=explorer" method="GET">
-        <input type="hidden" name="page" value="explorer">
-        <input type="text" name="query" class="search-bar" placeholder="Rechercher un événement">
-        <button type="submit" class="search-button">Rechercher</button>
-      </form>
-    </div>
+    <h1>Bienvenue dans votre maison domotique</h1>
+    <p>Contrôlez votre maison connectée à distance</p>
+
   </div>
 
   <!-- Carrousel d'événements -->
@@ -105,6 +100,7 @@
     </div>
   </section>
 
+      </main>
   <!-- Footer -->
   <?php include 'views/common/footer.php'; ?>
   <script src="assets/JS/index.js"></script>

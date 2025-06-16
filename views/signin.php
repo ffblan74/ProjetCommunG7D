@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer un compte - Plan It</title>
-    <link rel="stylesheet" href="/src/assets/CSS/signin.css">
-    <link rel="stylesheet" href="/src/assets/CSS/popup.css">
+    <link rel="stylesheet" href="assets/CSS/signin.css">
+    <link rel="stylesheet" href="assets/CSS/popup.css">
     <style>
         .password-input-container {
             position: relative;
@@ -176,19 +176,7 @@
                     <div id="password-feedback" class="password-feedback"></div>
                 </div>
 
-                <div class="form-group">
-                    <label>Type de compte</label>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="participant" name="role" value="participant" checked>
-                            <label for="participant">Participant</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="organisateur" name="role" value="organisateur">
-                            <label for="organisateur">Organisateur</label>
-                        </div>
-                    </div>
-                </div>
+                
 
                 <button type="submit" class="btn">S'inscrire</button>
             </form>

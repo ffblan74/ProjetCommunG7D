@@ -100,6 +100,10 @@ switch ($page) {
         $registrationController->handleRequest();
         break;
 
+    case 'statistiques':
+        require 'controllers/StatistiquesController.php';
+        break;
+
     default:
         require 'views/common/404.php';
         break;

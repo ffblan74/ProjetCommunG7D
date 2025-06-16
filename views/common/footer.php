@@ -66,5 +66,8 @@ $basePath = (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) ? './' : '../.
   
   <!-- Font Awesome pour les icônes -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="stylesheet" href="/src/assets/CSS/footer.css">
+  <link rel="stylesheet" href="assets/CSS/footer.css">
 </footer>
+
+
+
