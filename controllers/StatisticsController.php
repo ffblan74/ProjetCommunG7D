@@ -19,14 +19,15 @@ class StatisticsController {
         $measurementCounts = $this->sensorModel->getMeasurementCountByComponent('température');
         $measurementCounts = array_column($measurementCounts, 'measurement_count', 'component');
         // Récupérer les données des capteurs
-        $temperatureInterior = $this->sensorModel->getLatestMeasurementByName('température');
+        $temperature = $this->sensorModel->getLatestMeasurementByName('Capteur Température');
+        $humidite = $this->sensorModel->getLatestMeasurementByName('Capteur Humidité');
         $lightSensor = $this->sensorModel->getLatestMeasurementByName('lumière');
         $lightSwitch = $this->sensorModel->getActuatorStateByName('servo');
         $shutterMotor = $this->sensorModel->getActuatorStateByName('moteur');
 
         // Récupérer les prévisions météo
         // $weatherForecast = $this->weatherModel->getDailyForecast();
-
+        $sensorModel = $this->sensorModel;
         // Charger la vue
         require 'views/statistiques.php';
     }

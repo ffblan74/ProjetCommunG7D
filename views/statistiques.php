@@ -10,6 +10,41 @@
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
     google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(initCharts);
+
+    function initCharts() {
+        const selects = document.querySelectorAll('.periode-select');
+        selects.forEach(select => {
+            loadChart(select.dataset.capteur, select.value);
+
+            select.addEventListener('change', () => {
+                loadChart(select.dataset.capteur, select.value);
+            });
+        });
+    }
+
+    function loadChart(capteurId, period) {
+        fetch(`controllers/get_graph_data.php?capteur=${capteurId}&period=${period}`)
+            .then(res => res.json())
+            .then(data => {
+                if (!data.length) return;
+
+                const dataTable = new google.visualization.DataTable();
+                dataTable.addColumn('string', 'Date');
+                dataTable.addColumn('number', 'Valeur');
+                dataTable.addRows(data);
+
+                const options = {
+                    title: 'Évolution des mesures',
+                    legend: { position: 'bottom' },
+                    height: 300
+                };
+
+                const chart = new google.visualization.LineChart(document.getElementById(`chart-${capteurId}`));
+                chart.draw(dataTable, options);
+            })
+            .catch(err => console.error('Erreur lors du chargement du graphique', err));
+    }
     google.charts.setOnLoadCallback(() => {
         drawChart('semaine'); // valeur par défaut
     });
@@ -79,15 +114,14 @@
             <div class="stat-title">Mesures</div>
             <ul>
                 <?php foreach ($measurements as $measurement): ?>
-                    <li><?= htmlspecialchars($measurement['id']) ?> - <?= htmlspecialchars($measurement['id_composant']) ?> - <?= htmlspecialchars($component['date']) ?> - <?= htmlspecialchars($component['valeur']) ?></li>
+                    <li><?= htmlspecialchars($measurement['id']) ?> - <?= htmlspecialchars($measurement['id_composant']) ?> - <?= htmlspecialchars($measurement['date']) ?> - <?= htmlspecialchars($measurement['valeur']) ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>
         <!-- Capteurs de température -->
         <div class="stat-item">
             <div class="stat-title">Capteurs de Température</div>
-            <p>Température intérieure : <?= htmlspecialchars($temperatureInterior['valeur']) ?>°C</p>
-            <p>Température extérieure : <?= htmlspecialchars($temperatureExterior['valeur']) ?>°C</p>
+            <p>Température : <?= htmlspecialchars($temperature['valeur']) ?>°C</p>
             <div class="stat-title">Prévisions météo :</div>
             <ul>
                 <?php foreach ($weatherForecast as $forecast): ?>
@@ -114,7 +148,33 @@
             <p>Volets : <?= $shutterMotor['state'] ? 'Ouverts' : 'Fermés' ?></p>
         </div>
     </div>
-    
+    <?php foreach ($components as $component): ?>
+        <?php if ($component['is_capteur']): ?>
+            <div class="stat-item">
+                <div class="stat-title"><?= htmlspecialchars($component['nom']) ?></div>
+                <p>Dernière valeur : 
+                    <?php 
+                        $latest = $sensorModel->getLatestMeasurementByName($component['nom']);
+                        echo htmlspecialchars($latest['valeur']) . ' (' . htmlspecialchars($latest['date']) . ')';
+                    ?>
+                </p>
+
+                <label for="periode-<?= $component['id'] ?>">Période :</label>
+                <select class="periode-select" data-capteur="<?= $component['id'] ?>" id="periode-<?= $component['id'] ?>">
+                    <option value="1h">1h</option>
+                    <option value="6h">6h</option>
+                    <option value="24h" selected>24h</option>
+                    <option value="7j">7 jours</option>
+                    <option value="30j">30 jours</option>
+                    <option value="90j">90 jours</option>
+                    <option value="1an">1 an</option>
+                </select>
+
+                <div class="chart-container" id="chart-<?= $component['id'] ?>" style="height:300px;"></div>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
   
 
     <?php include 'views/common/footer.php'; ?>
