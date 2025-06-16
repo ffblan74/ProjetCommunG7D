@@ -13,15 +13,15 @@ class StatisticsController {
     public function handleRequest() {
         // Afficher les noms des capteurs et actionneurs
         $components = $this->sensorModel->getInfo();
+        $measurements = $this->sensorModel->getMesure();
         // Récupérer le nombre de mesures pour chaque capteur
-        $measurementCounts = $this->sensorModel->getMeasurementCountByComponent('temperature_interior');
+        $measurementCounts = $this->sensorModel->getMeasurementCountByComponent('température');
         $measurementCounts = array_column($measurementCounts, 'measurement_count', 'component');
         // Récupérer les données des capteurs
-        $temperatureInterior = $this->sensorModel->getLatestMeasurementByName('temperature_interior');
-        $temperatureExterior = $this->sensorModel->getLatestMeasurementByName('temperature_exterior');
+        $temperatureInterior = $this->sensorModel->getLatestMeasurementByName('température');
         $lightSensor = $this->sensorModel->getLatestMeasurementByName('lumière');
         $lightSwitch = $this->sensorModel->getActuatorStateByName('servo');
-        $shutterMotor = $this->sensorModel->getActuatorStateByName('shutter_motor');
+        $shutterMotor = $this->sensorModel->getActuatorStateByName('moteur');
 
         // Récupérer les prévisions météo
         // $weatherForecast = $this->weatherModel->getDailyForecast();

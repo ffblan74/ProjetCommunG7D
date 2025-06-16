@@ -20,6 +20,15 @@
                 <?php endforeach; ?>
             </ul>
         </div>
+        <!-- Liste des mesures -->
+        <div class="stat-item">
+            <div class="stat-title">Mesures</div>
+            <ul>
+                <?php foreach ($measurements as $measurement): ?>
+                    <li><?= htmlspecialchars($measurement['id']) ?> - <?= htmlspecialchars($measurement['id_composant']) ?> - <?= htmlspecialchars($component['date']) ?> - <?= htmlspecialchars($component['valeur']) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
         <!-- Capteurs de température -->
         <div class="stat-item">
             <div class="stat-title">Capteurs de Température</div>
