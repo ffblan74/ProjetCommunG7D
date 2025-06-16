@@ -63,4 +63,21 @@ class StatModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    // Construire un graphique pour les mesures
+    public function getCapteurs() {
+        $sql = "SELECT id, nom FROM composant";
+        return $this->db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getMesures($capteurId, $intervalSql) {
+        $sql = "SELECT date AS date_mesure, valeur FROM mesure 
+                WHERE id_composant = :capteurId 
+                AND date >= NOW() - INTERVAL $intervalSql";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['capteurId' => $capteurId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 }
