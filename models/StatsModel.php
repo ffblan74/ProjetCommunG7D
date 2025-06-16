@@ -14,6 +14,13 @@ class StatModel {
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getMesure() {
+        // Récupérer les mesures de la base de données
+        $query = "SELECT * FROM mesure";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     // Récupérer la dernière mesure d'un capteur par son nom
     public function getLatestMeasurementByName($componentName) {
         $query = "
