@@ -1,0 +1,735 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+/* Styles de la carte principale */
+.card {
+    background: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+/* Titre de l'événement */
+.card-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+/* Métadonnées de l'événement */
+.event-meta {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.event-meta i {
+    color: #4CAF50;
+    margin-right: 0.5rem;
+}
+
+.event-meta .mx-3 {
+    color: #ddd;
+    margin: 0 1rem;
+}
+
+/* Description et sections */
+.event-description,
+.event-requirements,
+.event-organizer {
+    margin-bottom: 2rem;
+}
+
+.event-description h5,
+.event-requirements h5,
+.event-organizer h5 {
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.event-description p {
+    color: #666;
+    line-height: 1.8;
+}
+
+/* Liste des exigences */
+.event-requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.event-requirements li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+    color: #666;
+}
+
+.event-requirements li:last-child {
+    border-bottom: none;
+}
+
+/* Informations pratiques */
+.list-unstyled {
+    list-style: none;
+    padding: 0;
+}
+
+.list-unstyled li {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-unstyled strong {
+    color: #333;
+}
+
+/* Badges d'état */
+.badge {
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 0.875em;
+    display: inline-block;
+}
+
+.badge-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.badge-warning {
+    background-color: #FFC107;
+    color: #333;
+}
+
+.badge-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-outline-primary {
+    background-color: transparent;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+}
+
+.btn-outline-primary:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn[disabled] {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+        margin: 1rem auto;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+
+    .event-meta {
+        font-size: 0.9rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .event-meta .mx-3 {
+        display: none;
+    }
+
+    .btn {
+        padding: 0.625rem 1.25rem;
+    }
+}
+
+/* Event Details Page Styles */
+body {
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.event-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Event Header */
+.event-header {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.event-cover {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+
+.event-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-title-section {
+    padding: 2rem;
+}
+
+.event-title-section h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+/* Event Content Layout */
+.event-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .event-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Info Card */
+.info-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.event-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.meta-item i {
+    font-size: 1.5rem;
+    color: #42875D;
+    margin-top: 0.2rem;
+}
+
+.meta-item div {
+    display: flex;
+    flex-direction: column;
+}
+
+.meta-item strong {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.2rem;
+}
+
+.meta-item span {
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+/* Description Card */
+.event-description-card, .event-requirements-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.event-description-card h2, .event-requirements-card h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #eee;
+}
+
+.event-requirements-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.event-requirements-card li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.event-requirements-card li i {
+    color: #42875D;
+}
+
+/* Registration Card */
+.registration-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 2rem;
+}
+
+.spots-info {
+    margin-bottom: 1.5rem;
+}
+
+.progress {
+    height: 8px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: #42875D;
+    transition: width 0.3s ease;
+}
+
+.spots-info p {
+    color: #6c757d;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.spots-info strong {
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+
+/* Registration Section */
+.registration-section {
+    margin: 1.5rem 0;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.status-badge.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-badge.warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-badge i {
+    font-size: 1.2rem;
+}
+
+/* Buttons */
+.btn {
+    border: none;
+    font-weight: 600;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #42875D;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #356c4a;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.btn-block {
+    width: 100%;
+    display: block;
+}
+
+/* Organizer Section */
+.organizer-info {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+.organizer-info h3 {
+    font-size: 1.2rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.organizer-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.organizer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.organizer-avatar i {
+    font-size: 1.5rem;
+    color: #6c757d;
+}
+
+.organizer-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.organizer-details strong {
+    color: #2c3e50;
+}
+
+.organizer-details span {
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Popup Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.popup-overlay[style*="flex"] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.popup-overlay[style*="flex"] .popup {
+    transform: scale(1);
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.success-icon, .warning-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.success-icon {
+    color: #42875D;
+}
+
+.warning-icon {
+    color: #dc3545;
+}
+
+.popup h3 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.popup p {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.popup-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+}
+
+.popup-buttons .btn {
+    flex: 1;
+    max-width: 150px;
+}
+
+.btn-outline-secondary {
+    background-color: transparent;
+    border: 2px solid #6c757d;
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Animation pour les popups */
+@keyframes popupIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes popupOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+
+.popup-overlay[style*="flex"] {
+    animation: popupIn 0.3s ease forwards;
+}
+
+.popup-overlay:not([style*="flex"]) {
+    animation: popupOut 0.3s ease forwards;
+}
+
+/* Badges */
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.badge-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.badge-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge-secondary {
+    background-color: #e9ecef;
+    color: #6c757d;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .event-container {
+        margin: 1rem auto;
+    }
+
+    .event-cover {
+        height: 200px;
+    }
+
+    .event-title-section h1 {
+        font-size: 2rem;
+    }
+
+    .event-meta {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .event-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .event-title-section {
+        padding: 1rem;
+    }
+
+    .event-title-section h1 {
+        font-size: 1.5rem;
+    }
+}
+
+.organizer-badge {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 10px 0;
+    border: 1px solid #f5c6cb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.organizer-badge i {
+    color: #ffc107;
+    font-size: 1.2em;
+}
+
+.organizer-badge span {
+    font-weight: 500;
+}
+
+.organizer-badge.admin {
+    background-color: #cce5ff;
+    color: #004085;
+    border-color: #b8daff;
+}
+
+.organizer-badge.admin i {
+    color: #ffd700;
+}
