@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer un compte - Plan It</title>
+    <title>Créer un compte</title>
     <link rel="stylesheet" href="assets/CSS/signin.css">
     <link rel="stylesheet" href="assets/CSS/popup.css">
     <style>
@@ -119,9 +119,9 @@
             </div>
             <h2 class="popup-title">Inscription réussie !</h2>
             <p class="popup-message">
-                Merci de vous être inscrit sur Plan It. Vous pouvez maintenant vous connecter pour accéder à toutes les fonctionnalités.
+                Merci de vous être inscrit. Vous pouvez maintenant vous connecter pour accéder à toutes les fonctionnalités.
             </p>
-            <a href="/src/?page=login" class="popup-button">Se connecter</a>
+            <a href="?page=login" class="popup-button">Se connecter</a>
         </div>
     </div>
 
@@ -133,16 +133,12 @@
                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
             <?php endif; ?>
 
-            <form method="POST" action="/src/?page=signin">
+            <form method="POST" action="?page=signin">
                 <div class="form-group">
                     <label for="nom">Nom</label>
                     <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="prenom">Prénom</label>
-                    <input type="text" id="prenom" name="prenom" placeholder="Votre prénom" required>
-                </div>
 
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -182,7 +178,7 @@
             </form>
 
             <div class="links">
-                <a href="/src/?page=login">Déjà inscrit ? Se connecter</a>
+                <a href="?page=login">Déjà inscrit ? Se connecter</a>
             </div>
         </div>
     </div>
@@ -197,7 +193,7 @@
 
         popup.addEventListener('click', function(e) {
             if (e.target === popup) {
-                window.location.href = '/src/?page=login';
+                window.location.href = '?page=login';
             }
         });
 

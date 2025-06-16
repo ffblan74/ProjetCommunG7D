@@ -5,7 +5,7 @@ $basePath = (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) ? './' : '../.
 <footer>
   <div class="footer-container">
     <div class="footer-section about">
-      <h4>Plan It</h4>
+      <h4>Light Control</h4>
       <p>Votre plateforme de confiance pour créer, découvrir et participer à des événements inoubliables.</p>
       <div class="contact-info">
         <p><i class="fas fa-envelope"></i> contact@planit.fr</p>
@@ -53,7 +53,7 @@ $basePath = (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) ? './' : '../.
 
   <div class="footer-bottom">
     <div class="footer-bottom-content">
-      <p>&copy; <?= date('Y') ?> Plan It. Tous droits réservés.</p>
+      <p>&copy; <?= date('Y') ?> Light Control. Tous droits réservés.</p>
       <div class="footer-bottom-links">
         <a href="<?= $basePath ?>index.php?page=conditions_utilisation">Confidentialité</a>
         <span class="separator">|</span>

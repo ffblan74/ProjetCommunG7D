@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administration - Plan It</title>
+    <title>Administration - Light Control</title>
     <link rel="stylesheet" href="assets/CSS/admin.css">
     <link rel="stylesheet" href="../../assets/CSS/style.css">
 </head>

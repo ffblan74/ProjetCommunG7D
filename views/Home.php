@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plan It - Événements</title>
+  <title>Light Control - Événements</title>
   <link rel="stylesheet" href="assets/CSS/index.css">
   
   <?php
@@ -55,7 +55,7 @@
   <!-- Section fonctionnalités -->
   <div class="features">
     <h2>Nos fonctionnalités clés</h2>
-    <p>Découvrez tout ce que Plan It peut vous apporter pour vos événements.</p>
+    <p>Découvrez tout ce que Light Control peut vous apporter pour vos événements.</p>
     <div class="features-grid">
       <div class="feature-card">
         <i class="fas fa-calendar-plus"></i>
@@ -82,8 +82,8 @@
 
   <!-- Affichage des statistiques -->
   <section class="stats-section">
-    <h2>Pourquoi choisir Plan It ?</h2>
-    <p>Avec Plan It, découvrez des événements qui enrichissent votre quotidien. Que vous soyez amateur de concerts, d'art ou de moments en communauté, nous avons tout ce qu'il vous faut.</p>
+    <h2>Pourquoi choisir Light Control ?</h2>
+    <p>Avec Light Control, découvrez des événements qui enrichissent votre quotidien. Que vous soyez amateur de concerts, d'art ou de moments en communauté, nous avons tout ce qu'il vous faut.</p>
     <div class="stats-container">
       <div class="stat" data-target="<?= $stats['events'] ?>">
         <h3>+<span class="count"><?= $stats['events'] ?></span></h3>
