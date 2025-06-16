@@ -9,59 +9,58 @@
     <link rel="stylesheet" href="assets/CSS/header.css">
     <link rel="icon" type="image/jpg" href="assets/images/favicon.jpg">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {packages: ['corechart']});
-        google.charts.setOnLoadCallback(drawCharts);
+    <script>
+    google.charts.load('current', { packages: ['corechart'] });
+    google.charts.setOnLoadCallback(() => {
+        drawChart('semaine'); // valeur par défaut
+    });
 
-        function drawCharts(){
-            <?php
+    document.addEventListener("DOMContentLoaded", () => {
+        const timeRange = document.getElementById("timeRange");
+        timeRange.addEventListener("change", () => {
+            drawChart(timeRange.value);
+        });
+    });
 
-            $host = 'romantcham.fr';
-            $dbname = 'Domotic_db';
-            $user = 'G7D';
-            $password_db = 'rgnefb';
-            $conn = new mysqli($host, $user, $password_db, $dbname);
+    function drawChart(period) {
+        fetch(`controllers/get_chart_data.php?period=${period}`)
+            .then(response => response.json())
+            .then(result => {
+                const data = new google.visualization.DataTable();
+                data.addColumn('string', 'Composant');
+                data.addColumn('number', 'Nombre de mesures');
+                data.addRows(result);
 
-            if ($conn -> connect_error){
-                die("Erreur de connection". $conn -> connect_error);
-            }
+                const options = {
+                    title: "Nombre de mesures pour chaque composant",
+                    fontName: 'Poppins'
+                };
 
-            $sql = "SELECT composant.nom AS composant, COUNT(mesure.id) AS nbMesures FROM composant
-                         JOIN mesure ON mesure.id_composant = composant.id WHERE composant.is_capteur = 1 GROUP BY composant.nom;";
+                const chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
+                chart.draw(data, options);
 
-            $result = $conn -> query($sql);
-
-            if($result-> num_rows >0){
-                echo "var data1 = new google.visualization.DataTable();";
-                echo "data1.addColumn('string', 'Composant');";
-                echo "data1.addColumn('number', 'Nombre de mesures');";
-                echo "data1.addRows([";
-                    while($row = $result -> fetch_assoc()) {
-                    echo "['". $row["composant"] , "' , " . $row["nbMesures"] . "],";
-                    };
-                echo "]);";
-            }
-
-            $conn-> close();
-            ?>
-
-            var options = {
-                title: "Nombre de mesures pour chaque composant",
-                fontName : 'Poppins'
-            };
-            var chart1 = new google.visualization.PieChart( document.getElementById("chart_div1"));
-            window.addEventListener('resize', () => chart1.draw(data1, options));
-            chart1.draw(data1, options);
-
-        }
-    </script>    
+                window.addEventListener('resize', () => chart.draw(data, options));
+            })
+            .catch(error => console.error('Erreur de chargement des données:', error));
+    }
+</script>
 </head>
 <body>
     <?php include 'views/common/header.php'; ?>
 
     <main class="content">
         <h2>Nombre de mesures par capteur</h2>
-        <div class="chart-container" id="chart_div1"></div>
+
+        <div class="chart-header">
+        <label for="timeRange">Période : </label>
+        <select id="timeRange">
+            <option value="semaine">Semaine</option>
+            <option value="mois">Mois</option>
+            <option value="annee">Année</option>
+        </select>
+    </div>
+
+    <div class="chart-container" id="chart_div1"></div>
     </main>
 
     

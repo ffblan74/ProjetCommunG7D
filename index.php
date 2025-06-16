@@ -80,11 +80,7 @@ switch ($page) {
         require 'controllers/ClientProfileController.php';
         break;
 
-    case 'dashboard':
-        require 'controllers/DashboardController.php';
-        $dashboardController = new DashboardController();
-        $dashboardController->handleRequest();
-        break;
+
 
     case 'edit_profile':
         require 'controllers/EditProfileController.php';
@@ -102,6 +98,10 @@ switch ($page) {
 
     case 'statistiques':
         require 'controllers/StatistiquesController.php';
+        break;
+
+    case 'dashboard':
+        require 'controllers/DashboardController.php';
         break;
 
     default:

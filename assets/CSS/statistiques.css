@@ -24,3 +24,15 @@ h2 {
 main.content {
     margin-top: 80px;
 }
+
+.chart-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chart-header select {
+  padding: 5px;
+  font-size: 14px;
+}
