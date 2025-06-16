@@ -19,14 +19,14 @@
 
     <section>
         <h2>1. Objet</h2>
-        <p>Les présentes Conditions Générales d'Utilisation (CGU) ont pour objet de définir les conditions d'accès et d'utilisation du site <b>Plan It</b> (ci-après dénommé le "Site").</p>
+        <p>Les présentes Conditions Générales d'Utilisation (CGU) ont pour objet de définir les conditions d'accès et d'utilisation du site <b>Light Control</b> (ci-après dénommé le "Site").</p>
         <p>En accédant au site, l'utilisateur accepte sans réserve les présentes CGU. Si l'utilisateur n'accepte pas ces CGU, il lui est demandé de ne pas utiliser le site.</p>
     </section>
 
     <section>
         <h2>2. Identification de l'éditeur du site</h2>
         <ul class="editeur">
-            <li><b>Nom du site</b> : Plan It</li>
+            <li><b>Nom du site</b> : Light Control</li>
             <li><b>Éditeur</b> : Sofiane ADDARAZI (SevenUp)</li>
             <li><b>Adresse</b> : 10, rue de Vanves, 92130 Issy-les-Moulineaux</li>
             <li><b>E-mail de contact</b> : <a href="mailto:contact.planit1@gmail.com">contact.planit1@gmail.com</a></li>
@@ -41,7 +41,7 @@
             <li>À des utilisateurs de créer, organiser ou participer à des événements entre particuliers.</li>
             <li>De consulter des informations sur des événements organisés.</li>
         </ul>
-        <p>Plan It agit uniquement en tant qu'intermédiaire technique et ne participe pas directement à l'organisation des événements.</p>
+        <p>Light Control agit uniquement en tant qu'intermédiaire technique et ne participe pas directement à l'organisation des événements.</p>
     </section>
 
     <!-- Ajouter les autres sections ici, en suivant le même format -->

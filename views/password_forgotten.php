@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mot de passe oublié - Plan It</title>
+  <title>Mot de passe oublié</title>
   <link rel="stylesheet" href="assets/CSS/password_forgotten.css">
   <link rel="icon" type="image/x-icon" href="../assets/favicon.jpg">
 </head>
