@@ -25,7 +25,7 @@
   <!-- Section héroïque -->
   <div class="hero-section">
 
-    <h1>Découvrez les plaisirs d'une maison autogérée</h1>
+    <h1>Découvrez les plaisirs d'une maison autogérée 🏠</h1>
     <p>Ajustez les paramètres comme bon vous semble !</p>
     <div class="search-container">
       <a href="<?= $basePath ?>?page=statistiques" class="<?= $page === 'statistiques' ? 'active' : '' ?> search-button">Voir les statistiques</a>
