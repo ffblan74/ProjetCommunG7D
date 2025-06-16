@@ -6,11 +6,9 @@ if (session_status() === PHP_SESSION_NONE) {
 // Inclure les fichiers nécessaires
 require_once __DIR__ . '/../config.php'; // Charger la configuration avant tout
 require_once __DIR__ . '/../models/Database.php'; // Connexion à la base de données
-require_once __DIR__ . '/../models/StatModel.php'; // Inclure le modèle pour les statistiques
 
 try {
-    // Récupérer les statistiques
-    $stats = getStats();
+
 
     // Obtenir la connexion à la base de données
     $pdo = Database::getInstance()->getConnection();

@@ -8,6 +8,7 @@ require_once 'models/Database.php';
 // Créer une instance de la connexion à la base de données et récupérer l'objet PDO
 $pdo = Database::getInstance()->getConnection();
 
+
 // Récupérer la page demandée
 $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
