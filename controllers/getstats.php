@@ -1,22 +1,33 @@
 <?php
+header('Content-Type: application/json');
+
 // Inclure la connexion existante
 require '../config.php';
 
 try {
     // Utiliser la connexion PDO de database.php
-    global $pdo;
+
+    $pdo = new PDO(
+        "mysql:host=romantcham.fr;dbname=Domotic_db;charset=utf8",
+        "G7D",
+        "rgnefb"
+    );
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    
+
 
     // Requêtes pour récupérer les statistiques
-    $stmtEvents = $pdo->query('SELECT COUNT(*) AS total_events FROM Evenement');
-    $totalEvents = $stmtEvents->fetch(PDO::FETCH_ASSOC)['total_events'];
+    $stmtCapteurs = $pdo->query('SELECT COUNT(*) AS total_capteurs FROM composant WHERE is_capteur = 1');
+    $totalCapteurs = $stmtCapteurs->fetch(PDO::FETCH_ASSOC)['total_capteurs'];
 
-    $stmtParticipants = $pdo->query('SELECT COUNT(*) AS total_participants FROM Participants');
-    $totalParticipants = $stmtParticipants->fetch(PDO::FETCH_ASSOC)['total_participants'];
+    $stmtUtilisateurs = $pdo->query('SELECT COUNT(*) AS total_utilisateurs FROM utilisateur');
+    $totalUtilisateurs = $stmtUtilisateurs->fetch(PDO::FETCH_ASSOC)['total_utilisateurs'];
 
     // Retour des statistiques au format JSON
     echo json_encode([
-        'events' => $totalEvents,
-        'participants' => $totalParticipants,
+        'capteurs' => $totalCapteurs,
+        'utilisateurs' => $totalUtilisateurs,
         'support' => 24, // Nombre fixe (24/7 support client)
     ]);
 } catch (PDOException $e) {

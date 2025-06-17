@@ -216,7 +216,7 @@ body {
 
 .features h2 {
     font-size: 2.5rem;
-    color: #42975D;
+    color: #2B3A4B;
     margin-bottom: 1rem;
     position: relative;
     display: inline-block;
@@ -230,7 +230,7 @@ body {
     transform: translateX(-50%);
     width: 100px;
     height: 3px;
-    background: linear-gradient(135deg, #6bcf63, #42975D);
+    background: linear-gradient(135deg, #5A9BD5, #3C75A6);
     border-radius: 2px;
 }
 
@@ -335,7 +335,7 @@ body {
 
 .stats-section h2 {
     font-size: 2.5rem;
-    color: #42975D;
+    color: #2B3A4B;
     margin-bottom: 30px;
     position: relative;
     display: inline-block;
@@ -349,7 +349,7 @@ body {
     transform: translateX(-50%);
     width: 100px;
     height: 3px;
-    background: linear-gradient(135deg, #6bcf63, #42975D);
+    background: linear-gradient(135deg, #5A9BD5, #3C75A6);
     border-radius: 2px;
 }
 
@@ -388,7 +388,7 @@ body {
 
 .stat h3 {
     font-size: 2.5rem;
-    color: #42975D;
+    color: #5A9BD5;
     margin-bottom: 15px;
     font-weight: 700;
 }

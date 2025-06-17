@@ -10,6 +10,8 @@ class Database {
         $this->connect();
     }
     
+      
+
     private function connect() {
         $attempts = 0;
         while ($attempts < $this->maxRetries) {
@@ -19,10 +21,10 @@ class Database {
                     $this->connection = null;
                 }
                 
-                $host = "localhost";
-                $dbname = "planit";
-                $username = "root";
-                $password = "";
+                $host = "romantcham.fr";
+                $dbname = "Domotic_db";
+                $username = "G7D";
+                $password = "rgnefb";
                 
                 $this->connection = new PDO(
                     "mysql:host=$host;dbname=$dbname;charset=utf8",

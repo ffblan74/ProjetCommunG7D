@@ -1,7 +1,7 @@
 // Gestion des statistiques
 document.addEventListener('DOMContentLoaded', () => {
     // Récupérer les statistiques via une requête AJAX
-    fetch('../PHP/get-stats.php')
+    fetch('controllers/getstats.php')
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -10,8 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Mettre à jour les valeurs des compteurs
-            document.querySelector('.stats-container .stat:nth-child(1) .count').textContent = data.events;
-            document.querySelector('.stats-container .stat:nth-child(2) .count').textContent = data.participants;
+            document.querySelector('.stats-container .stat:nth-child(1) .count').textContent = data.capteurs;
+            document.querySelector('.stats-container .stat:nth-child(2) .count').textContent = data.utilisateurs;
+            document.querySelector('.stats-container .stat:nth-child(3) .count').textContent = data.support;
+
 
             // Optionnel : Ajouter une animation de comptage
             animateCounters();

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Light Control - Événements</title>
+  <title>Light Control</title>
 
   <link rel="stylesheet" href="assets/CSS/index.css">
   
@@ -13,6 +13,11 @@
   if (!defined('BASE_PATH')) {
       require '../config.php';
   }
+
+  $statsJSON = file_get_contents('/../controllers/getstats.php');
+  $stats = json_decode($statsJSON, true);
+
+
   ?>
 
   <link rel="icon" type="image/x-icon" href="/src/assets/images/favicon.jpg">
@@ -34,34 +39,11 @@
     </div>
   </div>
 
-  <!-- Carrousel d'événements -->
-  <section class="events-carousel">
-    <h2>Événements à venir</h2>
-    <div class="carousel">
-      <?php if (count($events) > 0): ?>
-          <?php foreach ($events as $event): ?>
-            <div class="carousel-item">
-              <img src="<?= !empty($event['image_path']) ? $event['image_path'] : '/src/assets/images/default-event.jpg' ?>" 
-                   alt="<?= htmlspecialchars($event['nom_event']); ?>">
-              <h3>
-                <?php
-                $date = new DateTime($event['date_planifiee']);
-                echo $date->format('d M Y') . ' - ' . htmlspecialchars($event['nom_event']);
-                ?>
-              </h3>
-              <p><?= htmlspecialchars($event['description']); ?></p>
-              <a href="/src/?page=event_details&id=<?= $event['id_event'] ?>" class="btn-details">Voir les détails</a>
-            </div>
-          <?php endforeach; ?>
-      <?php else: ?>
-          <p>Aucun événement à venir pour le moment.</p>
-      <?php endif; ?>
-    </div>
-  </section>
+ 
 
   <!-- Section fonctionnalités -->
   <div class="features">
-    <h2>Les chiffres clé</h2>
+    <h2>Les chiffres clés</h2>
     <p>Un aperçu des données importantes de vos capteurs ou des mesures de votre région.</p>
     <div class="features-grid-wrapper">
       <div class="features-grid <?php if (!$isLoggedIn) echo 'blur-active'; ?>">
@@ -108,12 +90,12 @@
     <h2>Pourquoi choisir Light Control ?</h2>
     <p>Avec Light Control, devenez maître de votre logement. Light Control vous permet de contrôler vos appareils domotiques à distance, de manière simple et sécurisée, pour augmenter votre confort à domicile.</p>
     <div class="stats-container">
-      <div class="stat" data-target="<?= $stats['events'] ?>">
-        <h3>+<span class="count"><?= $stats['events'] ?></span></h3>
+      <div class="stat" data-target="<?= $stats['capteurs'] ?>">
+        <h3>+<span class="count"><?= $stats['capteurs'] ?></span></h3>
         <p>Appareils recensés</p>
       </div>
-      <div class="stat" data-target="<?= $stats['participants'] ?>">
-        <h3>+<span class="count"><?= $stats['participants'] ?></span></h3>
+      <div class="stat" data-target="<?= $stats['utilisateurs'] ?>">
+        <h3>+<span class="count"><?= $stats['utilisateurs'] ?></span></h3>
         <p>Utilisateurs actifs</p>
       </div>
       <div class="stat" data-target="<?= $stats['support'] ?>">
