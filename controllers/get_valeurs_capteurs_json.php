@@ -1,8 +1,11 @@
 <?php
+header('Content-Type: application/json'); // Très important : indique que la réponse est du JSON
+
 $composants_a_chercher = [
     2 => ['nom' => 'Luminosité', 'unite' => 'lx',    'icone' => '☀️'],
-    3 => ['nom' => 'Température', 'unite' => '°C',    'icone' => '🌡️'],
+    6 => ['nom' => 'Température', 'unite' => '°C',    'icone' => '🌡️'],
     4 => ['nom' => 'Distance',    'unite' => 'cm',    'icone' => '📏'],
+    7 => ['nom' => 'Humidité',    'unite' => '%',     'icone' => '💧'],
     5 => ['nom' => 'Volets',      'type' => 'etat',  'icone' => '🪟'],
 ];
 
@@ -13,13 +16,10 @@ $password = 'rgnefb';
 
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
-    echo "<h2>❌ Erreur Capteurs</h2>";
-    echo "<p>Connexion à la base de données échouée.</p>";
-    exit;
+    die(json_encode(['erreur' => 'Connexion BDD échouée']));
 }
 
-echo "<h2>État des Appareils</h2>";
-echo "<ul class='liste-capteurs'>";
+$donnees_capteurs = []; // On va stocker les résultats ici
 
 foreach ($composants_a_chercher as $id => $details) {
     $stmt = $conn->prepare("SELECT valeur FROM mesure WHERE id_composant = ? ORDER BY date DESC LIMIT 1");
@@ -33,23 +33,23 @@ foreach ($composants_a_chercher as $id => $details) {
 
     if ($mesure = $resultat->fetch_assoc()) {
         $valeur_brute = floatval($mesure['valeur']);
-
         if (isset($details['type']) && $details['type'] === 'etat') {
             $valeur_formatee = ($valeur_brute === 1.0) ? "Fermés" : "Ouverts";
         } else {
             $valeur_formatee = number_format($valeur_brute, 1, ',', ' ') . " " . $details['unite'];
         }
     }
-    
-    echo "<li>";
-    echo "  <span class='nom-capteur'>{$details['icone']} {$details['nom']}</span>";
-    echo "  <span class='valeur-capteur'>{$valeur_formatee}</span>";
-    echo "</li>";
 
+    // On ajoute les données formatées au tableau de réponse
+    $donnees_capteurs[] = [
+        'nom' => $details['nom'],
+        'icone' => $details['icone'],
+        'valeur' => $valeur_formatee
+    ];
     $stmt->close();
 }
-
-echo "</ul>";
-
 $conn->close();
+
+// On encode le tableau final en JSON et on l'envoie
+echo json_encode($donnees_capteurs);
 ?>

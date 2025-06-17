@@ -95,4 +95,32 @@ function mettreAJourUI(mode) {
             btnEteindre.disabled = false; 
             zoneSeuil.style.display = 'none'; 
             fetcherEtatActuel(); } }
-window.addEventListener('DOMContentLoaded', () => { fetch('controllers/get_mode.php').then(res => res.json()).then(data => { document.getElementById('input-seuil').value = data.seuil; definirMode(data.mode); }); });
+
+
+window.addEventListener('DOMContentLoaded', () => { 
+    fetch('controllers/get_mode.php').then(res => res.json()).then(data => { 
+        document.getElementById('input-seuil').value = data.seuil; 
+        definirMode(data.mode); 
+        rafraichirCapteurs(); 
+        setInterval(rafraichirCapteurs, 5000);
+    }); });
+
+function rafraichirCapteurs() {
+    fetch('controllers/get_valeurs_capteurs_json.php')
+        .then(res => res.json())
+        .then(data => {
+            const liste = document.getElementById('liste-capteurs-dynamique');
+            liste.innerHTML = ''; // On vide la liste précédente
+
+            // On boucle sur les données reçues et on crée le HTML
+            data.forEach(capteur => {
+                const item = document.createElement('li');
+                item.innerHTML = `
+                    <span class="nom-capteur">${capteur.icone} ${capteur.nom}</span>
+                    <span class="valeur-capteur">${capteur.valeur}</span>
+                `;
+                liste.appendChild(item);
+            });
+        })
+        .catch(error => console.error('Erreur de rafraîchissement des capteurs:', error));
+}

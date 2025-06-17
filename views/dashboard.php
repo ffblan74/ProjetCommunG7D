@@ -39,7 +39,9 @@
             <div id="luminosity-status" class="info-secondaire"></div> 
         </div>
         <div class="carte-capteurs">
-            <?php include 'controllers/etat_capteurs.php'; ?>
+            <h2>État des Appareils</h2>
+            <ul id="liste-capteurs-dynamique" class="liste-capteurs">
+            </ul>
         </div>
     </main>
 
