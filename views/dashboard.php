@@ -9,13 +9,59 @@
     <link rel="stylesheet" href="assets/CSS/header.css">
     <link rel="icon" type="image/jpg" href="assets/images/favicon.png">
     <style>
-        .mode-controle { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+        .mode-controle{ display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+        .allumereteindre{ display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
         .bouton.active { border: 2px solid #ff8c00; box-shadow: 0 0 5px #ff8c00; }
         .manuel-lumiere button:disabled { background-color: #ccc; cursor: not-allowed; opacity: 0.6; }
-        .info-secondaire { margin-top: 8px; font-size: 0.9em; color: #666; }
-        #zone-seuil-auto { display: none; margin-top: 15px; }
-        #zone-seuil-auto input { width: 80px; text-align: center; margin-right: 10px; }
-        #zone-seuil-auto #confirmation-seuil { color: green; font-weight: bold; margin-left: 10px; }
+        .info-secondaire { display: flex; margin-top: 8px; font-size: 0.9em; color: #666; justify-content: center;}
+        #zone-seuil-auto {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        #zone-seuil-auto label {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        #zone-seuil-auto input[type="number"] {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 8px 12px;
+            width: 70px;
+            text-align: center;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.2s ease-in-out;
+            -moz-appearance: textfield;
+        }
+
+        #zone-seuil-auto input[type="number"]::-webkit-outer-spin-button,
+        #zone-seuil-auto input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        #zone-seuil-auto input[type="number"]:hover {
+            border-color: #999;
+        }
+
+        #zone-seuil-auto input[type="number"]:focus {
+            outline: none;
+            border-color: #ff8c00;
+            box-shadow: 0 0 8px rgba(255, 140, 0, 0.4);
+        }
+
+        #confirmation-seuil {
+            color: #27ae60;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -31,12 +77,15 @@
                 <button id="btn-manuel" class="bouton" onclick="definirMode('manuel')">Manuel</button>
                 <button id="btn-auto" class="bouton" onclick="definirMode('automatique')">Automatique</button>
             </div>
-            <button class="bouton allumer" onclick="sendCommand('1.0')">Allumer</button>
-            <button class="bouton eteindre" onclick="sendCommand('0.0')">Éteindre</button>
+            <div class="allumereteindre">
+                <button class="bouton allumer" onclick="sendCommand('1.0')">Allumer</button>
+                <button class="bouton eteindre" onclick="sendCommand('0.0')">Éteindre</button>
+            </div>
             <div id="zone-seuil-auto">
                 <label for="input-seuil">Seuil d'allumage :</label>
                 <input type="number" id="input-seuil" class="bouton" min="0" step="50">
                 <button class="bouton" onclick="sauvegarderSeuil()">OK</button>
+                <br/>
                 <span id="confirmation-seuil"></span>
             </div>
             <div id="status">État : Chargement...</div>
@@ -47,7 +96,7 @@
 <script>
 let intervalleAutomatique = null;
 
-// ▼▼▼ LA LOGIQUE EST MAINTENANT ICI ▼▼▼
+
 function verifierEtatAutomatique() {
     // 1. On demande au serveur l'état actuel des capteurs
     fetch('controllers/etat_lumiere.php')

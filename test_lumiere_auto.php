@@ -2,25 +2,16 @@
 // Fichier : inserer_mesure.php
 // But : Insérer manuellement une valeur dans la table 'mesure' pour les tests.
 
-// ===================================================================
-// ▼▼▼ MODIFIEZ LES VALEURS CI-DESSOUS POUR VOS TESTS ▼▼▼
-// ===================================================================
 
-// Quel composant voulez-vous simuler ?
-// 1 = Servo (pour simuler un état ON/OFF)
-// 2 = Capteur de lumière (pour simuler la luminosité)
-// 3 = Température, etc.
 $id_composant_a_inserer = 2; // <<< On simule le capteur de lumière.
 
 // Quelle valeur voulez-vous insérer ?
 // Pour la lumière (ID 2): Une petite valeur (ex: 150) simule l'obscurité.
 //                         Une grande valeur (ex: 800) simule la lumière du jour.
 // Pour le servo (ID 1):   1.0 pour "Allumé", 0.0 pour "Éteint".
-$valeur_a_inserer = 550.0; // <<< On simule une pièce sombre.
+$valeur_a_inserer = 400; // <<< On simule une pièce sombre.
 
-// ===================================================================
-// ▲▲▲ FIN DE LA ZONE DE MODIFICATION ▲▲▲
-// ===================================================================
+
 
 
 // --- Ajout d'un peu de style pour la lisibilité ---
