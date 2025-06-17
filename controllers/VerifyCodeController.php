@@ -44,7 +44,7 @@ if (isset($_POST['update_password'])) {
     $password = $_POST['password'] ?? '';
     $password_confirm = $_POST['password_confirm'] ?? '';
 
-    if (empty($password) || $password !== $password_confirm) {
+    if (empty($password) || $password !== $password_confirm || strlen($password) < 8) {
         $error_message = 'Les mots de passe sont vides ou ne correspondent pas.';
     } else {
         $user = $userModel->findUserByEmail($emailForReset);
