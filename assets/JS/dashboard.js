@@ -27,7 +27,7 @@ function verifierEtatAutomatique() {
             } else {
                  // Si c'est identique, on ne fait rien, juste on met à jour l'affichage
                  document.getElementById("status").innerText = `État : ${data.etat_texte} (Auto)`;
-                 document.getElementById("luminosity-status").innerText = `Luminosité : ${luminosite_actuelle}`;
+                 document.getElementById("luminosity-status").innerText = `Luminosité actuelle : ${luminosite_actuelle} lx`;
             }
         })
         .catch(error => {
@@ -58,7 +58,7 @@ function fetcherEtatActuel() {
         .then(data => {
             const mode_actuel = document.getElementById('btn-auto').classList.contains('active') ? "(Auto)" : "(Manuel)";
             document.getElementById("status").innerText = `État : ${data.etat_texte} ${mode_actuel}`;
-            document.getElementById("luminosity-status").innerText = "Luminosité : " + data.luminosite;
+            document.getElementById("luminosity-status").innerText = "Luminosité actuelle : " + data.luminosite + " lx";
         })
         .catch(err => {
             document.getElementById("status").innerText = "État : erreur";

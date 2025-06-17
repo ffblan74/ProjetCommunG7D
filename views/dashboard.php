@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="assets/CSS/dashboard.css">
     <link rel="stylesheet" href="assets/CSS/footer.css">
     <link rel="stylesheet" href="assets/CSS/header.css">
-    <link rel="stylesheet" href="assets/CSS/dashbord.css">
     <link rel="icon" type="image/jpg" href="assets/images/favicon.png">
     <script src="assets/JS/dashboard.js"></script>
 
@@ -30,7 +29,7 @@
                 <button class="bouton eteindre" onclick="sendCommand('0.0')">Éteindre</button>
             </div>
             <div id="zone-seuil-auto">
-                <label for="input-seuil">Seuil d'allumage :</label>
+                <label for="input-seuil">Seuil d'allumage (en lx) :</label>
                 <input type="number" id="input-seuil" class="bouton" min="0" step="50">
                 <button class="bouton" onclick="sauvegarderSeuil()">OK</button>
                 <br/>

@@ -70,5 +70,65 @@ body {
 }
 
 
+.mode-controle{ display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+.allumereteindre{ display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+.bouton.active { border: 2px solid #ff8c00; box-shadow: 0 0 5px #ff8c00; }
+.manuel-lumiere button:disabled { background-color: #ccc; cursor: not-allowed; opacity: 0.6; }
+.info-secondaire { display: flex; margin-top: 8px; font-size: 0.9em; color: #666; justify-content: center;}
+#zone-seuil-auto {
+    display: none;
+    margin-top: 10px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+#zone-seuil-auto label {
+    font-size: 0.95em;
+    color: #555;
+}
+
+#zone-seuil-auto input[type="number"] {
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 70px;
+    text-align: center;
+    font-size: 1em;
+    font-family: inherit;
+    transition: all 0.2s ease-in-out;
+    -moz-appearance: textfield;
+}
+
+#zone-seuil-auto input[type="number"]::-webkit-outer-spin-button,
+#zone-seuil-auto input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#zone-seuil-auto input[type="number"]:hover {
+    border-color: #999;
+}
+
+#zone-seuil-auto input[type="number"]:focus {
+    outline: none;
+    border-color: #ff8c00;
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.4);
+}
+
+#confirmation-seuil {
+    color: #27ae60;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
 
 
