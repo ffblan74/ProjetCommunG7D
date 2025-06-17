@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="assets/CSS/dashboard.css">
     <link rel="stylesheet" href="assets/CSS/footer.css">
     <link rel="stylesheet" href="assets/CSS/header.css">
-    <link rel="icon" type="image/jpg" href="assets/images/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="assets/images/favicon.png">
     <style>
         .mode-controle { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
         .bouton.active { border: 2px solid #ff8c00; box-shadow: 0 0 5px #ff8c00; }

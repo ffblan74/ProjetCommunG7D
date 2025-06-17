@@ -6,6 +6,7 @@
     <title>Créer un compte</title>
     <link rel="stylesheet" href="assets/CSS/signin.css">
     <link rel="stylesheet" href="assets/CSS/popup.css">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
     <style>
         .password-input-container {
             position: relative;

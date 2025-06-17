@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Connexion</title>
   <link rel="stylesheet" href="assets/CSS/login.css">
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+
 </head>
 <body>
   <div class="signin-container">
