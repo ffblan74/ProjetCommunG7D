@@ -30,10 +30,13 @@ try {
     // Récupérer les mesures
     $mesures = $model->getMesures($capteurId, $periodes[$periode]);
 
-    // Formatage pour Google Charts
-    $data = [["Date", "Valeur"]];
+    // Formatage sans l'en-tête pour Google Charts
+    $data = [];
     foreach ($mesures as $row) {
-        $data[] = [$row['date_mesure'], (float)$row['valeur']];
+        $data[] = [
+            date('d/m H:i', strtotime($row['date_mesure'])),
+            (float)$row['valeur']
+        ];
     }
 
     echo json_encode($data);
