@@ -9,75 +9,83 @@
     <link rel="icon" type="image/jpg" href="assets/images/favicon.jpg">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
-    google.charts.load('current', { packages: ['corechart'] });
-    google.charts.setOnLoadCallback(initCharts);
+        google.charts.load('current', { packages: ['corechart'] });
+        google.charts.setOnLoadCallback(() => {
+            initCharts();
+            drawChart('semaine'); // ou '24h'
+        });
 
-    function initCharts() {
-        const selects = document.querySelectorAll('.periode-select');
-        selects.forEach(select => {
-            loadChart(select.dataset.capteur, select.value);
-
-            select.addEventListener('change', () => {
+        function initCharts() {
+            const selects = document.querySelectorAll('.periode-select');
+            selects.forEach(select => {
                 loadChart(select.dataset.capteur, select.value);
+
+                select.addEventListener('change', () => {
+                    loadChart(select.dataset.capteur, select.value);
+                });
             });
+        }
+
+        function loadChart(capteurId, period) {
+            fetch(`controllers/get_graph_data.php?capteur=${capteurId}&periode=${period}`) // <- CORRIGÉ ici
+                .then(res => res.json())
+                .then(data => {
+                    const container = document.getElementById(`chart-${capteurId}`);
+
+                    if (!data.length || data.length <= 1) {
+                        container.innerHTML = "Aucune donnée pour cette période.";
+                        return;
+                    }
+
+                    const dataTable = new google.visualization.DataTable();
+                    dataTable.addColumn('string', 'Date');
+                    dataTable.addColumn('number', 'Valeur');
+                    dataTable.addRows(data);
+
+                    const options = {
+                        title: 'Évolution des mesures',
+                        legend: { position: 'bottom' },
+                        height: 300
+                    };
+
+                    const chart = new google.visualization.LineChart(container);
+                    chart.draw(dataTable, options);
+                })
+                .catch(err => console.error('Erreur lors du chargement du graphique', err));
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const timeRange = document.getElementById("timeRange");
+            if (timeRange) {
+                timeRange.addEventListener("change", () => {
+                    drawChart(timeRange.value);
+                });
+            }
         });
-    }
 
-    function loadChart(capteurId, period) {
-        fetch(`controllers/get_graph_data.php?capteur=${capteurId}&period=${period}`)
-            .then(res => res.json())
-            .then(data => {
-                if (!data.length) return;
+        function drawChart(period) {
+            fetch(`controllers/get_chart_data.php?period=${period}`)
+                .then(response => response.json())
+                .then(result => {
+                    const data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Composant');
+                    data.addColumn('number', 'Nombre de mesures');
+                    data.addRows(result);
 
-                const dataTable = new google.visualization.DataTable();
-                dataTable.addColumn('string', 'Date');
-                dataTable.addColumn('number', 'Valeur');
-                dataTable.addRows(data);
+                    const options = {
+                        title: "Nombre de mesures pour chaque composant",
+                        fontName: 'Poppins'
+                    };
 
-                const options = {
-                    title: 'Évolution des mesures',
-                    legend: { position: 'bottom' },
-                    height: 300
-                };
+                    const chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
+                    chart.draw(data, options);
 
-                const chart = new google.visualization.LineChart(document.getElementById(`chart-${capteurId}`));
-                chart.draw(dataTable, options);
-            })
-            .catch(err => console.error('Erreur lors du chargement du graphique', err));
-    }
-    google.charts.setOnLoadCallback(() => {
-        drawChart('semaine'); // valeur par défaut
-    });
+                    window.addEventListener('resize', () => chart.draw(data, options));
+                })
+                .catch(error => console.error('Erreur de chargement des données:', error));
+        }
+    </script>
 
-    document.addEventListener("DOMContentLoaded", () => {
-        const timeRange = document.getElementById("timeRange");
-        timeRange.addEventListener("change", () => {
-            drawChart(timeRange.value);
-        });
-    });
-
-    function drawChart(period) {
-        fetch(`controllers/get_chart_data.php?period=${period}`)
-            .then(response => response.json())
-            .then(result => {
-                const data = new google.visualization.DataTable();
-                data.addColumn('string', 'Composant');
-                data.addColumn('number', 'Nombre de mesures');
-                data.addRows(result);
-
-                const options = {
-                    title: "Nombre de mesures pour chaque composant",
-                    fontName: 'Poppins'
-                };
-
-                const chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
-                chart.draw(data, options);
-
-                window.addEventListener('resize', () => chart.draw(data, options));
-            })
-            .catch(error => console.error('Erreur de chargement des données:', error));
-    }
-</script>
 </head>
 <body>
     <?php include 'views/common/header.php'; ?>
