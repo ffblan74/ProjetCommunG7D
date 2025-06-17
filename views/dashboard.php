@@ -17,6 +17,10 @@
 
     <main class="page">
 
+    <div class ="carte-meteo">
+        <?php include 'controllers/meteo.php'; ?>
+</div>    
+
     <div class="manuel-lumiere">
     <h2>💡 Salon - <span class="texte-orange">Lumière</span></h2>
     <button class="bouton allumer" onclick="sendCommand('1.0')">Allumer</button>
