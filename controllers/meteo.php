@@ -22,8 +22,19 @@ $temp = $data['main']['temp'];
 $desc = ucfirst($data['weather'][0]['description']);
 $ville = $data['name'];
 $icone = $data['weather'][0]['icon'];
+$tempMin = $data['main']['temp_min'];
+$tempMax = $data['main']['temp_max'];
+$humidite = $data['main']['humidity'];
+$nuages = $data['clouds']['all'];
+
+$leverSoleil = date("H:i", $data['sys']['sunrise']);
+$coucherSoleil = date("H:i", $data['sys']['sunset']);
 
 echo "<h2>Météo à {$ville}</h2>";
-echo "<p>{$desc}, {$temp}°C</p>";
 echo "<img src='https://openweathermap.org/img/wn/{$icone}@2x.png' alt='Icône météo'>";
+echo "<p>{$desc}, {$temp}°C</p>";
+echo "<br>🔻 Min : {$tempMin}°C / 🔺 Max : {$tempMax}°C<br>";
+echo "💧 Humidité : {$humidite}%<br>";
+echo "☁️ Couverture nuageuse : {$nuages}%<br>";
+echo "🌅 Lever du soleil : {$leverSoleil} <br>🌇 Coucher : {$coucherSoleil}<br>";
 ?>

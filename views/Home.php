@@ -7,7 +7,8 @@
   <title>Light Control</title>
 
   <link rel="stylesheet" href="assets/CSS/index.css">
-  
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+
   <?php
   // Inclure la configuration si nécessaire
   if (!defined('BASE_PATH')) {
@@ -19,8 +20,6 @@
 
 
   ?>
-
-  <link rel="icon" type="image/x-icon" href="/src/assets/images/favicon.jpg">
 </head>
 <body>
   <!-- Header -->

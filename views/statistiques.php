@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets/CSS/statistiques.css">
     <link rel="stylesheet" href="assets/CSS/footer.css">
     <link rel="stylesheet" href="assets/CSS/header.css">
-    <link rel="icon" type="image/jpg" href="assets/images/favicon.jpg">
+    <link rel="icon" type="image/jpg" href="assets/images/favicon.png">
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
         google.charts.load('current', { packages: ['corechart'] });

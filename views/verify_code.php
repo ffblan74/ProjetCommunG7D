@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Vérification du code</title>
   <link rel="stylesheet" href="assets/CSS/password_forgotten.css">
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
+
 </head>
 <body>
 
