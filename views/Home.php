@@ -45,32 +45,40 @@
   <div class="features">
     <h2>Les chiffres clés</h2>
     <p>Un aperçu des données importantes de vos capteurs ou des mesures de votre région.</p>
-    <div class="features-grid-wrapper">
-      <div class="features-grid <?php if (!$isLoggedIn) echo 'blur-active'; ?>">
+    <div class="features-grid">
+      <div class="feature-card">
+        <i class="fa-solid fa-cloud-sun-rain"></i>
+        <h3>Météo du jour</h3>
+        <p>Organisez facilement vos événements et gérez les inscriptions en quelques clics.</p>
+      </div>
+      <?php if (!($isLoggedIn)): ?>
         <div class="feature-card">
-          <i class="fa-solid fa-cloud-sun-rain" style="color:#3C75A6"></i>
-          <h3>Météo du jour</h3>
-          <p>Organisez facilement vos événements et gérez les inscriptions en quelques clics.</p>
+          <i class="fas fa-sign-in-alt"></i>
+          <h3>Inscription</h3>
+          <p>Inscrivez-vous pour accéder à toutes les fonctionnalités et statistiques.</p>
         </div>
-        <?php if (!(isset($_SESSION['user_id']))): ?>
-          <div class="feature-card">
-            <i class="fas fa-sign-in-alt"></i>
-            <h3>Inscription</h3>
-            <p>Inscrivez-vous pour accéder à toutes les fonctionnalités et statistiques.</p>
-          </div>
-          <div>
-            <p>Vous souhaitez voir toutes les statistiques ? Inscrivez-vous et synchronisez vos appareils Light Control.</p>
-            <a href="<?= $basePath ?>?page=login" class="connect-button">Se connecter</a>
-          </div>
-          <div class="overlay-text">👉 Voici du texte lisible au-dessus du flou</div>
-        <?php endif; ?>
+        <div>
+          <p>Vous souhaitez voir toutes les statistiques ? Inscrivez-vous et synchronisez vos appareils Light Control.</p>
+          <a href="<?= $basePath ?>?page=login" class="connect-button">Se connecter</a>
+        </div>
+      <?php else: ?>
         <div class="feature-card">
-          <i class="fas fa-map-marker-alt"></i>
+          <i class="fa-solid fa-temperature-half"></i>
+          <h3>Température</h3>
+          <p>Trouvez des événements près de chez vous grâce à notre système de géolocalisation.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-droplet"></i>
+          <h3>Humidité</h3>
+          <p>Trouvez des événements près de chez vous grâce à notre système de géolocalisation.</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-sun"></i>
           <h3>Luminosité</h3>
           <p>Trouvez des événements près de chez vous grâce à notre système de géolocalisation.</p>
         </div>
         <div class="feature-card">
-          <i class="fas fa-users"></i>
+          <i class="fa-solid fa-lightbulb"></i>
           <h3>État de la lumière</h3>
           <p>Suivez facilement les inscriptions et communiquez avec vos participants.</p>
         </div>
@@ -79,8 +87,7 @@
           <h3>État des volets</h3>
           <p>Restez informé des nouveaux événements qui correspondent à vos centres d'intérêt.</p>
         </div>
-        
-      </div>
+      <?php endif; ?>
     </div>
     
   </div>

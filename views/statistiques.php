@@ -27,32 +27,62 @@
         }
 
         function loadChart(capteurId, period) {
-            fetch(`controllers/get_graph_data.php?capteur=${capteurId}&periode=${period}`) // <- CORRIGÉ ici
+            // Définit la durée en millisecondes selon la période sélectionnée
+            const now = new Date();
+            let intervalMs;
+
+            switch (period) {
+                case '1h': intervalMs = 1 * 60 * 60 * 1000; break;
+                case '6h': intervalMs = 6 * 60 * 60 * 1000; break;
+                case '24h': intervalMs = 24 * 60 * 60 * 1000; break;
+                case '7j': intervalMs = 7 * 24 * 60 * 60 * 1000; break;
+                case '30j': intervalMs = 30 * 24 * 60 * 60 * 1000; break;
+                case '90j': intervalMs = 90 * 24 * 60 * 60 * 1000; break;
+                case '1an': intervalMs = 365 * 24 * 60 * 60 * 1000; break;
+                default: intervalMs = 24 * 60 * 60 * 1000;
+            }
+
+            const startDate = new Date(now.getTime() - intervalMs);
+
+            fetch(`controllers/get_graph_data.php?capteur=${capteurId}&periode=${period}`)
                 .then(res => res.json())
                 .then(data => {
-                    const container = document.getElementById(`chart-${capteurId}`);
-
-                    if (!data.length || data.length <= 1) {
-                        container.innerHTML = "Aucune donnée pour cette période.";
-                        return;
-                    }
+                    if (!data.length) return;
 
                     const dataTable = new google.visualization.DataTable();
-                    dataTable.addColumn('string', 'Date');
+                    dataTable.addColumn('date', 'Date'); // Changement ici : colonne date
                     dataTable.addColumn('number', 'Valeur');
-                    dataTable.addRows(data);
+
+                    // On skip la première ligne ["Date", "Valeur"]
+                    for (let i = 1; i < data.length; i++) {
+                        // Convertir la date string en objet Date
+                        // Attention au format date côté PHP / JSON, ici je pars sur ISO standard
+                        const date = new Date(data[i][0]);
+                        const value = parseFloat(data[i][1]);
+                        dataTable.addRow([date, value]);
+                    }
 
                     const options = {
                         title: 'Évolution des mesures',
                         legend: { position: 'bottom' },
-                        height: 300
+                        height: 300,
+                        interpolateNulls: true, // lissage si données manquantes
+                        hAxis: {
+                            viewWindow: {
+                                min: startDate,
+                                max: now
+                            },
+                            format: 'dd/MM HH:mm',
+                            gridlines: { count: 10 }
+                        }
                     };
 
-                    const chart = new google.visualization.LineChart(container);
+                    const chart = new google.visualization.LineChart(document.getElementById(`chart-${capteurId}`));
                     chart.draw(dataTable, options);
                 })
                 .catch(err => console.error('Erreur lors du chargement du graphique', err));
         }
+
 
         document.addEventListener("DOMContentLoaded", () => {
             const timeRange = document.getElementById("timeRange");

@@ -5,14 +5,12 @@ require_once '../models/Database.php';
 require_once '../models/StatsModel.php';
 
 try {
-    $pdo = Database::getInstance()->getConnection(); // Utilise ton singleton de connexion
+    $pdo = Database::getInstance()->getConnection();
     $model = new StatModel($pdo);
 
-    // Paramètres GET
     $capteurId = isset($_GET['capteur']) ? intval($_GET['capteur']) : 1;
     $periode = $_GET['periode'] ?? '24h';
 
-    // Définition des périodes valides
     $periodes = [
         '1h' => '1 HOUR',
         '6h' => '6 HOUR',
@@ -27,16 +25,17 @@ try {
         $periode = '24h';
     }
 
-    // Récupérer les mesures
     $mesures = $model->getMesures($capteurId, $periodes[$periode]);
 
-    // Formatage sans l'en-tête pour Google Charts
-    $data = [];
+    // Ajout de l'entête pour Google Charts
+    $data = [["Date", "Valeur"]];
+
     foreach ($mesures as $row) {
-        $data[] = [
-            date('d/m H:i', strtotime($row['date_mesure'])),
-            (float)$row['valeur']
-        ];
+        // Format ISO 8601, ex : 2025-06-12T11:48:00
+        $dateIso = date('Y-m-d\TH:i:s', strtotime($row['date_mesure']));
+        $valeur = (float)$row['valeur'];
+
+        $data[] = [$dateIso, $valeur];
     }
 
     echo json_encode($data);

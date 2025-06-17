@@ -240,10 +240,6 @@ body {
     font-size: 1.1rem;
 }
 
-.features-grid-wrapper {
-    display: inline-block; /* s'adapte à la taille de .features-grid */
-    position: relative;
-}
 .features-grid {
     display: flex;
     gap: 2rem;
@@ -254,21 +250,7 @@ body {
     position: relative; /* important pour positionner overlay-text */
     z-index: 1;
 }
-.features-grid.blur-active::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    backdrop-filter: blur(10px);
 
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60%, black 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 60%, black 100%);
-    -webkit-mask-size: 100% 100%;
-    mask-size: 100% 100%;
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-}
 .feature-card {
     background: white;
     padding: 2rem;
@@ -279,17 +261,6 @@ body {
     width: 100%;
     flex: 1 1 250px;
 }
-/* Texte au-dessus du flou */
-.overlay-text {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 3;
-    padding: 1rem;
-    border-radius: 8px;
-    max-width: 250px;
-    font-weight: bold;
-}
 
 
 .feature-card:hover {
@@ -298,7 +269,7 @@ body {
 
 .feature-card i {
     font-size: 2.5rem;
-    color: #42975D;
+    color: #3C75A6;
     margin-bottom: 1rem;
 }
 
