@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="assets/CSS/conditions_utilisation.css">
     <link rel="stylesheet" href="assets/CSS/footer.css">
     <link rel="stylesheet" href="assets/CSS/header.css">
-    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.jpg">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.png">
 </head>
 <body>
 
