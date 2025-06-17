@@ -1,22 +1,19 @@
 <?php
-// On indique que la réponse sera au format JSON
+// Ce script ne fait que lire et renvoyer l'état complet du système
 header('Content-Type: application/json');
 
 // --- Connexion BDD ---
-$host = 'romantcham.fr';
-$dbname = 'Domotic_db';
-$user = 'G7D';
-$password = 'rgnefb';
-
+$host = 'romantcham.fr'; $dbname = 'Domotic_db'; $user = 'G7D'; $password = 'rgnefb';
 $conn = new mysqli($host, $user, $password, $dbname);
 if ($conn->connect_error) {
-    die(json_encode(['etat' => 'Erreur BDD', 'luminosite' => null]));
+    die(json_encode(['etat_valeur' => 0.0, 'etat_texte' => 'Erreur BDD', 'luminosite' => 'N/A']));
 }
 
-// --- Préparation de la réponse ---
+// --- Réponse par défaut ---
 $reponse = [
-    'etat' => 'Inconnu',
-    'luminosite' => 'N/A' // Valeur par défaut
+    'etat_valeur' => 0.0,      // L'état sous forme de nombre (0.0 ou 1.0)
+    'etat_texte' => 'Inconnu', // L'état sous forme de texte
+    'luminosite' => 'N/A'      // La valeur de luminosité
 ];
 
 // 1. Récupérer le dernier état de la lumière (servo, id=1)
@@ -26,7 +23,8 @@ $stmt_servo->bind_param("i", $id_composant_servo);
 $stmt_servo->execute();
 $result_servo = $stmt_servo->get_result();
 if ($mesure_servo = $result_servo->fetch_assoc()) {
-    $reponse['etat'] = (floatval($mesure_servo['valeur']) === 1.0) ? 'Allumée' : 'Éteinte';
+    $reponse['etat_valeur'] = floatval($mesure_servo['valeur']);
+    $reponse['etat_texte'] = ($reponse['etat_valeur'] === 1.0) ? 'Allumée' : 'Éteinte';
 }
 $stmt_servo->close();
 
