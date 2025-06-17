@@ -62,6 +62,7 @@ body {
 
         .carte-meteo {
     background: #e0f7fa;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-radius: 12px;
     padding: 20px;
     max-width: 300px;
@@ -69,6 +70,8 @@ body {
     font-family: Poppins, sans-serif;
 }
 
+
+/* Pour le controlle de la lumiere*/
 
 .mode-controle{ display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
 .allumereteindre{ display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
@@ -130,5 +133,55 @@ body {
 
 
 
+/* Pour tous les capteur*/
+.carte-capteurs {
+    background: #e0f7fa; 
+    padding: 20px 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    color: #333;
+}
 
+.carte-capteurs h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    color: #2c3e50;
+}
+
+/* Style pour la liste des capteurs */
+.liste-capteurs {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+}
+
+.liste-capteurs li {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    justify-content: space-between; /* Espace maximum entre le nom et la valeur */
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0; /* Ligne de séparation fine */
+    font-size: 1.1em;
+}
+
+/* Enlève la ligne de séparation pour le dernier élément */
+.liste-capteurs li:last-child {
+    border-bottom: none;
+}
+
+.nom-capteur {
+    font-weight: 500;
+}
+
+.valeur-capteur {
+    font-weight: 600;
+    color: #ff6600; /* Rappel de la couleur orange */
+    background-color: #f0f0f0;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
 

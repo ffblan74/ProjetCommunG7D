@@ -38,6 +38,9 @@
             <div id="status">État : Chargement...</div>
             <div id="luminosity-status" class="info-secondaire"></div> 
         </div>
+        <div class="carte-capteurs">
+            <?php include 'controllers/etat_capteurs.php'; ?>
+        </div>
     </main>
 
     <?php include 'views/common/footer.php'; ?>
