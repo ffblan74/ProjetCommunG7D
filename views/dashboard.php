@@ -1,12 +1,5 @@
 <?php
-$lat = $_GET['lat'] ?? null;
-$lon = $_GET['lon'] ?? null;
 
-if (!$lat || !$lon) {
-    echo "❌ Coordonnées manquantes.";
-}
-
-include 'controllers/meteo.php'; // Inclure les données météo
 ?>
 
 <!DOCTYPE html>

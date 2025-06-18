@@ -1,16 +1,20 @@
 <?php
-$lat = $_GET['lat'] ?? null;
-$lon = $_GET['lon'] ?? null;
+$lat = $_COOKIE['lat'] ?? null;
+$lon = $_COOKIE['lon'] ?? null;
 
-if (!$lat || !$lon) {
-    echo "❌ Coordonnées manquantes.";
-}
+
 
 // Clé API et appel à OpenWeatherMap
 $apiKey = '445463b8c641a9999ed84e3fb21e5047';
+$ville = 'Paris'; // Ville par défaut si lat/lon non définis
 $unites = 'metric';
 $langue = 'fr';
-$url = "https://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon={$lon}&appid={$apiKey}&units={$unites}&lang={$langue}";
+// Url par défaut si lat et lon non définis
+$url = "https://api.openweathermap.org/data/2.5/weather?q={$ville}&appid={$apiKey}&units={$unites}&lang={$langue}";
+// Sinon on utilise les coordonnées fournies
+if ($lat && $lon) {
+    $url = "https://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon={$lon}&appid={$apiKey}&units={$unites}&lang={$langue}";
+}
 
 $response = file_get_contents($url);
 if ($response === FALSE) {
