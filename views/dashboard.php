@@ -1,3 +1,14 @@
+<?php
+$lat = $_GET['lat'] ?? null;
+$lon = $_GET['lon'] ?? null;
+
+if (!$lat || !$lon) {
+    echo "❌ Coordonnées manquantes.";
+}
+
+include 'controllers/meteo.php'; // Inclure les données météo
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,8 +36,8 @@
                 <button id="btn-auto" class="bouton" onclick="definirMode('automatique')">Automatique</button>
             </div>
             <div class="allumereteindre">
-                <button class="bouton allumer" onclick="sendCommand('1.0')">Allumer</button>
-                <button class="bouton eteindre" onclick="sendCommand('0.0')">Éteindre</button>
+                <button class="bouton allumer" onclick="sendCommand('1')">Allumer</button>
+                <button class="bouton eteindre" onclick="sendCommand('0')">Éteindre</button>
             </div>
             <div id="zone-seuil-auto">
                 <label for="input-seuil">Seuil d'allumage (en lx) :</label>

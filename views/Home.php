@@ -20,6 +20,7 @@
 
 
   ?>
+  <script src="assets/JS/IPaddress.js"></script>
 </head>
 <body>
   <!-- Header -->
@@ -111,6 +112,14 @@
     </div>
   </section>
 
+  <!-- Bannière RGPD -->
+  <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #fff; padding: 15px; box-shadow: 0 -2px 5px rgba(0,0,0,0.1); z-index: 1000; display: flex; justify-content: space-between; align-items: center;">
+    <span>Nous utilisons votre IP pour localiser approximativement votre position et afficher la météo. Acceptez-vous ?</span>
+    <div>
+      <button onclick="acceptCookies()">Accepter</button>
+      <button onclick="refuseCookies()">Refuser</button>
+    </div>
+  </div>
       </main>
   <!-- Footer -->
   <?php include 'views/common/footer.php'; ?>

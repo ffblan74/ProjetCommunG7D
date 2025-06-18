@@ -124,3 +124,14 @@ function rafraichirCapteurs() {
         })
         .catch(error => console.error('Erreur de rafraîchissement des capteurs:', error));
 }
+
+
+
+// Si les données sont déjà dans localStorage :
+const lat = localStorage.getItem("lat");
+const lon = localStorage.getItem("lon");
+
+if (lat && lon) {
+  // Redirige vers le dashboard avec les coordonnées dans l’URL
+  window.location.href = `dashboard.php?lat=${lat}&lon=${lon}`;
+}
