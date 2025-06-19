@@ -1,130 +1,107 @@
-body {
-    font-family: Poppins, sans-serif;
-    background: #f0f0f0;
-    padding: 30px;
-    margin-top: 30px;
-}
+:root {
+    --background-color: #f4f4f4;
+    --text-color: #1a1a1a;
+    --primary-color: #4c6ef5;
+    --saturation: 1;
+    --line-height: 1.6;
+    --font-size-multiplier: 1;
+    --font-family: Arial, sans-serif;
+    --spacing: 1rem;
+  }
 
-.page {
-    margin-top: 100px;
+  [data-theme="dark"] {
+    --background-color: #1a1a1a;
+    --text-color: #f4f4f4;
+    --primary-color: #91a7ff;
+  }
+
+  html {
+    font-family: var(--font-family);
+    font-size: calc(16px * var(--font-size-multiplier));
+    line-height: var(--line-height);
+    filter: saturate(var(--saturation));
+    background: var(--background-color);
+    color: var(--text-color);
+  }
+
+  body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+  }
+
+  aside.accessibility-settings {
+    width: 300px;
+    padding: 20px;
+    padding-top: 3%;
+    background: var(--background-color);
+    color: var(--text-color);
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #ccc;
+  }
+
+  .accessibility-settings h2 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+  }
+
+  .setting {
+    margin-bottom: var(--spacing);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
+  }
 
-.texte-orange {
-    color: #FFA500;
-}
+  .setting label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
 
-.accessibilite-container {
-    background: white;
-    border-radius: 12px;
-    padding: 30px;
-    max-width: 800px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin: 0 auto;
-}
+  .setting select,
+  .setting input[type="range"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+  }
 
-.accessibilite-container h2 {
-    margin-top: 0;
-    color: #333;
-}
-
-.accessibilite-option {
+  .checkbox-setting label {
+    font-weight: normal;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #eee;
-}
+    gap: 8px;
+  }
 
-.option-title {
-    font-weight: 600;
-    color: #333;
-}
+  .main-content {
+    flex-grow: 1;
+    padding: var(--spacing);
+    transition: all 0.3s ease;
+    padding-top: 3%;
+  }
 
-.option-description {
-    color: #666;
-    font-size: 0.9em;
-    margin-top: 5px;
-}
+  a {
+    color: var(--primary-color);
+    text-decoration: none;
+  }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-}
+  a.underline {
+    text-decoration: underline;
+  }
 
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
+  .big-cursor {
+    cursor: url('https://cur.cursors-4u.net/cursors/cur-11/cur1026.cur'), auto !important;
+  }
 
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
+  .spacious {
+    --spacing: 2rem;
+  }
 
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-}
+  .compact {
+    --spacing: 0.5rem;
+  }
 
-input:checked + .slider {
-    background-color: #FF8C00;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-body.high-contrast {
-    background: #000;
-    color: #FFF;
-}
-
-.high-contrast .accessibilite-container {
-    background: #000;
-    border: 2px solid #FFF;
-    color: #FFF;
-}
-
-.high-contrast .option-title {
-    color: #FF0;
-}
-
-.text-size-controls {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.text-size-btn {
-    padding: 8px 15px;
-    border: none;
-    border-radius: 4px;
-    background: #f0f0f0;
-    cursor: pointer;
-}
-
-.text-size-btn.active {
-    background: #FF8C00;
-    color: white;
-}
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }

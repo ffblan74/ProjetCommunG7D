@@ -20,8 +20,8 @@
     <!-- Section héroïque améliorée -->
     <section class="hero-section">
       <div class="hero-content">
-        <h1>Transformez votre maison en un espace intelligent 🏠</h1>
-        <p class="hero-subtitle">Contrôle, confort et économie d'énergie à portée de main</p>
+        <h1>Découvrez les plaisirs d'une maison autogérée</h1>
+        <p class="hero-subtitle">Ajustez les paramètres comme bon vous semble !</p>
         <div class="cta-buttons">
           <a href="<?= $basePath ?>?page=statistiques" class="cta-button <?= $page === 'statistiques' ? 'active' : '' ?>">
             <i class="fas fa-chart-line"></i> Voir les statistiques
