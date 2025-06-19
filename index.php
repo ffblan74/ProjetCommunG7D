@@ -46,6 +46,9 @@ switch ($page) {
         $controlRoomController = new ControlRoomController();
         $controlRoomController->handleRequest();
         break;
+    case 'accessibilite':
+        require 'controllers/AccessibiliteController.php';
+        break;
     case 'explorer':
         require 'controllers/ExploreController.php';
         $exploreController = new ExploreController();
