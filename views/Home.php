@@ -138,7 +138,7 @@ if (file_exists($statsFile)) {
       </div>
     </section>
 
-      <!-- Section statistiques améliorée -->
+    <!-- Section statistiques améliorée -->
     <section class="stats-section">
       <div class="container">
         <div class="section-header">
@@ -151,30 +151,43 @@ if (file_exists($statsFile)) {
             <div class="stat-icon">
               <i class="fas fa-microchip"></i>
             </div>
-            <div class="stat" data-target="<?= $stats['capteurs'] ?>">
+            <div class="stat" id="stat-capteurs" data-target="<?= $stats['capteurs'] ?>">
+            <h3>+<span class="count"><?= $stats['capteurs'] ?></span></h3>
+            <p>Appareils recensés</p>  
               
 
             </div>
           </div>
+
+       
           
           <div class="stat-card">
             <div class="stat-icon">
               <i class="fas fa-users"></i>
             </div>
-            <h3 data-target=>+<span class="count">14</span></h3>
-            <p>Utilisateurs actifs</p>
+             <div class="stat" id="stat-utilisateurs" data-target="<?= $stats['utilisateurs'] ?>">
+              <h3>+<span class="count"><?= $stats['utilisateurs'] ?></span></h3>
+              <p>Utilisateurs actifs</p>
+             </div>
+
           </div>
+
+          
           
           <div class="stat-card">
             <div class="stat-icon">
               <i class="fas fa-headset"></i>
             </div>
-            <h3><span class=>24</span>/7</h3>
-            <p>Support disponible</p>
+            <div class="stat" id="stat-support" data-target="<?= $stats['support'] ?>">
+              <h3><span class="count"><?= $stats['support'] ?></span>/7</h3>
+              <p>Support client</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+     
   </main>
 
   <!-- Footer -->

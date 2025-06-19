@@ -32,3 +32,26 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(card);
   });
 });
+
+// Gestion des statistiques
+document.addEventListener('DOMContentLoaded', () => {
+    // Récupérer les statistiques via une requête AJAX
+    fetch('controllers/getstats.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Erreur :', data.error);
+                return;
+            }
+
+            // Mettre à jour les valeurs des compteurs
+            document.querySelector('#stat-capteurs .count').textContent = data.capteurs;
+            document.querySelector('#stat-utilisateurs .count').textContent = data.utilisateurs;
+            document.querySelector('#stat-support .count').textContent = data.support;
+
+
+            // Optionnel : Ajouter une animation de comptage
+            animateCounters();
+        })
+        .catch(error => console.error('Erreur lors de la récupération des statistiques :', error));
+});
