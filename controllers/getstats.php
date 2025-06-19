@@ -24,6 +24,7 @@ try {
     $stmtUtilisateurs = $pdo->query('SELECT COUNT(*) AS total_utilisateurs FROM utilisateur');
     $totalUtilisateurs = $stmtUtilisateurs->fetch(PDO::FETCH_ASSOC)['total_utilisateurs'];
 
+
     // Retour des statistiques au format JSON
     echo json_encode([
         'capteurs' => $totalCapteurs,
