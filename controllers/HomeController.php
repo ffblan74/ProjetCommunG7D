@@ -3,41 +3,35 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Inclure les fichiers nécessaires
-require_once __DIR__ . '/../config.php'; // Charger la configuration avant tout
-require_once __DIR__ . '/../models/Database.php'; // Connexion à la base de données
+require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../models/Database.php';
+
+// On initialise le tableau de stats uniquement avec ce qui nous est utile
+$stats = [
+    'utilisateurs' => 0,
+    'capteurs'     => 0,
+    'support'      => 24       // Valeur statique
+];
 
 try {
-
-
-    // Obtenir la connexion à la base de données
     $pdo = Database::getInstance()->getConnection();
 
-    // Requête pour récupérer les 6 événements planifiés à venir
-    $query = "
-        SELECT id_event, nom_event, date_planifiee, description, image_path
-        FROM Evenement
-        ORDER BY date_planifiee DESC
-        LIMIT 6
-    ";
+    // --- 1. Calcul du nombre d'utilisateurs ---
+    $queryUtilisateurs = "SELECT COUNT(*) FROM utilisateur";
+    $stmtUtilisateurs = $pdo->query($queryUtilisateurs);
+    $stats['utilisateurs'] = $stmtUtilisateurs->fetchColumn();
 
-    // Exécution de la requête
-    $stmt = $pdo->query($query);
-
-    // Vérification si des événements sont retournés
-    $events = ($stmt->rowCount() > 0) ? $stmt->fetchAll(PDO::FETCH_ASSOC) : [];
+    // --- 2. Calcul du nombre de capteurs ---
+    $queryCapteurs = "SELECT COUNT(*) FROM composant WHERE is_capteur = TRUE";
+    $stmtCapteurs = $pdo->query($queryCapteurs);
+    $stats['capteurs'] = $stmtCapteurs->fetchColumn();
 
 } catch (Exception $e) {
+    // En cas d'erreur, on l'enregistre dans les logs du serveur.
+    // Pour le débogage, vous pouvez remplacer par : die("Erreur: " . $e->getMessage());
     error_log("Erreur dans HomeController: " . $e->getMessage());
-    $events = [];
-    $stats = [
-        'events' => 0,
-        'participants' => 0,
-        'support' => 24
-    ];
 }
 
-// Inclure la vue
+// La vue reçoit le tableau $stats avec les bonnes données.
 require_once __DIR__ . '/../views/Home.php';
-
 ?>
