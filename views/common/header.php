@@ -28,6 +28,7 @@ $isOrganizer = isset($_SESSION['role']) && $_SESSION['role'] === 'organisateur';
       <li><a href="<?= $basePath ?>?page=home" class="<?= $page === 'home' ? 'active' : '' ?>">Accueil</a></li>
       <li><a href="<?= $basePath ?>?page=statistiques" class="<?= $page === 'statistiques' ? 'active' : '' ?>">Statistiques</a></li>
       <li><a href="<?= $basePath ?>?page=dashboard" class="<?= $page === 'dashboard' ? 'active' : '' ?>">Dashboard</a></li>
+      <li><a href="<?= $basePath ?>?page=accessibilite" class="<?= $page === 'accessibilite' ? 'active' : '' ?>">Accessibilité</a></li>
     </ul>
     <div class="navbar-right">
       <?php if ($isLoggedIn): ?>
