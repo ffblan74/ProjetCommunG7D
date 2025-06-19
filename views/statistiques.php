@@ -122,70 +122,38 @@
 
     <main class="content">
         <h2>Nombre de mesures par capteur</h2>
-
-        <div class="chart-header">
-        <label for="timeRange">Période : </label>
-        <select id="timeRange">
-            <option value="semaine">Semaine</option>
-            <option value="mois">Mois</option>
-            <option value="annee">Année</option>
-        </select>
-    </div>
-
-    <div class="chart-container" id="chart_div1"></div>
     </main>
 
 
     <h1>Statistiques des Capteurs et Actionneurs</h1>
     <div class="stat-container">
         <!-- Liste des composants -->
-        <div class="stat-item">
-            <div class="stat-title">Composants</div>
-            <ul>
-                <?php foreach ($components as $component): ?>
-                    <li><?= htmlspecialchars($component['id']) ?> - <?= htmlspecialchars($component['nom']) ?> - <?= htmlspecialchars($component['is_capteur']) ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-        <!-- Liste des mesures -->
-        <div class="stat-item">
-            <div class="stat-title">Mesures</div>
-            <ul>
-                <?php foreach ($measurements as $measurement): ?>
-                    <li><?= htmlspecialchars($measurement['id']) ?> - <?= htmlspecialchars($measurement['id_composant']) ?> - <?= htmlspecialchars($measurement['date']) ?> - <?= htmlspecialchars($measurement['valeur']) ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-        <!-- Capteurs de température -->
-        <div class="stat-item">
-            <div class="stat-title">Capteurs de Température</div>
-            <p>Température : <?= htmlspecialchars($temperature['valeur']) ?>°C</p>
-            <div class="stat-title">Prévisions météo :</div>
-            <ul>
-                <?php foreach ($weatherForecast as $forecast): ?>
-                    <li><?= htmlspecialchars($forecast['time']) ?> : <?= htmlspecialchars($forecast['temperature']) ?>°C</li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
+        <div class="stat-item full-width">
+    <div class="stat-title">Composants</div>
+    <table class="components-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($components as $component): ?>
+                <tr>
+                    <td><?= htmlspecialchars($component['id']) ?></td>
+                    <td><?= htmlspecialchars($component['nom']) ?></td>
+                    <td class="<?= $component['is_capteur'] ? 'capteur' : 'actionneur' ?>">
+                        <?= $component['is_capteur'] ? 'Capteur' : 'Actionneur' ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
         <!-- Capteur de lumière -->
-        <div class="stat-item">
-            <div class="stat-title">Capteur de Lumière</div>
-            <p>Luminosité actuelle : <?= htmlspecialchars($lightSensor['valeur']) ?> lux</p>
-        </div>
-
-        <!-- Servomoteur pour l'interrupteur -->
-        <div class="stat-item">
-            <div class="stat-title">État de l'Interrupteur</div>
-            <p>Lumière : <?= $lightSwitch['state'] ? 'Allumée' : 'Éteinte' ?></p>
-        </div>
-
-        <!-- Moteur pour les volets -->
-        <div class="stat-item">
-            <div class="stat-title">État des Volets</div>
-            <p>Volets : <?= $shutterMotor['state'] ? 'Ouverts' : 'Fermés' ?></p>
-        </div>
-    </div>
+      
     <?php foreach ($components as $component): ?>
         <?php if ($component['is_capteur']): ?>
             <div class="stat-item">
@@ -212,6 +180,20 @@
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
+        </div>
+
+        <!-- Servomoteur pour l'interrupteur -->
+        <div class="stat-item">
+            <div class="stat-title">État de l'Interrupteur</div>
+            <p>Lumière : <?= $lightSwitch['state'] ? 'Allumée' : 'Éteinte' ?></p>
+        </div>
+
+        <!-- Moteur pour les volets -->
+        <div class="stat-item">
+            <div class="stat-title">État des Volets</div>
+            <p>Volets : <?= $shutterMotor['state'] ? 'Ouverts' : 'Fermés' ?></p>
+        </div>
+
 
   
 
