@@ -125,6 +125,10 @@ switch ($page) {
         require 'controllers/DashboardController.php';
         break;
 
+    case 'eco':
+        require 'controllers/EcoController.php';
+        break;   
+
     default:
         require 'views/common/404.php';
         break;

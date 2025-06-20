@@ -1,0 +1,98 @@
+/* eco.css — styles pour la page éco-conception Light Control */
+
+:root {
+  --primary-color: #4a6fa5;
+  --secondary-color: #6c757d;
+  --dark-color: #333;
+  --light-color: #f8f9fa;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --border-radius: 10px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  padding: 3rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.eco-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.eco-header h1 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.eco-header p {
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+}
+
+.eco-results {
+  background-color: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.eco-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.eco-metric {
+  background-color: #eef4fb;
+  border-left: 5px solid var(--primary-color);
+  padding: 1rem 1.25rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+}
+
+.eco-metric:hover {
+  transform: translateY(-5px);
+}
+
+.eco-metric h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: var(--primary-color);
+}
+
+.eco-metric p {
+  margin: 0;
+  color: var(--secondary-color);
+}
+
+.eco-note {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--success-color);
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.eco-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  margin-top: 2rem;
+}

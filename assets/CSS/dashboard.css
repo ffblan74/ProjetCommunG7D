@@ -1,187 +1,183 @@
+/* ================================================================ */
+/* STYLESHEET FINAL POUR LE DASHBOARD                       */
+/* ================================================================ */
+
+/* --- 1. Style Général --- */
 body {
-            font-family: Poppins, sans-serif;
-            background: #f0f0f0;
-            padding: 30px;
-            margin-top: 30px;
-        }
-
-.page {
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
-}
-
-.texte-orange {
-    color: #FFA500;
-}
-
-
-        .manuel-lumiere {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 600px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin: 60px auto;
-        }
-
-        .manuel-lumiere h2 {
-            margin-top: 0;
-        }
-
-        .bouton {
-            padding: 12px 24px;
-            margin: 10px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .allumer { 
-            background: #FF8C00; 
-            color: white; }
-
-        .eteindre { 
-            background: #333333; 
-            color: white; 
-        }
-
-        .slider {
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        #status {
-            margin-top: 10px;
-            font-weight: bold;
-            justify-content: center;
-            text-align: center;
-        }
-
-
-        .carte-meteo {
-    background: #e0f7fa;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    border-radius: 12px;
-    padding: 20px;
-    max-width: 300px;
-    text-align: center;
     font-family: Poppins, sans-serif;
+    background: #f0f0f0;
+    margin: 0;
+    padding-top: 80px; /* Espace initial pour un header fixe */
 }
 
-
-/* Pour le controlle de la lumiere*/
-
-.mode-controle{ display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
-.allumereteindre{ display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
-.bouton.active { border: 2px solid #ff8c00; box-shadow: 0 0 5px #ff8c00; }
-.manuel-lumiere button:disabled { background-color: #ccc; cursor: not-allowed; opacity: 0.6; }
-.info-secondaire { display: flex; margin-top: 8px; font-size: 0.9em; color: #666; justify-content: center;}
-#zone-seuil-auto {
-    display: none;
-    margin-top: 10px;
-    padding: 10px 0;
+/* --- 2. Mise en Page Principale --- */
+.page {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Pousse les colonnes latérales vers les bords */
+    align-items: flex-start;   /* Aligne toutes les colonnes en HAUT */
+    gap: 30px;
+    
+    max-width: 1600px;
+    /* Marge haute pour le header et centrage horizontal de la page */
+    margin: 120px auto 30px auto; 
+    padding: 0 30px;
+    box-sizing: border-box;
 }
 
-#zone-seuil-auto label {
-    font-size: 0.95em;
-    color: #555;
+/* --- 3. Structure des Colonnes --- */
+.colonne-centrale {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex-grow: 1; /* Permet à la colonne de s'étirer si besoin */
+    max-width: 500px;
 }
 
-#zone-seuil-auto input[type="number"] {
-    border: 1px solid #ccc;
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 8px 12px;
-    width: 70px;
-    text-align: center;
-    font-size: 1em;
-    font-family: inherit;
-    transition: all 0.2s ease-in-out;
-    -moz-appearance: textfield;
+.carte-meteo, .carte-capteurs {
+    width: 320px;
+    flex-shrink: 0; /* Empêche les cartes latérales de rétrécir */
 }
 
-#zone-seuil-auto input[type="number"]::-webkit-outer-spin-button,
-#zone-seuil-auto input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+
+/* --- 4. Style Commun à Toutes les Cartes --- */
+.carte-meteo, 
+.carte-capteurs, 
+.manuel-lumiere, 
+.manuel-volets {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    box-sizing: border-box;
     margin: 0;
 }
 
-#zone-seuil-auto input[type="number"]:hover {
-    border-color: #999;
+
+/* --- 5. Styles des Éléments Intérieurs --- */
+.texte-bleu {
+    color: #3498db;
 }
 
-#zone-seuil-auto input[type="number"]:focus {
-    outline: none;
-    border-color: #ff8c00;
-    box-shadow: 0 0 8px rgba(255, 140, 0, 0.4);
-}
-
-#confirmation-seuil {
-    color: #27ae60;
-    font-weight: 600;
-}
-
-
-
-
-
-
-
-/* Pour tous les capteur*/
-.carte-capteurs {
-    background: #e0f7fa; 
-    padding: 20px 25px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    text-align: left;
-    color: #333;
-}
-
-.carte-capteurs h2 {
-    text-align: center;
+.carte h2, .manuel-lumiere h2, .manuel-volets h2, .carte-capteurs h2 {
     margin-top: 0;
-    margin-bottom: 20px;
+    text-align: center;
     font-size: 1.4em;
     color: #2c3e50;
 }
 
-/* Style pour la liste des capteurs */
-.liste-capteurs {
-    list-style-type: none; 
-    padding: 0;
-    margin: 0;
+.mode-controle, .allumereteindre { 
+    display: flex; 
+    gap: 10px; 
+    margin-bottom: 20px; 
+    justify-content: center; 
 }
 
+.bouton {
+    padding: 12px 24px;
+    margin: 5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+.bouton:hover { opacity: 0.85; }
+
+/* Couleurs des boutons unifiées en bleu */
+.bouton.allumer, .bouton.ouvrir {
+    background: #3498db; 
+    color: white;
+}
+.bouton.eteindre, .bouton.fermer {
+    background: #34495e;
+    color: white;
+}
+.bouton.active { 
+    border: 2px solid #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+}
+button:disabled { 
+    background-color: #ccc; 
+    cursor: not-allowed; 
+    opacity: 0.6; 
+}
+
+#status, #status-volet, .info-secondaire {
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+.info-secondaire { font-size: 0.9em; color: #666; }
+
+
+/* --- 6. Styles Spécifiques --- */
+
+/* Zone du seuil automatique */
+#zone-seuil-auto {
+    display: none;
+    margin-top: 20px;
+    padding: 10px 0;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+#zone-seuil-auto input[type="number"] {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 70px;
+    text-align: center;
+}
+#confirmation-seuil { color: #27ae60; font-weight: 600; }
+
+/* Liste des capteurs */
+.liste-capteurs { list-style-type: none; padding: 0; margin: 0; }
 .liste-capteurs li {
-    display: flex; /* Utilise Flexbox pour aligner les éléments */
-    justify-content: space-between; /* Espace maximum entre le nom et la valeur */
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0; /* Ligne de séparation fine */
-    font-size: 1.1em;
+    border-bottom: 1px solid #f0f0f0;
 }
-
-/* Enlève la ligne de séparation pour le dernier élément */
-.liste-capteurs li:last-child {
-    border-bottom: none;
-}
-
-.nom-capteur {
-    font-weight: 500;
-}
-
+.liste-capteurs li:last-child { border-bottom: none; }
+.nom-capteur { font-weight: 500; }
 .valeur-capteur {
     font-weight: 600;
-    color: #ff6600; /* Rappel de la couleur orange */
-    background-color: #f0f0f0;
+    color: #3498db;
+    background-color: #f2f2f2;
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 0.9em;
 }
 
+/* --- 7. Adaptation Responsive (Tablettes & Mobiles) --- */
+@media (max-width: 1200px) {
+    .page {
+        /* On passe à 2 colonnes sur tablettes */
+        justify-content: center; /* On recentre pour un meilleur look */
+    }
+    .colonne-centrale {
+        order: 1; /* La colonne centrale passe en premier */
+    }
+    .carte-meteo {
+        order: 2;
+    }
+    .carte-capteurs {
+        order: 3;
+    }
+}
+
+@media (max-width: 768px) {
+    body { padding-top: 60px; }
+    .page {
+        /* On passe à 1 seule colonne sur mobile */
+        flex-direction: column;
+        align-items: center; /* Centre toutes les cartes */
+    }
+    /* On redonne une largeur automatique aux cartes pour qu'elles prennent la place */
+    .carte-meteo, .carte-capteurs, .colonne-centrale {
+        width: 100%;
+        max-width: 500px;
+    }
+}
