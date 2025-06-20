@@ -36,7 +36,7 @@ class HomeController {
         // Charger la vue avec les stats
 
 
-        require 'views/home.php';
+        require 'views/Home.php';
     }
 }
 

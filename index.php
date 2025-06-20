@@ -14,7 +14,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
 // Routage des pages
 switch ($page) {
-    case 'Home':
+    case 'home':
         require 'controllers/HomeController.php';
         $homeController = new HomeController();
         $homeController->handleRequest($pdo);
