@@ -25,7 +25,7 @@ $basePath = (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) ? './' : '../.
     <div class="footer-section resources">
       <h4>Ressources</h4>
       <ul>
-        <li><a href="https://www.ecoindex.fr/resultat/?id=c0c2ff95-d31f-4322-b76b-288863a83434">Éco-conception</a></li>
+        <li><a href="https://www.ecoindex.fr/resultat/?id=c0c2ff95-d31f-4322-b76b-288863a83434" target="_blank">Éco-conception</a></li>
         <li><a href="<?= $basePath ?>index.php?page=conditions_utilisation">Conditions d'utilisation</a></li>
         <li><a href="<?= $basePath ?>index.php?page=mentions_legales">Mentions légales</a></li>
         <li><a href="<?= $basePath ?>index.php?page=contact">Support</a></li>
