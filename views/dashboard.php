@@ -26,7 +26,7 @@
 
         <div class="colonne-centrale">
             <div class="manuel-lumiere">
-                <h2>💡 Salon - <span class="texte-orange">Lumière</span></h2>
+            <h2>💡 Salon - <span class="texte-bleu">Lumière</span></h2>
                 <div class="mode-controle">
                     <button id="btn-manuel" class="bouton" onclick="definirMode('manuel')">Manuel</button>
                     <button id="btn-auto" class="bouton" onclick="definirMode('automatique')">Automatique</button>
@@ -47,7 +47,7 @@
             </div>
 
             <div class="manuel-volets">
-                <h2><i class="fa-solid fa-blinds-open"></i> Volets - <span class="texte-orange">Position</span></h2>
+            <h2><i class="fa-solid fa-blinds-open"></i> Volets - <span class="texte-bleu">Position</span></h2>
                 <div class="allumereteindre">
                     <button class="bouton ouvrir" onclick="sendCommandVolet('0')">Ouvrir</button>
                     <button class="bouton fermer" onclick="sendCommandVolet('1')">Fermer</button>
