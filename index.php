@@ -16,6 +16,8 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 switch ($page) {
     case 'home':
         require 'controllers/HomeController.php';
+        $homeController = new HomeController();
+        $homeController->handleRequest($pdo);
         break;
 
     case 'login':

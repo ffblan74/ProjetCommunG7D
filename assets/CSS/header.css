@@ -6,7 +6,9 @@ body {
     background-color: #f9f9f9; /* Couleur de fond globale */
     color: #333; /* Couleur par défaut pour le texte */
 }
-
+main, aside {
+    padding-top: 2%; /* Espace pour la barre de navigation */
+}
 /* --- Barre de navigation --- */
 .navbar {
     display: flex; 

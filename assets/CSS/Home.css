@@ -1,7 +1,6 @@
 /* Reset et Base */
 :root {
   --primary-color: #4a6fa5;
-  --secondary-color: #6c757d;
   --dark-color: #333;
   --light-color: #f8f9fa;
   --success-color: #28a745;
@@ -181,6 +180,13 @@ img {
 .feature-card h3 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
+}
+.feature-icon i {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.feature-icon i.changed {
+  transform: scale(1.2);
+  color: var(--highlight-color);
 }
 
 .sensor-status {

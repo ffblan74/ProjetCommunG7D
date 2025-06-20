@@ -1,119 +1,95 @@
 <?php
-// Plus de base de données ici, on laisse JS gérer
-$bodyClass = '';
+if (!defined('BASE_PATH')) require '../config.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paramètres d'accessibilité</title>
-    <link rel="stylesheet" href="assets/CSS/accessibilite.css">
-    <link rel="stylesheet" href="assets/CSS/footer.css">
-    <link rel="stylesheet" href="assets/CSS/header.css">
-    <link rel="icon" type="image/jpg" href="assets/images/favicon.jpg">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Accessibilité | Light Control</title>
+  <link rel="stylesheet" href="assets/CSS/accessibilite.css" />
+  <link rel="icon" href="assets/images/favicon.png">
 </head>
 <body>
-<?php include 'views/common/header.php'; ?>
+  <?php include 'views/common/header.php'; ?>
 
-<main class="page">
-    <div class="accessibilite-container">
-        <h2>⚙️ Paramètres <span class="texte-orange">d'accessibilité</span></h2>
+  <aside class="accessibility-settings">
+    <h2>Paramètres d'accessibilité</h2>
 
-        <div class="accessibilite-option">
-            <div>
-                <div class="option-title">Mode contraste élevé</div>
-                <div class="option-description">Augmente le contraste des couleurs pour une meilleure lisibilité</div>
-            </div>
-            <label class="switch">
-                <input type="checkbox" id="highContrast">
-                <span class="slider"></span>
-            </label>
-        </div>
-
-        <div class="accessibilite-option">
-            <div>
-                <div class="option-title">Taille du texte</div>
-                <div class="option-description">Ajustez la taille du texte à votre préférence</div>
-            </div>
-            <div class="text-size-controls">
-                <button class="text-size-btn" data-size="small">Petit</button>
-                <button class="text-size-btn" data-size="medium">Moyen</button>
-                <button class="text-size-btn" data-size="large">Grand</button>
-            </div>
-        </div>
-
-        <div class="accessibilite-option">
-            <div>
-                <div class="option-title">Désactiver les animations</div>
-                <div class="option-description">Supprime toutes les animations et transitions</div>
-            </div>
-            <label class="switch">
-                <input type="checkbox" id="disableAnimations">
-                <span class="slider"></span>
-            </label>
-        </div>
+    <!-- Thème principal / secondaire -->
+    <div class="setting">
+      <label for="color">Thème</label>
+      <input type="color" id="color" value="#4a6fa5">
     </div>
-</main>
 
-<script>
-    // Cookie helpers
-    function setCookie(name, value, days = 365) {
-        const expires = new Date(Date.now() + days * 864e5).toUTCString();
-        document.cookie = `${name}=${value}; expires=${expires}; path=/`;
-    }
+    <div class="setting">
+      <label for="contrast-mode">Mode de contraste</label>
+      <select id="contrast-mode">
+        <option value="light">Clair</option>
+        <option value="dark">Sombre</option>
+      </select>
+    </div>
 
-    function getCookie(name) {
-        return document.cookie.split('; ').find(row => row.startsWith(name + '='))?.split('=')[1];
-    }
+    <div class="setting">
+      <label for="saturation">Saturation</label>
+      <input type="range" id="saturation" min="0" max="1" step="0.1" value="1">
+    </div>
 
-    function applyAccessibilitySettings() {
-        const highContrast = getCookie('high_contrast') === '1';
-        const textSize = getCookie('text_size') || 'medium';
-        const disableAnimations = getCookie('disable_animations') === '1';
+    <div class="setting">
+      <label for="font-family">Police</label>
+      <select id="font-family">
+        <option value="Arial, sans-serif">Arial</option>
+        <option value="Verdana, sans-serif">Verdana</option>
+        <option value="Calibri, sans-serif">Calibri</option>
+        <option value="Trebuchet MS, sans-serif">Trebuchet</option>
+        <option value="Helvetica, sans-serif">Helvetica</option>
+        <option value="Tahoma, sans-serif">Tahoma</option>
+        <option value="Achemine, sans-serif">Achemine</option>
+      </select>
+    </div>
 
-        document.body.classList.toggle('high-contrast', highContrast);
-        document.body.classList.remove('text-size-small', 'text-size-medium', 'text-size-large');
-        document.body.classList.add('text-size-' + textSize);
+    <div class="setting">
+      <label for="font-size">Taille de la police</label>
+      <input type="range" id="font-size" min="0.8" max="1.5" step="0.05" value="1">
+    </div>
 
-        if (disableAnimations) {
-            document.body.classList.add('disable-animations');
-        } else {
-            document.body.classList.remove('disable-animations');
-        }
+    <div class="setting">
+      <label for="line-spacing">Espacement du texte</label>
+      <select id="line-spacing">
+        <option value="1.2">Compact</option>
+        <option value="1.6">Normal</option>
+        <option value="2">Spacieux</option>
+      </select>
+    </div>
 
-        // Appliquer aux éléments d’interface
-        document.getElementById('highContrast').checked = highContrast;
-        document.getElementById('disableAnimations').checked = disableAnimations;
+    <div class="setting">
+      <label for="object-spacing">Espacement des éléments</label>
+      <select id="object-spacing">
+        <option value="compact">Compact</option>
+        <option value="normal">Normal</option>
+        <option value="spacious">Spacieux</option>
+      </select>
+    </div>
 
-        document.querySelectorAll('.text-size-btn').forEach(btn => {
-            btn.classList.toggle('active', btn.dataset.size === textSize);
-        });
-    }
+    <div class="setting checkbox-setting">
+      <label><input type="checkbox" id="reduce-motion"> Réduire les animations</label>
+    </div>
 
-    // Events
-    document.getElementById('highContrast').addEventListener('change', function() {
-        setCookie('high_contrast', this.checked ? '1' : '0');
-        applyAccessibilitySettings();
-    });
+    <div class="setting checkbox-setting">
+      <label><input type="checkbox" id="underline-links"> Souligner les liens</label>
+    </div>
 
-    document.getElementById('disableAnimations').addEventListener('change', function() {
-        setCookie('disable_animations', this.checked ? '1' : '0');
-        applyAccessibilitySettings();
-    });
+    <div class="setting checkbox-setting">
+      <label><input type="checkbox" id="big-cursor"> Curseur visible</label>
+    </div>
+  </aside>
 
-    document.querySelectorAll('.text-size-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const size = this.dataset.size;
-            setCookie('text_size', size);
-            applyAccessibilitySettings();
-        });
-    });
+  <main class="main-content" id="main-content">
+    <h1>Bienvenue</h1>
+    <p>Ceci est une démonstration des paramètres d'accessibilité personnalisables.</p>
+    <p><a href="#">Exemple de lien</a></p>
+  </main>
 
-    // Initialisation
-    applyAccessibilitySettings();
-</script>
-
-<?php include 'views/common/footer.php'; ?>
+  <script src="assets/JS/accessibilite.js"></script>
 </body>
 </html>
