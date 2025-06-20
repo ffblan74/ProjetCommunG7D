@@ -29,7 +29,6 @@ try {
     echo json_encode([
         'capteurs' => $totalCapteurs,
         'utilisateurs' => $totalUtilisateurs,
-        'support' => 24, // Nombre fixe (24/7 support client)
     ]);
 } catch (PDOException $e) {
     // En cas d'erreur, retour d'un message explicite

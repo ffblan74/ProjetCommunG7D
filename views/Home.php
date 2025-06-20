@@ -153,7 +153,7 @@
               <div class="stat-icon">
                 <i class="fas fa-microchip"></i>
               </div>
-              <h3 data-target="<?= $stats['capteurs'] ?>">+<span class="count">0</span></h3>
+              <h3 data-target="<?= $stats['capteurs'] ?>">+<span class="count" id="compteur-capteurs">0</span></h3>
               <p>Capteurs installés</p>
             </div>
             
@@ -161,7 +161,7 @@
               <div class="stat-icon">
                 <i class="fas fa-users"></i>
               </div>
-              <h3 data-target="<?= $stats['utilisateurs'] ?>">+<span class="count">0</span></h3>
+              <h3 data-target="<?= $stats['utilisateurs'] ?>">+<span class="count" id="compteur-utilisateurs">0</span></h3>
               <p>Utilisateurs actifs</p>
             </div>
             
