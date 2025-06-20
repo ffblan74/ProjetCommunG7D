@@ -16,58 +16,58 @@ body {
 }
 
 
-        .manuel-lumiere {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            max-width: 600px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin: 60px auto;
-        }
-
-        .manuel-lumiere h2 {
-            margin-top: 0;
-        }
-
-        .bouton {
-            padding: 12px 24px;
-            margin: 10px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .allumer { 
-            background: #FF8C00; 
-            color: white; }
-
-        .eteindre { 
-            background: #333333; 
-            color: white; 
-        }
-
-        .slider {
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        #status {
-            margin-top: 10px;
-            font-weight: bold;
-            justify-content: center;
-            text-align: center;
-        }
-
-
-        .carte-meteo {
-    background: #e0f7fa;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.manuel-lumiere {
+    background: white;
     border-radius: 12px;
-    padding: 20px;
-    max-width: 300px;
+    padding: 30px;
+    max-width: 600px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin: 60px auto;
+}
+
+.manuel-lumiere h2 {
+    margin-top: 0;
+}
+
+.bouton {
+    padding: 12px 24px;
+    margin: 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.allumer { 
+    background: #FF8C00; 
+    color: white; }
+
+.eteindre { 
+    background: #333333; 
+    color: white; 
+}
+
+.slider {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#status {
+    margin-top: 10px;
+    font-weight: bold;
+    justify-content: center;
     text-align: center;
-    font-family: Poppins, sans-serif;
+}
+
+
+.carte-meteo {
+background: #e0f7fa;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+border-radius: 12px;
+padding: 20px;
+max-width: 300px;
+text-align: center;
+font-family: Poppins, sans-serif;
 }
 
 
@@ -185,3 +185,43 @@ body {
     font-size: 0.9em;
 }
 
+
+
+/* Pour le volet*/
+.colonne-centrale {
+    display: flex;
+    flex-direction: column; /* La propriété clé : aligne les éléments en colonne (verticalement) */
+    align-items: center; /* Centre les panneaux dans la colonne */
+    gap: 30px; /* Espace entre le panneau lumière et le panneau volets */
+}
+
+/* Style pour les cartes de contrôle */
+.manuel-lumiere, .manuel-volets {
+    width: 450px;
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.manuel-lumiere h2, .manuel-volets h2 {
+    margin-top: 0;
+}
+
+#status-volet {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Style pour les boutons des volets */
+.bouton.ouvrir { 
+    background: #3498db; /* Bleu */
+    color: white; 
+}
+
+.bouton.fermer { 
+    background: #34495e; /* Gris foncé */
+    color: white; 
+}

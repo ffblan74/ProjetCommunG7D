@@ -97,13 +97,7 @@ function mettreAJourUI(mode) {
             fetcherEtatActuel(); } }
 
 
-window.addEventListener('DOMContentLoaded', () => { 
-    fetch('controllers/get_mode.php').then(res => res.json()).then(data => { 
-        document.getElementById('input-seuil').value = data.seuil; 
-        definirMode(data.mode); 
-        rafraichirCapteurs(); 
-        setInterval(rafraichirCapteurs, 5000);
-    }); });
+
 
 function rafraichirCapteurs() {
     fetch('controllers/get_valeurs_capteurs_json.php')
@@ -124,3 +118,49 @@ function rafraichirCapteurs() {
         })
         .catch(error => console.error('Erreur de rafraîchissement des capteurs:', error));
 }
+
+// ================= Fonctions pour les VOLETS =================
+
+// Envoie la commande "ouvrir" ou "fermer" au serveur
+function sendCommandVolet(cmd) {
+    fetch('controllers/controle_volet.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `commande=${cmd}`
+    })
+    .then(res => res.text())
+    .then(responseText => {
+        console.log("Réponse du serveur (volet):", responseText);
+        // On met à jour l'affichage de l'état juste après la commande
+        setTimeout(fetcherEtatVolet, 500); 
+    });
+}
+
+// Récupère l'état actuel des volets et met à jour l'affichage
+function fetcherEtatVolet() {
+    fetch('controllers/etat_volet.php')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("status-volet").innerText = `État : ${data.etat_texte}`;
+        })
+        .catch(err => {
+            document.getElementById("status-volet").innerText = "État : erreur";
+            console.error(err);
+        });
+}
+
+
+
+
+
+window.addEventListener('DOMContentLoaded', () => { 
+    fetch('controllers/get_mode.php').then(res => res.json()).then(data => { 
+        document.getElementById('input-seuil').value = data.seuil; 
+        definirMode(data.mode); 
+        rafraichirCapteurs(); 
+        setInterval(rafraichirCapteurs, 5000);
+
+        // Gestion des boutons pour les volets
+        fetcherEtatVolet();
+        setInterval(fetcherEtatVolet, 5000);
+    }); });
