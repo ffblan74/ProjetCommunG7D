@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else if (stats.temperature < 29) {
       changeIcon("temp", "fa-temperature-three-quarters");
     } else {
-      changeIcon("temp", "fa-temperature-half");
+      changeIcon("temp", "fa-temperature-full");
     }
 
     if (stats.humidite < 25) {
@@ -80,9 +80,9 @@ document.addEventListener('DOMContentLoaded', function () {
     if (stats.luminosite < 300) {
       changeIcon("brightn", "fa-cloud-moon");
     } else if (stats.luminosite > 1000) {
-      changeIcon("brightn", "fa-sun-bright");
-    } else {
       changeIcon("brightn", "fa-sun");
+    } else {
+      changeIcon("brightn", "fa-cloud-sun");
     }
 
     if (stats.etatLumiere === 0) {
@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (stats.etatVolets === 0) {
-      changeIcon("state-blinds", "fa-door-closed");
-    } else {
       changeIcon("state-blinds", "fa-door-open");
+    } else {
+      changeIcon("state-blinds", "fa-door-closed");
     }
 
     if (stats.weatherTemp > 28) {

@@ -24,18 +24,10 @@ if (!defined('BASE_PATH')) require '../config.php';
     
 
     <div class="setting-line">
-      <div class="setting">
+      <div class="setting color">
         <label for="color">Thème</label>
         <input type="color" id="color" value="#4a6fa5">
       </div>
-      <div class="setting select">
-        <label for="contrast-mode">Mode de contraste</label>
-        <select id="contrast-mode">
-          <option value="light">Clair</option>
-          <option value="dark">Sombre</option>
-        </select>
-      </div>
-
       <div class="setting slider">
         <label for="saturation">Saturation</label>
         <input type="range" id="saturation" min="0" max="1" step="0.1" value="1">
@@ -82,9 +74,6 @@ if (!defined('BASE_PATH')) require '../config.php';
       <label><input type="checkbox" id="underline-links" value=""> Souligner les liens</label>
     </div>
 
-    <div class="setting checkbox-setting">
-      <label><input type="checkbox" id="big-cursor"> Curseur visible</label>
-    </div>
     <button id="reset-preferences" style="margin-top: auto; padding: 0.75rem; font-weight: bold;">
       Réinitialiser les paramètres
     </button>
