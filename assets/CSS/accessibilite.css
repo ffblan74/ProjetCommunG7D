@@ -100,14 +100,15 @@
     flex: 1 1 auto; /* flexible, prend tout l’espace dispo */
     min-width: 13rem; /* permet au slider de rétrécir si besoin */
   }
-
   .setting select,
   .setting input[type="range"] {
     padding: 0.5rem;
     border-radius: 0.3125rem;
     border: 0.0625rem solid #aaa;
   }
-
+  .setting input[type="color"] {
+    min-width: 8rem;;
+  }
   .checkbox-setting label {
     font-weight: normal;
     display: flex;
