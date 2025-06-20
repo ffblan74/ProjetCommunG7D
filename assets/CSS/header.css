@@ -1,9 +1,12 @@
 /* --- Styles généraux --- */
+
+
+
 body {
     font-family: Arial, sans-serif; /* Police globale */
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; /* Couleur de fond globale */
+    background-color: var(--light-color); /* Couleur de fond globale */
     color: #333; /* Couleur par défaut pour le texte */
 }
 main, aside {
@@ -15,13 +18,13 @@ main, aside {
     align-items: center;
     justify-content: space-between;
     padding: 0.15rem 0.30rem;
-    background-color: #D9E3E8; /* Vert harmonieux */
+    background-color: var(--head-bckg-color); /* couleur harmonieuse */
     width: 100%; /* Pleine largeur */
     box-sizing: border-box; /* Inclut les bordures et padding dans la largeur totale */
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .logo {
@@ -54,7 +57,7 @@ main, aside {
 }
 
 .navbar-menu a {
-    color: #2B3A4B;
+    color: var(--link-color);
     text-decoration: none;
     font-weight: bold;
     padding: 0.5rem 1rem;
@@ -65,7 +68,7 @@ main, aside {
 }
 
 .navbar-menu a:hover {
-    background-color: #3C75A6; /* Vert clair au survol */
+    background-color: var(--link-hover-color); /* Vert clair au survol */
     color: white;
 }
 
@@ -154,9 +157,9 @@ ul {
 /* Boutons "Se connecter", "Se déconnecter" et "Mon profil" */
 .connect-button,
 .profile-button {
-    background-color: #5A9BD5;
+    background-color: var(--connection-color); /* Couleur de fond du bouton de connexion */
     color: white;
-    border: 2px solid #3C75A6
+    border: 2px solid var(--primary-color) /* Couleur de bordure du bouton de connexion */
     ;
     padding: 0.4rem 0.8rem; /* Réduit le padding */
     border-radius: 15px; /* Réduit légèrement le border-radius */
@@ -173,7 +176,7 @@ ul {
 .profile-button:hover {
     background-color: #A8B0B8;
     color: white;
-    border-color: #2B3A4B;
+    border-color: var(--link-color); /* Couleur de bordure au survol */
     transform: scale(1.03); /* Réduit légèrement l'effet de scale */
 }
 
@@ -266,7 +269,7 @@ ul {
 }
 
 .login-btn:hover {
-    background-color: #f5f5f5;
+    background-color: var(--light-color);
 }
 
 .signup-btn:hover {

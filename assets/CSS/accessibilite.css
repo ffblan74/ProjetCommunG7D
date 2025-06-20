@@ -1,7 +1,15 @@
+/* assets */
 :root {
-    --background-color: #f4f4f4;
+  --primary-color: var(--user-color);
+  --light-color: var(--bckg-color);
+  --hero-bckg-color: var(--hero-bckg-color);
+  --head-bckg-color: var(--head-bckg-color);
+  --link-color: var(--link-color);
+  --link-hover-color: var(--link-hover-color);
+  --connection-color: var(--connection-color);
+  --connected-color: var(--connected-color);
     --text-color: #1a1a1a;
-    --primary-color: #4a6fa5;
+    /* --primary-color: #4a6fa5; */
     --saturation: 1;
     --line-height: 1.6;
     --font-size-multiplier: 1;
@@ -15,11 +23,17 @@
     --primary-color: #91a7ff;
   }
 
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+  }
   html {
     font-family: var(--font-family);
-    font-size: calc(16px * var(--font-size-multiplier));
+    font-size: calc(1rem * var(--font-size-multiplier));
     line-height: var(--line-height);
-    filter: saturate(var(--saturation));
+    /* filter: saturate(var(--saturation)); */
     background: var(--background-color);
     color: var(--text-color);
   }
@@ -28,21 +42,27 @@
     margin: 0;
     display: flex;
     height: 100vh;
+    padding: var(--spacing);
   }
 
   aside.accessibility-settings {
-    width: 300px;
-    padding: 20px;
-    padding-top: 3%;
+    position : fixed;
+    z-index: 1000;
+    width: 50%;
+    height: 100vh;
+    padding: 2rem;
+    padding-top: 7%;
     background: var(--background-color);
     color: var(--text-color);
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    border-right: 1px solid #ccc;
+    box-shadow: 0.125rem 0 0.3125rem rgba(0, 0, 0, 0.1);
+    border-right: 0.0625rem solid #ccc;
+    display: flex;
+    flex-direction: column;
   }
 
   .accessibility-settings h2 {
     font-size: 1.3rem;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
     color: var(--primary-color);
   }
 
@@ -54,28 +74,51 @@
 
   .setting label {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .setting-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+    gap: 5%;
+    width: 100%;
+  }
+  /* Limite la largeur des .setting (hors slider) */
+  .setting:not(.slider) {
+    flex: 0 0 auto; /* taille naturelle, pas de croissance */
+  }
+  /* Le sélect a une largeur maximale */
+  .setting select {
+    flex: 1 1 auto; /* flexible, prend tout l’espace dispo */
+    min-width: 5rem; /* permet au sélect de rétrécir si besoin */
+    max-width: 10rem; /* largeur maximale pour éviter les débordements */
+  }
+  /* Le slider prend tout l’espace restant */
+  .setting.slider {
+    flex: 1 1 auto; /* flexible, prend tout l’espace dispo */
+    min-width: 13rem; /* permet au slider de rétrécir si besoin */
   }
 
   .setting select,
   .setting input[type="range"] {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #aaa;
+    padding: 0.5rem;
+    border-radius: 0.3125rem;
+    border: 0.0625rem solid #aaa;
   }
 
   .checkbox-setting label {
     font-weight: normal;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
   }
 
   .main-content {
     flex-grow: 1;
     padding: var(--spacing);
-    transition: all 0.3s ease;
-    padding-top: 3%;
+    transition: all 0.3s ease-in-out;
+    padding-top: 2%;
   }
 
   a {
@@ -105,3 +148,52 @@
       transition: none !important;
     }
   }
+  @media (max-width: 768px) {
+    .main-content {
+        padding: 1rem; /* Ajustement pour les petits écrans */
+        padding-top: 5%; /* Augmentation pour une meilleure lisibilité */
+    }
+
+    a {
+        font-size: 0.9rem; /* Réduction de la taille du texte pour les petits écrans */
+    }
+  }
+
+  #styles-list button {
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    padding: 0.375rem 0.625rem;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .style-popup {
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+    top: 100%;
+    left: 0;
+  }
+  
+  #delete-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    backdrop-filter: blur(4px);
+    background-color: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
+  
+  #delete-modal .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  

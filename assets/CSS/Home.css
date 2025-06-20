@@ -1,8 +1,7 @@
 /* Reset et Base */
 :root {
-  --primary-color: #4a6fa5;
+
   --dark-color: #333;
-  --light-color: #f8f9fa;
   --success-color: #28a745;
   --warning-color: #ffc107;
   --danger-color: #dc3545;
@@ -63,7 +62,7 @@ img {
   flex-direction: column;
   align-items: center;
   padding: 4rem 1rem;
-  background: linear-gradient(135deg, rgba(74, 111, 165, 0.1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(135deg, var(--hero-bckg-color) 0%, rgba(255, 255, 255, 1) 100%);
   text-align: center;
 }
 
@@ -213,7 +212,7 @@ img {
 /* Section Statistiques */
 .stats-section {
   padding: 4rem 0;
-  background: linear-gradient(135deg, rgba(74, 111, 165, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(135deg, var(--hero-bckg-color) 0%, rgba(255, 255, 255, 1) 100%);
 }
 
 .stats-container {
@@ -284,7 +283,7 @@ img {
   top: -10px;
   left: -10px;
   font-size: 2rem;
-  color: rgba(74, 111, 165, 0.1);
+  color: var(--hero-bckg-color);
   z-index: 0;
 }
 
