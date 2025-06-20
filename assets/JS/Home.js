@@ -127,8 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('compteur-utilisateurs').textContent = data.utilisateurs;
 
 
-            // Optionnel : Ajouter une animation de comptage
-            animateCounters();
+            
         })
         .catch(error => console.error('Erreur lors de la récupération des statistiques :', error));
 });
