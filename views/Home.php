@@ -1,24 +1,4 @@
-<?php
-// Inclure la configuration si nécessaire
-if (!defined('BASE_PATH')) {
-    require '../config.php';
-}
 
-$statsFile = __DIR__ . '/../controllers/getstats.php';
-if (file_exists($statsFile)) {
-    $statsJSON = file_get_contents($statsFile);
-    $stats = json_decode($statsJSON, true);
-    
-    // Vérification du décodage JSON
-    if (json_last_error() !== JSON_ERROR_NONE) {
-        $stats = ['capteurs' => 0, 'utilisateurs' => 0, 'support' => 0];
-        error_log("Erreur de décodage JSON: " . json_last_error_msg());
-    }
-} else {
-    $stats = ['capteurs' => 0, 'utilisateurs' => 0, 'support' => 0];
-    error_log("Fichier getstats.php introuvable: " . $statsFile);
-}
-?>
 
 
 <!DOCTYPE html>
@@ -138,56 +118,43 @@ if (file_exists($statsFile)) {
       </div>
     </section>
 
-    <!-- Section statistiques améliorée -->
-    <section class="stats-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Light Control en quelques chiffres</h2>
-          <p class="section-subtitle">Avec Light Control, devenez maître de votre logement. Light Control vous permet de contrôler vos appareils domotiques à distance, de manière simple et sécurisée pour augmenter votre confort à domicile.</p>
-        </div>
-  
-        <div class="stats-container">
-          <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fas fa-microchip"></i>
-            </div>
-            <div class="stat" id="stat-capteurs" data-target="<?= $stats['capteurs'] ?>">
-            <h3>+<span class="count"><?= $stats['capteurs'] ?></span></h3>
-            <p>Appareils recensés</p>  
-              
-
-            </div>
+      <!-- Section statistiques améliorée -->
+      <section class="stats-section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Light Control en quelques chiffres</h2>
+            <p class="section-subtitle">Avec Light Control, devenez maître de votre logement. Light Control vous permet de contrôler vos appareils domotiques à distance, de manière simple et sécurisée pour augmenter votre confort à domicile.</p>
           </div>
 
-       
-          
-          <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fas fa-users"></i>
+          <div class="stats-container">
+            
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-microchip"></i>
+              </div>
+              <h3 data-target="<?= $stats['capteurs'] ?>"><span class="count">0</span></h3>
+              <p>Capteurs installés</p>
             </div>
-             <div class="stat" id="stat-utilisateurs" data-target="<?= $stats['utilisateurs'] ?>">
-              <h3>+<span class="count"><?= $stats['utilisateurs'] ?></span></h3>
+            
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <h3 data-target="<?= $stats['utilisateurs'] ?>">+<span class="count">0</span></h3>
               <p>Utilisateurs actifs</p>
-             </div>
-
-          </div>
-
-          
-          
-          <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fas fa-headset"></i>
             </div>
-            <div class="stat" id="stat-support" data-target="<?= $stats['support'] ?>">
-              <h3><span class="count"><?= $stats['support'] ?></span>/7</h3>
-              <p>Support client</p>
+            
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-headset"></i>
+              </div>
+              <h3><span>24</span>/7</h3>
+              <p>Support disponible</p>
             </div>
+
           </div>
         </div>
-      </div>
-    </section>
-
-     
+      </section>
   </main>
 
   <!-- Footer -->

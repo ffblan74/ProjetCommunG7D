@@ -1,35 +1,38 @@
-// Animation des compteurs
 document.addEventListener('DOMContentLoaded', function() {
-  const counters = document.querySelectorAll('.count');
-  const speed = 200;
-  
-  const animateCounters = () => {
-    counters.forEach(counter => {
-      const target = +counter.parentElement.getAttribute('data-target');
+  const animateSingleCounter = (counter) => {
+    const target = +counter.parentElement.getAttribute('data-target');
+    const speed = 200;
+
+    const updateCount = () => {
       const count = +counter.innerText;
       const increment = target / speed;
-      
+
       if (count < target) {
         counter.innerText = Math.ceil(count + increment);
-        setTimeout(animateCounters, 1);
+        setTimeout(updateCount, 5);
       } else {
         counter.innerText = target;
       }
-    });
+    };
+    updateCount();
   };
-  
-  // Déclencher l'animation lorsque la section est visible
-  const observer = new IntersectionObserver((entries) => {
+
+  const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        animateCounters();
+        const counterElement = entry.target.querySelector('.count');
+        if (counterElement) {
+          animateSingleCounter(counterElement);
+        }
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.5 });
-  
+
   document.querySelectorAll('.stat-card').forEach(card => {
-    observer.observe(card);
+    if (card.querySelector('.count')) {
+      observer.observe(card);
+    }
   });
 });
 
