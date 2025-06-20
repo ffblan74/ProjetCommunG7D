@@ -8,6 +8,9 @@ $basePath = (basename($_SERVER['PHP_SELF']) === 'index.php') ? './' : '../';
 $isLoggedIn = isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true;
 $isOrganizer = isset($_SESSION['role']) && $_SESSION['role'] === 'organisateur';
 ?>
+<script src="assets/JS/accessibilite.js"></script>
+<script src="assets/JS/changeColors.js"></script>
+<link rel="stylesheet" href="assets/CSS/accessibilite.css">
 
 <header>
   <link rel="stylesheet" href="<?= $basePath ?>assets/CSS/header.css">
@@ -91,4 +94,5 @@ $isOrganizer = isset($_SESSION['role']) && $_SESSION['role'] === 'organisateur';
       });
     });
   </script>
+  <script src="/assets/JS/accessibilite.js"></script>
 </header>

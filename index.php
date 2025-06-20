@@ -56,8 +56,15 @@ switch ($page) {
 
 
 
+    case 'event_details':
+        require 'controllers/EventDetailsController.php';
+        $eventDetailsController = new EventDetailsController();
+        $eventDetailsController->handleRequest();
+        break;
 
- 
+    case 'mentions_legales': 
+        require 'controllers/MentionsLegalesController.php';
+        break;
 
     case 'logout':  
         require 'controllers/LogoutController.php';  

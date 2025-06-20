@@ -8,7 +8,7 @@ $basePath = (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) ? './' : '../.
       <h4>Light Control</h4>
       <p>Votre plateforme de confiance pour découvrir le plaisir de votre maison autogérée.</p>
       <div class="contact-info">
-        <p><i class="fas fa-envelope"></i> contact@planit.fr</p>
+        <p><i class="fas fa-envelope"></i> contact@lightcontrol.fr</p>
         <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
       </div>
     </div>
@@ -18,7 +18,6 @@ $basePath = (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) ? './' : '../.
       <ul>
         <li><a href="<?= $basePath ?>index.php?page=home">Accueil</a></li>
         <li><a href="<?= $basePath ?>index.php?page=explorer">Explorer</a></li>
-        <li><a href="<?= $basePath ?>index.php?page=about">À propos</a></li>
         <li><a href="<?= $basePath ?>index.php?page=contact">Contact</a></li>
       </ul>
     </div>

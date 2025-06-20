@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $mail->addAddress($user['email'], $user['nom']); // On envoie à l'utilisateur
                 
                 $mail->isHTML(false);
-                $mail->Subject = 'Votre code de réinitialisation de mot de passe';
+                $mail->Subject = 'Votre code de reinitialisation de mot de passe';
                 $mail->Body = "Bonjour,\n\nVotre code de vérification est : " . $resetCode . "\n\nCe code expirera dans 10 minutes.";
 
                 // 3. On envoie l'e-mail

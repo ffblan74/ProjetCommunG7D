@@ -1,6 +1,6 @@
 
 let intervalleAutomatique = null;
-
+let intervalleEtatLumiere = null;
 
 function verifierEtatAutomatique() {
     // 1. On demande au serveur l'état actuel des capteurs
@@ -26,8 +26,11 @@ function verifierEtatAutomatique() {
                 sendCommand(etat_desire.toString()); // On appelle le contrôleur simple
             } else {
                  // Si c'est identique, on ne fait rien, juste on met à jour l'affichage
-                 document.getElementById("status").innerText = `État : ${data.etat_texte} (Auto)`;
+
+                 document.getElementById("status").innerText = `État : ${data.etat_texte}`; 
                  document.getElementById("luminosity-status").innerText = `Luminosité actuelle : ${luminosite_actuelle} lx`;
+
+                 fetcherEtatActuel(); 
             }
         })
         .catch(error => {
@@ -67,11 +70,39 @@ function fetcherEtatActuel() {
 }
 
 // Le reste des fonctions pour gérer l'UI et la sauvegarde du seuil (inchangées)
-function definirMode(mode) { 
-    if (intervalleAutomatique) { clearInterval(intervalleAutomatique); } 
-    fetch('controllers/definir_mode.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: `mode=${mode}` }).then(res => res.json()).then(data => { if (data.status === 'succes') { mettreAJourUI(mode); 
-        if (mode === 'automatique') { verifierEtatAutomatique(); intervalleAutomatique = setInterval(verifierEtatAutomatique, 5000); } } 
-    }); }
+function definirMode(mode) {
+    // 1. On arrête le minuteur "automatique" s'il tourne
+    if (intervalleAutomatique) {
+        clearInterval(intervalleAutomatique);
+        intervalleAutomatique = null; // <--- AJOUT OU MODIFICATION ICI
+    }
+    // 2. On arrête le minuteur "état lumière" s'il tourne (important pour éviter les doublons)
+    if (intervalleEtatLumiere) { // <--- AJOUT OU MODIFICATION ICI
+        clearInterval(intervalleEtatLumiere); // <--- AJOUT OU MODIFICATION ICI
+        intervalleEtatLumiere = null; // <--- AJOUT OU MODIFICATION ICI
+    }
+
+    fetch('controllers/definir_mode.php', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: `mode=${mode}` })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === 'succes') {
+            mettreAJourUI(mode);
+
+            // 3. On démarre (ou redémarre) le minuteur pour l'affichage de l'état de la lumière
+            fetcherEtatActuel(); // On met à jour l'état tout de suite une première fois
+            intervalleEtatLumiere = setInterval(fetcherEtatActuel, 3000); // <--- AJOUT OU MODIFICATION ICI : On le fait toutes les 3 secondes
+
+            // 4. Si on est en mode automatique, on démarre aussi son propre minuteur de décision
+            if (mode === 'automatique') {
+                verifierEtatAutomatique();
+                intervalleAutomatique = setInterval(verifierEtatAutomatique, 5000);
+            }
+        }
+    });
+}
+
+
+
 function sauvegarderSeuil() { 
     const seuil = document.getElementById('input-seuil').value; 
     const confirmation = document.getElementById('confirmation-seuil'); 
@@ -94,16 +125,10 @@ function mettreAJourUI(mode) {
             btnAllumer.disabled = false; 
             btnEteindre.disabled = false; 
             zoneSeuil.style.display = 'none'; 
-            fetcherEtatActuel(); } }
+} }
 
 
-window.addEventListener('DOMContentLoaded', () => { 
-    fetch('controllers/get_mode.php').then(res => res.json()).then(data => { 
-        document.getElementById('input-seuil').value = data.seuil; 
-        definirMode(data.mode); 
-        rafraichirCapteurs(); 
-        setInterval(rafraichirCapteurs, 5000);
-    }); });
+
 
 function rafraichirCapteurs() {
     fetch('controllers/get_valeurs_capteurs_json.php')
@@ -124,3 +149,49 @@ function rafraichirCapteurs() {
         })
         .catch(error => console.error('Erreur de rafraîchissement des capteurs:', error));
 }
+
+// ================= Fonctions pour les VOLETS =================
+
+// Envoie la commande "ouvrir" ou "fermer" au serveur
+function sendCommandVolet(cmd) {
+    fetch('controllers/controle_volet.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `commande=${cmd}`
+    })
+    .then(res => res.text())
+    .then(responseText => {
+        console.log("Réponse du serveur (volet):", responseText);
+        // On met à jour l'affichage de l'état juste après la commande
+        setTimeout(fetcherEtatVolet, 500); 
+    });
+}
+
+// Récupère l'état actuel des volets et met à jour l'affichage
+function fetcherEtatVolet() {
+    fetch('controllers/etat_volet.php')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("status-volet").innerText = `État : ${data.etat_texte}`;
+        })
+        .catch(err => {
+            document.getElementById("status-volet").innerText = "État : erreur";
+            console.error(err);
+        });
+}
+
+
+
+
+
+window.addEventListener('DOMContentLoaded', () => { 
+    fetch('controllers/get_mode.php').then(res => res.json()).then(data => { 
+        document.getElementById('input-seuil').value = data.seuil; 
+        definirMode(data.mode); 
+        rafraichirCapteurs(); 
+        setInterval(rafraichirCapteurs, 5000);
+
+        // Gestion des boutons pour les volets
+        fetcherEtatVolet();
+        setInterval(fetcherEtatVolet, 5000);
+    }); });
