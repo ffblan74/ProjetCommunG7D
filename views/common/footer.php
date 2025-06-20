@@ -6,7 +6,7 @@ $basePath = (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) ? './' : '../.
   <div class="footer-container">
     <div class="footer-section about">
       <h4>Light Control</h4>
-      <p>Votre plateforme de confiance pour créer, découvrir et participer à des événements inoubliables.</p>
+      <p>Votre plateforme de confiance pour découvrir le plaisir de votre maison autogérée.</p>
       <div class="contact-info">
         <p><i class="fas fa-envelope"></i> contact@planit.fr</p>
         <p><i class="fas fa-phone"></i> +33 1 23 45 67 89</p>
@@ -26,7 +26,7 @@ $basePath = (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) ? './' : '../.
     <div class="footer-section resources">
       <h4>Ressources</h4>
       <ul>
-        <li><a href="<?= $basePath ?>index.php?page=faq">FAQ</a></li>
+        <li><a href="<?= $basePath ?>index.php?page=eco">Éco-conception</a></li>
         <li><a href="<?= $basePath ?>index.php?page=conditions_utilisation">Conditions d'utilisation</a></li>
         <li><a href="<?= $basePath ?>index.php?page=mentions_legales">Mentions légales</a></li>
         <li><a href="<?= $basePath ?>index.php?page=contact">Support</a></li>
