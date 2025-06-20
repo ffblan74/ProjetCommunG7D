@@ -105,7 +105,7 @@ function getCookie(name) {
 
   const root = document.documentElement;
   
-  root.style.setProperty('--color', userColor || baseBlue); // Couleur principale
+  root.style.setProperty('--user-color', userColor || baseBlue); // Couleur principale
   root.style.setProperty('--bckg-color', bckgColor || bckgBlue); // Couleur de fond du site
   root.style.setProperty('--hero-bckg-color', heroBckgColor || heroBckgBlue); // Couleur de fond du hero
   root.style.setProperty('--head-bckg-color', headBckgColor || headBckgBlue); // Couleur de fond du header
