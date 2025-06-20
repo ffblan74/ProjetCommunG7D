@@ -18,12 +18,8 @@ if (!defined('BASE_PATH')) require '../config.php';
 
     <!-- Thème principal / secondaire -->
     <div class="setting">
-      <label for="primary-color">Couleur principale</label>
-      <input type="color" id="primary-color" value="#3366ff">
-    </div>
-    <div class="setting">
-      <label for="secondary-color">Couleur secondaire</label>
-      <input type="color" id="secondary-color" value="#cc33ff">
+      <label for="color">Thème</label>
+      <input type="color" id="color" value="#4a6fa5">
     </div>
 
     <div class="setting">

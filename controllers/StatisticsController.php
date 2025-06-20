@@ -31,4 +31,14 @@ class StatisticsController {
         // Charger la vue
         require 'views/statistiques.php';
     }
+    // Méthode pour obtenir les statistiques résumées pour la page d'accueil
+    public function getSummaryStats() {
+        return [
+            'temperature'   => $this->sensorModel->getLatestMeasurementByName('Capteur Température')['valeur'],
+            'humidite'      => $this->sensorModel->getLatestMeasurementByName('Capteur Humidité')['valeur'],
+            'luminosite'    => $this->sensorModel->getLatestMeasurementByName('Capteur lumière')['valeur'],
+            'etatLumiere'    => $this->sensorModel->getActuatorStateByName('servo')['valeur'],
+            'etatVolets'   => $this->sensorModel->getActuatorStateByName('moteur')['valeur'],
+        ];
+    }
 }

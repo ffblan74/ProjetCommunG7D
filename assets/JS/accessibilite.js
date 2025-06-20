@@ -12,18 +12,15 @@ function applyPrefs() {
   const root = document.documentElement;
 
   // Thème couleurs principales
-  const primary = getCookie('primaryColor');
-  const secondary = getCookie('secondaryColor');
-  if (primary) root.style.setProperty('--primary-color', primary);
-  if (secondary) root.style.setProperty('--secondary-color', secondary);
+  const couleur = getCookie('color');
+  if (couleur) root.style.setProperty('--color', couleur);
 
   // Contraste (clair / sombre)
   const contrast = getCookie('contrast');
   if (contrast === 'dark') {
     root.style.setProperty('--background-color', '#000');
     root.style.setProperty('--text-color', '#fff');
-    root.style.setProperty('--primary-color', '#2222aa');
-    root.style.setProperty('--secondary-color', '#8800ff');
+    root.style.setProperty('--color', '#2222aa');
   } else {
     root.style.setProperty('--background-color', '#fff');
     root.style.setProperty('--text-color', '#000');
@@ -89,12 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
   applyPrefs();
 
   // On attache les contrôles ici
-  document.getElementById('primary-color')?.addEventListener('input', e => {
-    setCookie('primaryColor', e.target.value);
-    applyPrefs();
-  });
-  document.getElementById('secondary-color')?.addEventListener('input', e => {
-    setCookie('secondaryColor', e.target.value);
+  document.getElementById('color')?.addEventListener('input', e => {
+    setCookie('color', e.target.value);
     applyPrefs();
   });
 
