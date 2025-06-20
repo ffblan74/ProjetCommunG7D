@@ -22,7 +22,7 @@ if ($conn->connect_error) {
 $donnees_capteurs = []; // On va stocker les résultats ici
 
 foreach ($composants_a_chercher as $id => $details) {
-    $stmt = $conn->prepare("SELECT valeur FROM mesure WHERE id_composant = ? ORDER BY date DESC LIMIT 1");
+    $stmt = $conn->prepare("SELECT valeur FROM mesure WHERE id_composant = ?  ORDER BY id DESC LIMIT 1");
     if (!$stmt) continue;
 
     $stmt->bind_param("i", $id);

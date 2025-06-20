@@ -170,14 +170,16 @@ function sendCommandVolet(cmd) {
 // Récupère l'état actuel des volets et met à jour l'affichage
 function fetcherEtatVolet() {
     fetch('controllers/etat_volet.php')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("status-volet").innerText = `État : ${data.etat_texte}`;
-        })
-        .catch(err => {
-            document.getElementById("status-volet").innerText = "État : erreur";
-            console.error(err);
-        });
+    .then(res => res.json())
+    .then(data => {
+        console.log('Etat volet reçu:', data);
+        document.getElementById("status-volet").innerText = `État : ${data.etat_texte}`;
+    })
+    
+    .catch(err => {
+        document.getElementById("status-volet").innerText = "État : erreur";
+        console.error(err);
+    });
 }
 
 
