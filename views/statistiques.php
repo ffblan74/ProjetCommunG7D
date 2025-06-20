@@ -153,7 +153,8 @@
 </div>
 
         <!-- Capteur de lumière -->
-      
+    
+    
     <?php foreach ($components as $component): ?>
         <?php if ($component['is_capteur']): ?>
             <div class="stat-item">
@@ -185,13 +186,12 @@
         <!-- Servomoteur pour l'interrupteur -->
         <div class="stat-item">
             <div class="stat-title">État de l'Interrupteur</div>
-            <p>Lumière : <?= $lightSwitch['state'] ? 'Allumée' : 'Éteinte' ?></p>
+            <p>Lumière : <?= $lightSwitch['valeur'] ? 'Allumée' : 'Éteinte' ?></p>
         </div>
-
         <!-- Moteur pour les volets -->
         <div class="stat-item">
             <div class="stat-title">État des Volets</div>
-            <p>Volets : <?= $shutterMotor['state'] ? 'Ouverts' : 'Fermés' ?></p>
+            <p>Volets : <?= $shutterMotor['valeur'] ? 'Ouverts' : 'Fermés' ?></p>
         </div>
 
 
