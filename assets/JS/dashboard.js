@@ -27,7 +27,7 @@ function verifierEtatAutomatique() {
             } else {
                  // Si c'est identique, on ne fait rien, juste on met à jour l'affichage
 
-                 document.getElementById("status").innerText = `État : ${data.etat_texte}`; 
+                 document.getElementById("status").innerText = `État : ${data.etat_texte} (Auto)`; 
                  document.getElementById("luminosity-status").innerText = `Luminosité actuelle : ${luminosite_actuelle} lx`;
 
                  fetcherEtatActuel(); 
