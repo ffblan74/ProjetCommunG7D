@@ -26,7 +26,7 @@
 
         <div class="colonne-centrale">
             <div class="manuel-lumiere">
-            <h2>💡 Salon - <span class="texte-bleu">Lumière</span></h2>
+            <h2>Lumière - <span class="texte-bleu">Contrôler</span></h2>
                 <div class="mode-controle">
                     <button id="btn-manuel" class="bouton" onclick="definirMode('manuel')">Manuel</button>
                     <button id="btn-auto" class="bouton" onclick="definirMode('automatique')">Automatique</button>
