@@ -55,15 +55,15 @@ body {
 
 
 /* --- 5. Styles des Éléments Intérieurs --- */
-.texte-bleu {
-    color: #3498db;
+.texte-couleur {
+    color: var(--connection-color);
 }
 
 .carte h2, .manuel-lumiere h2, .manuel-volets h2, .carte-capteurs h2 {
     margin-top: 0;
     text-align: center;
     font-size: 1.4em;
-    color: #2c3e50;
+    color: var(--dashboard-color);
 }
 
 .mode-controle, .allumereteindre { 
@@ -86,16 +86,16 @@ body {
 
 /* Couleurs des boutons unifiées en bleu */
 .bouton.allumer, .bouton.ouvrir {
-    background: #3498db; 
+    background: var(--connection-color); 
     color: white;
 }
 .bouton.eteindre, .bouton.fermer {
-    background: #34495e;
+    background: var(--dashboard-color);
     color: white;
 }
 .bouton.active { 
-    border: 2px solid #3498db;
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+    border: 2px solid var(--connection-color);
+    box-shadow: 0 0 8px var(--dashboard-color)
 }
 button:disabled { 
     background-color: #ccc; 
@@ -144,7 +144,7 @@ button:disabled {
 .nom-capteur { font-weight: 500; }
 .valeur-capteur {
     font-weight: 600;
-    color: #3498db;
+    color: var(--primary-color);
     background-color: #f2f2f2;
     padding: 4px 8px;
     border-radius: 6px;

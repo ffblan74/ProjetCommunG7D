@@ -101,6 +101,9 @@ function getCookie(name) {
   delta = getHSLDelta(baseBlue, connectedBlue);
   let connectedColor = applyHSLDelta(userColor, delta); // Couleur du bouton de connexion quand connecté transformée
 
+  const dashboardBlue = "#34495e"; // Bleu foncé pour le dashboard
+  delta = getHSLDelta(baseBlue, dashboardBlue);
+  let dashboardColor = applyHSLDelta(userColor, delta); // Couleur du dashboard transformée
 
 
   const root = document.documentElement;
@@ -113,7 +116,7 @@ function getCookie(name) {
   root.style.setProperty('--link-hover-color', linkHoverColor || linkHoverBlue); // Couleur du lien du header au survol
   root.style.setProperty('--connection-color', connectionColor || connectionBlue); // Couleur du bouton de connexion
   root.style.setProperty('--connected-color', connectedColor || connectedBlue); // Couleur du bouton de connexion quand connecté
-
+  root.style.setProperty('--dashboard-color', dashboardColor || dashboardBlue); // Couleur du dashboard
   
   const originalBox = document.getElementById("original");
   const transformedBox = document.getElementById("transformed");

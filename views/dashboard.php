@@ -8,10 +8,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="assets/CSS/accessibilite.css">
     <link rel="stylesheet" href="assets/CSS/dashboard.css">
     <link rel="stylesheet" href="assets/CSS/footer.css">
     <link rel="stylesheet" href="assets/CSS/header.css">
     <link rel="icon" type="image/jpg" href="assets/images/favicon.png">
+    <script src="assets/JS/changeColors.js"></script>
+    <script src="assets/JS/accessibilite.js"></script>
     <script src="assets/JS/dashboard.js"></script>
 
 </head>
