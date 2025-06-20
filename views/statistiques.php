@@ -3,10 +3,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Statistiques</title>
+    <link rel="stylesheet" href="assets/CSS/accessibilite.css">
     <link rel="stylesheet" href="assets/CSS/statistiques.css">
     <link rel="stylesheet" href="assets/CSS/footer.css">
     <link rel="stylesheet" href="assets/CSS/header.css">
     <link rel="icon" type="image/jpg" href="assets/images/favicon.png">
+    <script src="assets/JS/changeColors.js"></script>
+    <script src="assets/JS/accessibilite.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
         google.charts.load('current', { packages: ['corechart'] });
@@ -120,9 +123,6 @@
 <body>
     <?php include 'views/common/header.php'; ?>
 
-    <main class="content">
-        <h2>Nombre de mesures par capteur</h2>
-    </main>
 
 
     <h1>Statistiques des Capteurs et Actionneurs</h1>

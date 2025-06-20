@@ -9,6 +9,12 @@ if (!defined('BASE_PATH')) require '../config.php';
   <title>Accessibilité | Light Control</title>
   <link rel="stylesheet" href="assets/CSS/accessibilite.css" />
   <link rel="icon" href="assets/images/favicon.png">
+  <style>
+    body {
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body>
   <?php include 'views/common/header.php'; ?>

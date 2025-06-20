@@ -73,10 +73,6 @@ switch ($page) {
         require 'controllers/ContactController.php';
         break;
 
-    case 'about':
-        require 'controllers/AboutController.php';
-        break;
-
     case 'event_details':
         require 'controllers/EventDetailsController.php';
         $eventDetailsController = new EventDetailsController();

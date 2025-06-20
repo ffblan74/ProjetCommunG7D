@@ -64,6 +64,5 @@
 
     </main>
 
-    <?php include 'views/common/footer.php'; ?>
 </body>
 </html>

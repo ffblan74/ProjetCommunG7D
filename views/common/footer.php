@@ -18,7 +18,6 @@ $basePath = (strpos($_SERVER['PHP_SELF'], 'index.php') !== false) ? './' : '../.
       <ul>
         <li><a href="<?= $basePath ?>index.php?page=home">Accueil</a></li>
         <li><a href="<?= $basePath ?>index.php?page=explorer">Explorer</a></li>
-        <li><a href="<?= $basePath ?>index.php?page=about">À propos</a></li>
         <li><a href="<?= $basePath ?>index.php?page=contact">Contact</a></li>
       </ul>
     </div>
