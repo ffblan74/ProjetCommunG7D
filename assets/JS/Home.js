@@ -109,3 +109,25 @@ document.addEventListener('DOMContentLoaded', function () {
   // Appel immédiat
   updateFeatureIcons();
 });
+
+
+// Gestion des statistiques
+document.addEventListener('DOMContentLoaded', () => {
+    // Récupérer les statistiques via une requête AJAX
+    fetch('controllers/getstats.php')
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error('Erreur :', data.error);
+                return;
+            }
+
+            // Mettre à jour les valeurs des compteurs
+            document.getElementById('compteur-capteurs').textContent = data.capteurs;
+            document.getElementById('compteur-utilisateurs').textContent = data.utilisateurs;
+
+
+            
+        })
+        .catch(error => console.error('Erreur lors de la récupération des statistiques :', error));
+});

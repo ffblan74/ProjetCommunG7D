@@ -24,11 +24,6 @@ switch ($page) {
         require 'controllers/LoginController.php';
         break;
 
-    case 'admin':
-        require 'controllers/AdminController.php';
-        $adminController = new AdminController();
-        $adminController->handleRequest();
-        break;
 
     case 'signin':
         require 'controllers/SignupController.php';
@@ -48,30 +43,18 @@ switch ($page) {
         $controlRoomController = new ControlRoomController();
         $controlRoomController->handleRequest();
         break;
+
     case 'accessibilite':
         require 'controllers/AccessibiliteController.php';
         break;
-    case 'explorer':
-        require 'controllers/ExploreController.php';
-        $exploreController = new ExploreController();
-        $exploreController->handleRequest();
-        break;
 
-    case 'faq':
-        require 'controllers/FaqController.php';
-        break;
-
-    case 'tags_signin':
-        require 'controllers/TagsSigninController.php';
-        break;
+  
     
     case 'conditions_utilisation':
         require 'controllers/ConditionsUtilisationController.php';
         break;
 
-    case 'contact':
-        require 'controllers/ContactController.php';
-        break;
+
 
     case 'event_details':
         require 'controllers/EventDetailsController.php';
@@ -87,31 +70,16 @@ switch ($page) {
         require 'controllers/LogoutController.php';  
         break;
         
-    case 'create_event':  
-        require 'controllers/CreateEventController.php';  
-        break;
+  
 
-    case 'client_profil':
-        require 'controllers/ClientProfileController.php';
-        break;
-
+ 
     case 'verify_code':
         require 'controllers/VerifyCodeController.php';
         break;
 
-    case 'edit_profile':
-        require 'controllers/EditProfileController.php';
-        break;
 
-    case 'update_settings':
-        require 'controllers/UpdateSettingsController.php';
-        break;
+  
 
-    case 'event_registration':
-        require 'controllers/EventRegistrationController.php';
-        $registrationController = new EventRegistrationController();
-        $registrationController->handleRequest();
-        break;
 
     case 'statistiques':
         require 'controllers/StatistiquesController.php';

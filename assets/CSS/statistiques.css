@@ -54,6 +54,7 @@ h1::after {
     padding: 25px;
     transition: all 0.3s ease;
     border-left: 4px solid var(--primary-color);
+    width: 1000px;
 }
 
 .stat-item:hover {

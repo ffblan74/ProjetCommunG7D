@@ -181,7 +181,7 @@
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
-        </div>
+
 
         <!-- Servomoteur pour l'interrupteur -->
         <div class="stat-item">
@@ -193,6 +193,11 @@
             <div class="stat-title">État des Volets</div>
             <p>Volets : <?= $shutterMotor['valeur'] ? 'Ouverts' : 'Fermés' ?></p>
         </div>
+
+
+        </div>
+
+
 
 
   
